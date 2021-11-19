@@ -32,7 +32,7 @@ export default createRule<[options: IConvertPath], 'ignored'>({
   name: 'no-unpublished-bin',
   meta: {
     type: 'problem',
-    docs: { description: 'disallow `bin` files that npm ignores', recommended: 'warn' },
+    docs: { description: 'disallow `bin` files that npm ignores', recommended: 'error' },
     schema: [{ type: 'object', properties: { convertPath: convertPathSchema } }],
     messages: { ignored: "npm ignores '{{name}}'. Check 'files' field of 'package.json' or '.npmignore'." },
   },

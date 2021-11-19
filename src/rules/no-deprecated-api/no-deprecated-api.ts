@@ -47,13 +47,13 @@ const toName = (type: symbol, path: readonly string[]): string => {
   return type === ASTUtils.ReferenceTracker.CONSTRUCT ? `new ${baseName}()` : baseName;
 };
 
-interface IOptions {
+export interface IOptions {
   version?: string;
   ignoreModuleItems?: string[];
   ignoreGlobalItems?: string[];
 }
 
-type Options = readonly [options: IOptions];
+export type Options = readonly [options: IOptions];
 
 /**
  * Parses the options.
@@ -80,7 +80,7 @@ export default createRule<Options, 'deprecated'>({
   name: 'no-deprecated-api',
   meta: {
     type: 'problem',
-    docs: { description: 'disallow deprecated APIs', recommended: 'warn' },
+    docs: { description: 'disallow deprecated APIs', recommended: 'error' },
     schema: [
       {
         type: 'object',

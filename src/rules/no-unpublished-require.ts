@@ -15,7 +15,7 @@ export default createRule<[options: IAllowModules & IConvertPath & IResolvePaths
   name: 'no-unpublished-require',
   meta: {
     type: 'problem',
-    docs: { description: 'disallow `require()` expressions which import private modules', recommended: 'warn' },
+    docs: { description: 'disallow `require()` expressions which import private modules', recommended: 'error' },
     schema: [
       {
         type: 'object',

@@ -72,7 +72,7 @@ export default createRule<[options: IConvertPath], MessageIds>({
   name: 'shebang',
   meta: {
     type: 'problem',
-    docs: { description: 'enforce correct usage of shebang', recommended: 'warn' },
+    docs: { description: 'enforce correct usage of shebang', recommended: 'error' },
     fixable: 'code',
     schema: [{ type: 'object', properties: { convertPath: convertPathSchema }, additionalProperties: false }],
     messages: {

@@ -34,7 +34,7 @@ export default createRule<[], 'forbidden'>({
   name: 'no-exports-assign',
   meta: {
     type: 'problem',
-    docs: { description: 'disallow the assignment to `exports`', recommended: 'warn' },
+    docs: { description: 'disallow the assignment to `exports`', recommended: 'error' },
     schema: [],
     messages: { forbidden: "Unexpected assignment to 'exports' variable. Use 'module.exports' instead." },
   },

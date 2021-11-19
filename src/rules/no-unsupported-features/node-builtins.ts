@@ -250,7 +250,7 @@ export default createRule<[options: IRawOptions], 'unsupported'>({
     type: 'problem',
     docs: {
       description: 'disallow unsupported Node.js built-in APIs on the specified version',
-      recommended: 'warn',
+      recommended: 'error',
     },
     schema: [
       {

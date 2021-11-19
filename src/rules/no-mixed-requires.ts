@@ -63,7 +63,7 @@ const BUILTIN_MODULES = new Set([
   'zlib',
 ]);
 
-interface IOptions {
+export interface IOptions {
   grouping?: boolean;
   allowCall?: boolean;
 }

@@ -285,7 +285,7 @@ export default createRule<[options: IRawOptions], string>({
   name: 'no-unsupported-features/es-syntax',
   meta: {
     type: 'problem',
-    docs: { description: 'disallow unsupported ECMAScript syntax on the specified version', recommended: 'warn' },
+    docs: { description: 'disallow unsupported ECMAScript syntax on the specified version', recommended: 'error' },
     schema: [
       {
         type: 'object',

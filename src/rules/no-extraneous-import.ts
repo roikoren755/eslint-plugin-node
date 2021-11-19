@@ -15,7 +15,7 @@ export default createRule<[options: IAllowModules & IConvertPath & IResolvePaths
   name: 'no-extraneous-import',
   meta: {
     type: 'problem',
-    docs: { description: 'disallow `import` declarations which import extraneous modules', recommended: 'warn' },
+    docs: { description: 'disallow `import` declarations which import extraneous modules', recommended: 'error' },
     schema: [
       {
         type: 'object',

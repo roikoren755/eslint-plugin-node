@@ -241,6 +241,7 @@ module.exports = {
         './src/rules/no-unsupported-features/*.ts',
         './src/rules/prefer-global/*.ts',
         './src/rules/prefer-promises/*.ts',
+        './src/index.ts',
       ],
       rules: { 'import/no-default-export': OFF },
     },

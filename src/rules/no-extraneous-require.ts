@@ -15,7 +15,7 @@ export default createRule<[options: IAllowModules & IConvertPath & IResolvePaths
   name: 'no-extraneous-require',
   meta: {
     type: 'problem',
-    docs: { description: 'disallow `require()` expressions which import extraneous modules', recommended: 'warn' },
+    docs: { description: 'disallow `require()` expressions which import extraneous modules', recommended: 'error' },
     schema: [
       {
         type: 'object',

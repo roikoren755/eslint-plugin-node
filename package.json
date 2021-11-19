@@ -27,7 +27,7 @@
     "prerelease": "yarn build",
     "release": "changeset publish",
     "test": "nyc mocha tests/**/*.ts --reporter dot --timeout 4000",
-    "type": "tsc --noEmit --noImplicitAny",
+    "type": "tsc",
     "update": "ts-node scripts/update"
   },
   "resolutions": {
@@ -57,6 +57,7 @@
     "@typescript-eslint/parser": "5.4.0",
     "@typescript-eslint/types": "5.4.0",
     "@typescript-eslint/typescript-estree": "5.4.0",
+    "camelcase": "6.2.1",
     "eslint": "8.2.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-import-resolver-alias": "1.1.2",
