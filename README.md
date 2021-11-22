@@ -11,7 +11,7 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=roikoren755_eslint-plugin-node&metric=sqale_index)](https://sonarcloud.io/dashboard?id=roikoren755_eslint-plugin-node)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=roikoren755_eslint-plugin-node&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=roikoren755_eslint-plugin-node)
 
-[![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/roikoren755/eslint-plugin-node)](https://app.snyk.io/org/roikoren755/project/46fd7677-38c9-4e4a-a374-664f722e4427)
+[![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/roikoren755/eslint-plugin-node)](https://app.snyk.io/org/roikoren755/project/64ddaa3b-1afa-4efe-838a-889659efafbf)
 
 [![npm](https://img.shields.io/npm/v/eslint-plugin-node-roikoren)](https://www.npmjs.com/package/eslint-plugin-node-roikoren)
 [![NPM](https://img.shields.io/npm/l/eslint-plugin-node-roikoren)](https://www.npmjs.com/package/eslint-plugin-node-roikoren)

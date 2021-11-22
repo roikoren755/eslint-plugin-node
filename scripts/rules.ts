@@ -34,7 +34,7 @@ export const rules = glob
     const filePath = path.join(rootDir, filename);
     const name = filename.slice(0, -3);
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const content = require(filePath) as { category: string; default: TSESLint.RuleModule<string> };
+    const content = require(filePath) as { category: string; default: TSESLint.RuleModule<string, []> };
 
     if (!content.category || !content.default) {
       return null;
