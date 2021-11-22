@@ -81,8 +81,10 @@ const features: Record<string, { ruleId: keyof typeof eslintPluginEs['rules']; c
       {
         supported: '6.0.0',
         test: (info) =>
-          (info.node as TSESTree.Property).shorthand &&
-          getOrSet.test(((info.node as TSESTree.Property).key as TSESTree.Identifier).name),
+          'shorthand' in info.node &&
+          info.node.shorthand &&
+          'name' in info.node.key &&
+          getOrSet.test(info.node.key.name),
         messageId: 'no-property-shorthands-getset',
       },
       { supported: '4.0.0', messageId: 'no-property-shorthands' },
@@ -191,8 +193,8 @@ const keywords = Object.keys(features);
 const normalizeScope = (initialScope: TSESLint.Scope.Scope, node: TSESTree.Node): TSESLint.Scope.Scope => {
   let scope = ASTUtils.getInnermostScope(initialScope, node);
 
-  while (scope?.block === node) {
-    scope = scope.upper as TSESLint.Scope.Scope;
+  while (scope?.block === node && scope.upper) {
+    scope = scope.upper;
   }
 
   return scope;

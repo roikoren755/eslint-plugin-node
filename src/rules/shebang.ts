@@ -111,32 +111,32 @@ export default createRule<[options: IConvertPath], MessageIds>({
 
     return {
       Program(node) {
-        if (needsShebang ? NODE_SHEBANG_PATTERN.test(info.shebang) : !info.shebang) {
-          // Good the shebang target.
-          // Checks BOM and \r.
-          if (needsShebang && info.bom) {
-            context.report({ node, messageId: 'bom', fix: (fixer) => fixer.removeRange([-1, 0]) });
-          }
+        if (needsShebang) {
+          if (NODE_SHEBANG_PATTERN.test(info.shebang)) {
+            if (info.bom) {
+              context.report({ node, messageId: 'bom', fix: (fixer) => fixer.removeRange([-1, 0]) });
+            }
 
-          if (needsShebang && info.cr) {
+            if (info.cr) {
+              context.report({
+                node,
+                messageId: 'cr',
+                fix: (fixer) => {
+                  const index = sourceCode.text.indexOf('\r');
+
+                  return fixer.removeRange([index, index + 1]);
+                },
+              });
+            }
+          } else {
+            // Shebang is lacking.
             context.report({
               node,
-              messageId: 'cr',
-              fix: (fixer) => {
-                const index = sourceCode.text.indexOf('\r');
-
-                return fixer.removeRange([index, index + 1]);
-              },
+              messageId: 'shebang',
+              fix: (fixer) => fixer.replaceTextRange([-1, info.length], NODE_SHEBANG),
             });
           }
-        } else if (needsShebang) {
-          // Shebang is lacking.
-          context.report({
-            node,
-            messageId: 'shebang',
-            fix: (fixer) => fixer.replaceTextRange([-1, info.length], NODE_SHEBANG),
-          });
-        } else {
+        } else if (info.shebang) {
           // Shebang is extra.
           context.report({ node, messageId: 'noShebang', fix: (fixer) => fixer.removeRange([0, info.length]) });
         }

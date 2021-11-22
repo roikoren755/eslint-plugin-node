@@ -36,13 +36,15 @@ export const visitRequire: Visitor = (context, ruleOptions, { includeCore, optio
       });
 
       for (const { node } of references) {
-        const [targetNode] = (node as TSESTree.CallExpression).arguments;
-        const rawName = ASTUtils.getStringIfConstant(targetNode);
-        const name = rawName && stripImportPathParams(rawName);
+        if ('arguments' in node) {
+          const [targetNode] = (node as TSESTree.CallExpression).arguments;
+          const rawName = ASTUtils.getStringIfConstant(targetNode);
+          const name = rawName && stripImportPathParams(rawName);
 
-        // Note: "999" arbitrary to check current/future Node.js version
-        if (name && (includeCore || !isCoreModule(name, '999'))) {
-          targets.push(new ImportTarget(targetNode, name, options));
+          // Note: "999" arbitrary to check current/future Node.js version
+          if (name && (includeCore || !isCoreModule(name, '999'))) {
+            targets.push(new ImportTarget(targetNode, name, options));
+          }
         }
       }
 

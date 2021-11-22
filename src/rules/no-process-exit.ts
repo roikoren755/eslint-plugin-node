@@ -14,11 +14,12 @@ export default createRule<[], 'noProcessExit'>({
   defaultOptions: [],
   create(context) {
     return {
-      "CallExpression > MemberExpression.callee[object.name = 'process'][property.name = 'exit']"(node) {
-        context.report({
-          node: (node as TSESTree.Node).parent as TSESTree.Node,
-          messageId: 'noProcessExit',
-        });
+      "CallExpression > MemberExpression.callee[object.name = 'process'][property.name = 'exit']"(
+        node: TSESTree.MemberExpression,
+      ) {
+        if (node.parent) {
+          context.report({ node: node.parent, messageId: 'noProcessExit' });
+        }
       },
     };
   },

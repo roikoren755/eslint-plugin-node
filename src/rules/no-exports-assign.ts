@@ -3,31 +3,17 @@ import { ASTUtils } from '@typescript-eslint/experimental-utils';
 import type { TSESTree } from '@typescript-eslint/typescript-estree';
 import { createRule } from '../util/create-rule';
 
-const isExports = (node: TSESTree.Expression | undefined, scope: TSESLint.Scope.Scope): boolean => {
-  let variable: TSESLint.Scope.Variable | null = null;
+const isExports = (node: TSESTree.Expression | undefined, scope: TSESLint.Scope.Scope): boolean =>
+  node?.type === 'Identifier' && node.name === 'exports' && ASTUtils.findVariable(scope, node)?.scope.type === 'global';
 
-  return (
-    node?.type === 'Identifier' &&
-    node.name === 'exports' &&
-    !!(variable = ASTUtils.findVariable(scope, node)) &&
-    variable.scope.type === 'global'
-  );
-};
-
-const isModuleExports = (node: TSESTree.Expression | undefined, scope: TSESLint.Scope.Scope): boolean => {
-  let variable: TSESLint.Scope.Variable | null = null;
-
-  return (
-    node?.type === 'MemberExpression' &&
-    !node.computed &&
-    node.object.type === 'Identifier' &&
-    node.object.name === 'module' &&
-    node.property.type === 'Identifier' &&
-    node.property.name === 'exports' &&
-    !!(variable = ASTUtils.findVariable(scope, node.object)) &&
-    variable.scope.type === 'global'
-  );
-};
+const isModuleExports = (node: TSESTree.Expression | undefined, scope: TSESLint.Scope.Scope): boolean =>
+  node?.type === 'MemberExpression' &&
+  !node.computed &&
+  node.object.type === 'Identifier' &&
+  node.object.name === 'module' &&
+  node.property.type === 'Identifier' &&
+  node.property.name === 'exports' &&
+  ASTUtils.findVariable(scope, node.object)?.scope.type === 'global';
 
 export const category = 'Possible Errors';
 export default createRule<[], 'forbidden'>({

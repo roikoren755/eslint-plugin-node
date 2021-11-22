@@ -101,17 +101,13 @@ const isPathSeparator = (c: string): boolean => c === '/' || c === path.sep;
 /**
  * Check if the given Identifier node is followed by string concatenation with a
  * path separator.
- * @param {TSESTree.Identifier} node The `__dirname` or `__filename` node to check.
+ * @param {TSESTree.Node} node The `__dirname` or `__filename` node to check.
  * @param {Set<TSESTree.Node>} sepNodes The nodes of `path.sep`.
  * @param {TSESLint.Scope.Scope} globalScope The global scope object.
  * @returns {boolean} `true` if the given Identifier node is followed by string
  * concatenation with a path separator.
  */
-const isConcat = (
-  node: TSESTree.Identifier,
-  sepNodes: Set<TSESTree.Node>,
-  globalScope: TSESLint.Scope.Scope,
-): boolean => {
+const isConcat = (node: TSESTree.Node, sepNodes: Set<TSESTree.Node>, globalScope: TSESLint.Scope.Scope): boolean => {
   const { parent } = node;
   const nextChars: string[] = [];
 
@@ -120,7 +116,7 @@ const isConcat = (
   } else if (parent?.type === 'TemplateLiteral') {
     collectFirstCharsOfTemplateElement(
       parent,
-      parent.expressions.indexOf(node) + 1,
+      parent.expressions.indexOf(node as TSESTree.Expression) + 1,
       sepNodes,
       globalScope,
       /* out */ nextChars,
@@ -167,8 +163,8 @@ export default createRule<[], 'usePathFunctions'>({
           // eslint-disable-next-line @typescript-eslint/naming-convention
           __filename: { [ASTUtils.ReferenceTracker.READ]: true },
         })) {
-          if (isConcat(node as TSESTree.Identifier, sepNodes, globalScope)) {
-            context.report({ node: node.parent as TSESTree.Node, messageId: 'usePathFunctions' });
+          if (node.parent && isConcat(node, sepNodes, globalScope)) {
+            context.report({ node: node.parent, messageId: 'usePathFunctions' });
           }
         }
       },

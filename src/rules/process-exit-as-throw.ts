@@ -80,7 +80,7 @@ const forwardCurrentToHead = (analyzer: ICodePathAnalyzer, node: TSESTree.Node):
   let headSegment: ISegment | null = null;
 
   // Fires leaving events.
-  for (i = 0; i < end; ++i) {
+  for (; i < end; ++i) {
     currentSegment = currentSegments[i];
     headSegment = headSegments[i];
 

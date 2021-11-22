@@ -1322,7 +1322,6 @@ new TSESLint.RuleTester({
       keyword: 'optionalChaining',
       requiredEcmaVersion: 2020,
       valid: [{ code: 'foo?.bar;', options: [{ version: '14.0.0' }] }],
-      // TODO - here
       invalid: [
         {
           code: 'foo?.bar',

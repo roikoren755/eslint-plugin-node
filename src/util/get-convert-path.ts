@@ -72,7 +72,6 @@ const combine =
   (converters: Converters): Convert =>
   (filePath) => {
     for (const converter of converters) {
-      // TODO - verify?
       if (converter.test(filePath)) {
         return converter.convert(filePath);
       }

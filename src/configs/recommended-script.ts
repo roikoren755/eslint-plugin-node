@@ -2,7 +2,7 @@ import type { TSESLint } from '@typescript-eslint/experimental-utils';
 
 import { commonGlobals, commonRules } from './commons';
 
-const config: TSESLint.Linter.Config = {
+const recommendedScript: TSESLint.Linter.Config = {
   globals: {
     ...commonGlobals,
     // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -18,4 +18,4 @@ const config: TSESLint.Linter.Config = {
   rules: { ...commonRules, 'node/no-unsupported-features/es-syntax': ['error', { ignores: [] }] },
 };
 
-export default config;
+export default recommendedScript;

@@ -32,14 +32,14 @@ export const checkPublish = (
     return;
   }
 
-  const allowed = new Set(getAllowModules(context, options));
+  const allowed = new Set<string | null>(getAllowModules(context, options));
   const convertPath = getConvertPath(context, options);
   const basedir = path.dirname(packageInfo.filePath);
 
   const toRelative = (fullPath: string): string => convertPath(path.relative(basedir, fullPath).replace(/\\/gu, '/'));
   const npmignore = getNpmignore(filePath);
-  const devDependencies = new Set(Object.keys(packageInfo.devDependencies ?? {}));
-  const dependencies = new Set([
+  const devDependencies = new Set<string | null>(Object.keys(packageInfo.devDependencies ?? {}));
+  const dependencies = new Set<string | null>([
     ...Object.keys(packageInfo.dependencies ?? {}),
     ...Object.keys(packageInfo.peerDependencies ?? {}),
     ...Object.keys(packageInfo.optionalDependencies ?? {}),
@@ -48,10 +48,10 @@ export const checkPublish = (
   if (!npmignore.test(toRelative(filePath))) {
     // This file is published, so this cannot import private files.
     for (const target of targets) {
-      const isPrivateFile =
-        !target.moduleName && target.moduleName !== '' && npmignore.test(toRelative(target.filePath as string));
+      const hasNoModuleName = !target.moduleName && target.moduleName !== '';
+      const isPrivateFile = hasNoModuleName && npmignore.test(toRelative(target.filePath as string));
       const isDevPackage =
-        (target.moduleName || target.moduleName === '') &&
+        !hasNoModuleName &&
         devDependencies.has(target.moduleName) &&
         !dependencies.has(target.moduleName) &&
         !allowed.has(target.moduleName);

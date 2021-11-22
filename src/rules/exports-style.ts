@@ -166,8 +166,7 @@ export default createRule<
     ): TSESTree.SourceLocation => {
       const token = sourceCode.getTokenAfter(node);
 
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      return { start: node.loc.start, end: token!.loc.end };
+      return { start: node.loc.start, end: token?.loc.end ?? node.loc.start };
     };
 
     /**
