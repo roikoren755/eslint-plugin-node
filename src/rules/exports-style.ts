@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import type { TSESLint } from '@typescript-eslint/experimental-utils';
 import type { TSESTree } from '@typescript-eslint/typescript-estree';
 
@@ -125,6 +126,87 @@ const getExportsNodes = (scope: TSESLint.Scope.Scope): (TSESTree.Identifier | TS
   return variable?.references.map((reference) => reference.identifier) ?? [];
 };
 
+const getReplacementForProperty = (
+  property: TSESTree.ObjectLiteralElement | TSESTree.Property,
+  sourceCode: TSESLint.SourceCode,
+): string | null => {
+  if (property.type === 'SpreadElement' || property.kind === 'get') {
+    // module.exports = { get foo() { ... } }
+    // module.exports = { foo }
+    // module.exports = { ...foo }
+    // We don't have a similarly nice syntax for adding these directly
+    // on the exports object. Give up on fixing the whole thing.
+    return null;
+  }
+
+  let fixedValue = sourceCode.getText(property.value);
+
+  if ('method' in property && property.method) {
+    fixedValue = `function${'generator' in property.value && property.value.generator ? '*' : ''} ${fixedValue}`;
+
+    if ('async' in property.value && property.value.async) {
+      fixedValue = `async ${fixedValue}`;
+    }
+  }
+
+  const lines = sourceCode.getCommentsBefore(property).map((comment) => sourceCode.getText(comment as never));
+
+  if (property.key.type === 'Literal' || property.computed) {
+    // String or dynamic key:
+    // module.exports = { [ ... ]: ... } or { "foo": ... }
+    lines.push(`exports[${sourceCode.getText(property.key)}] = ${fixedValue};`);
+  } else if (property.key.type === 'Identifier') {
+    // Regular identifier:
+    // module.exports = { foo: ... }
+    lines.push(`exports.${property.key.name} = ${fixedValue};`);
+  } else {
+    // Some other unknown property type. Conservatively give up on fixing the whole thing.
+    return null;
+  }
+
+  lines.push(...sourceCode.getCommentsAfter(property).map((comment) => sourceCode.getText(comment as never)));
+
+  return lines.join('\n');
+};
+
+const fixModuleExports = (
+  node: TSESTree.Node,
+  sourceCode: TSESLint.SourceCode,
+  fixer: TSESLint.RuleFixer,
+): TSESLint.RuleFix | null => {
+  // Check for module.exports.foo or module.exports.bar reference or assignment
+  if (node.parent?.type === 'MemberExpression' && node.parent.object === node) {
+    return fixer.replaceText(node, 'exports');
+  }
+
+  // Check for a top level module.exports = { ... }
+  if (
+    node.parent?.type !== 'AssignmentExpression' ||
+    node.parent.parent?.type !== 'ExpressionStatement' ||
+    node.parent.parent.parent?.type !== 'Program' ||
+    node.parent.right.type !== 'ObjectExpression'
+  ) {
+    return null;
+  }
+
+  const statements = [];
+  const { properties } = node.parent.right;
+
+  for (const property of properties) {
+    const statement = getReplacementForProperty(property, sourceCode);
+
+    if (statement) {
+      statements.push(statement);
+    } else {
+      // No replacement available, give up on the whole thing
+
+      return null;
+    }
+  }
+
+  return fixer.replaceText(node.parent, statements.join('\n\n'));
+};
+
 export const category = 'Stylistic Issues';
 export default createRule<
   [mode: `${'' | 'module.'}exports`, options?: { allowBatchAssign?: boolean }],
@@ -134,6 +216,7 @@ export default createRule<
   meta: {
     type: 'suggestion',
     docs: { description: 'enforce either `module.exports` or `exports`', recommended: false },
+    fixable: 'code',
     schema: [
       { enum: ['module.exports', 'exports'] },
       { type: 'object', properties: { allowBatchAssign: { type: 'boolean' } }, additionalProperties: false },
@@ -227,6 +310,7 @@ export default createRule<
           loc: getLocation(node),
           messageId: 'exportsAccess',
           data: { bad: 'module.exports', good: 'exports' },
+          fix: (fixer) => fixModuleExports(node, sourceCode, fixer),
         });
       });
 

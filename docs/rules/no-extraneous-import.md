@@ -82,5 +82,5 @@ module.exports = {
 
 ## 🔎 Implementation
 
-- [Rule source](../../src/rules/no-extraneous-import.ts)
-- [Test source](../../tests/src/rules/no-extraneous-import.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.1/src/rules/no-extraneous-import.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.1/tests/src/rules/no-extraneous-import.ts)
