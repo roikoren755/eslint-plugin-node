@@ -155,13 +155,10 @@ const getReplacementForProperty = (
     // String or dynamic key:
     // module.exports = { [ ... ]: ... } or { "foo": ... }
     lines.push(`exports[${sourceCode.getText(property.key)}] = ${fixedValue};`);
-  } else if (property.key.type === 'Identifier') {
+  } else {
     // Regular identifier:
     // module.exports = { foo: ... }
     lines.push(`exports.${property.key.name} = ${fixedValue};`);
-  } else {
-    // Some other unknown property type. Conservatively give up on fixing the whole thing.
-    return null;
   }
 
   lines.push(...sourceCode.getCommentsAfter(property).map((comment) => sourceCode.getText(comment as never)));
@@ -189,7 +186,7 @@ const fixModuleExports = (
     return null;
   }
 
-  const statements = [];
+  const statements: string[] = [];
   const { properties } = node.parent.right;
 
   for (const property of properties) {
