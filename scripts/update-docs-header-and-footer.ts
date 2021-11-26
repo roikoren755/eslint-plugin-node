@@ -1,13 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 
+import { version } from '../package.json';
 import { rules } from './rules';
 import type { IRuleInfo } from './rules';
 
 const headerPattern = /^#.+\n(?:>.+\n)*\n+/u;
 const footerPattern = /\n+## 🔎 Implementation[\s\S]*$/u;
-const ruleRoot = path.resolve(__dirname, '../src/rules');
-const testRoot = path.resolve(__dirname, '../tests/src/rules');
 const docsRoot = path.resolve(__dirname, '../docs/rules');
 
 /**
@@ -67,9 +66,8 @@ const renderHeader = (rule: IRuleInfo): string => {
  * @returns {string} The document header.
  */
 const renderFooter = (rule: IRuleInfo): string => {
-  const docsPath = path.dirname(path.resolve(docsRoot, `${rule.name}.md`));
-  const rulePath = path.relative(docsPath, path.join(ruleRoot, `${rule.name}.ts`)).replace(/\\/gu, '/');
-  const testPath = path.relative(docsPath, path.join(testRoot, `${rule.name}.ts`)).replace(/\\/gu, '/');
+  const rulePath = `https://github.com/roikoren755/eslint-plugin-node/blob/v${version}/src/rules/${rule.name}.ts`;
+  const testPath = `https://github.com/roikoren755/eslint-plugin-node/blob/v${version}/tests/src/rules/${rule.name}.ts`;
 
   return `\n\n## 🔎 Implementation\n\n- [Rule source](${rulePath})\n- [Test source](${testPath})`;
 };

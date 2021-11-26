@@ -187,7 +187,7 @@ module.exports = {
 
     'eslint-plugin/require-meta-docs-url': OFF,
 
-    'import/extensions': ERROR,
+    'import/extensions': [ERROR, { json: 'always' }],
     'import/first': ERROR,
     'import/named': OFF,
     'import/namespace': OFF,

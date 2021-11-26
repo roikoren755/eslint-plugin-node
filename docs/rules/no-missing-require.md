@@ -107,5 +107,5 @@ module.exports = {
 
 ## 🔎 Implementation
 
-- [Rule source](../../src/rules/no-missing-require.ts)
-- [Test source](../../tests/src/rules/no-missing-require.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.1/src/rules/no-missing-require.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.1/tests/src/rules/no-missing-require.ts)

@@ -46,5 +46,5 @@ var exit = process.exit;
 
 ## 🔎 Implementation
 
-- [Rule source](../../src/rules/no-process-exit.ts)
-- [Test source](../../tests/src/rules/no-process-exit.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.1/src/rules/no-process-exit.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.1/tests/src/rules/no-process-exit.ts)

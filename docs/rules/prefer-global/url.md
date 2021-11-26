@@ -66,5 +66,5 @@ const u = new URL(s)
 
 ## 🔎 Implementation
 
-- [Rule source](../../../src/rules/prefer-global/url.ts)
-- [Test source](../../../tests/src/rules/prefer-global/url.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.1/src/rules/prefer-global/url.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.1/tests/src/rules/prefer-global/url.ts)

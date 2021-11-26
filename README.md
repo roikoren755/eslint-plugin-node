@@ -131,7 +131,7 @@ If you installed `eslint` globally, you should install this plugin in the same w
 | Rule ID | Description |    |
 |:--------|:------------|:--:|
 | [node-roikoren/callback-return](./docs/rules/callback-return.md) | require `return` statements after callbacks |  |
-| [node-roikoren/exports-style](./docs/rules/exports-style.md) | enforce either `module.exports` or `exports` |  |
+| [node-roikoren/exports-style](./docs/rules/exports-style.md) | enforce either `module.exports` or `exports` | ✒️ |
 | [node-roikoren/file-extension-in-import](./docs/rules/file-extension-in-import.md) | enforce the style of file extensions in `import` declarations | ✒️ |
 | [node-roikoren/global-require](./docs/rules/global-require.md) | require `require()` calls to be placed at top-level module scope |  |
 | [node-roikoren/no-mixed-requires](./docs/rules/no-mixed-requires.md) | disallow `require` calls to be mixed with regular variable declarations |  |
