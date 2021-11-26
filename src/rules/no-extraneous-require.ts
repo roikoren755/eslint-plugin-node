@@ -8,10 +8,15 @@ import type { IResolvePaths } from '../util/get-resolve-paths';
 import { schema as resolvePathsSchema } from '../util/get-resolve-paths';
 import type { ITryExtensions } from '../util/get-try-extensions';
 import { schema as tryExtensionsSchema } from '../util/get-try-extensions';
+import { schema as yarnWorkspacesSchema } from '../util/get-yarn-workspaces';
+import type { IYarnWorkspaces } from '../util/get-yarn-workspaces';
 import { visitRequire } from '../util/visit-require';
 
 export const category = 'Possible Errors';
-export default createRule<[options: IAllowModules & IConvertPath & IResolvePaths & ITryExtensions], 'extraneous'>({
+export default createRule<
+  [options: IAllowModules & IConvertPath & IResolvePaths & ITryExtensions & IYarnWorkspaces],
+  'extraneous'
+>({
   name: 'no-extraneous-require',
   meta: {
     type: 'problem',
@@ -24,6 +29,7 @@ export default createRule<[options: IAllowModules & IConvertPath & IResolvePaths
           convertPath: convertPathSchema,
           resolvePaths: resolvePathsSchema,
           tryExtensions: tryExtensionsSchema,
+          yarnWorkspaces: yarnWorkspacesSchema,
         },
         additionalProperties: false,
       },
