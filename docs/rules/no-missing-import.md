@@ -1,5 +1,5 @@
 # node-roikoren/no-missing-import
-> disallow `import` declarations which import non-existence modules
+> disallow `import` declarations which import non-existent modules
 > - ⭐️ This rule is included in `plugin:node-roikoren/recommended` preset.
 
 This is similar to [no-missing-require](no-missing-require.md), but this rule handles `import` and `export` declarations.

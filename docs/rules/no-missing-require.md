@@ -1,5 +1,5 @@
 # node-roikoren/no-missing-require
-> disallow `require()` expressions which import non-existence modules
+> disallow `require()` expressions which import non-existent modules
 > - ⭐️ This rule is included in `plugin:node-roikoren/recommended` preset.
 
 Maybe we cannot find typo of import paths until run it, so this rule checks import paths.
