@@ -1308,13 +1308,39 @@ new TSESLint.RuleTester({
       requiredEcmaVersion: 2020,
       valid: [
         { code: 'obj.import(source)', options: [{ version: '12.0.0' }] },
-        { code: 'import(source)', options: [{ version: '13.1.0', ignores: ['dynamicImport'] }] },
+        { code: 'import(source)', options: [{ version: '12.17.0' }] },
+        { code: 'import(source)', options: [{ version: '13.2.0' }] },
       ],
       invalid: [
         {
           code: 'import(source)',
-          options: [{ version: '13.3.0' }],
-          errors: [{ ...error('no-dynamic-import'), type: AST_NODE_TYPES.ImportExpression }],
+          options: [{ version: '12.16.0' }],
+          errors: [
+            {
+              ...error('no-dynamic-import', '>=12.17.0 <13.0.0-0||>=13.2.0', '12.16.0'),
+              type: AST_NODE_TYPES.ImportExpression,
+            },
+          ],
+        },
+        {
+          code: 'import(source)',
+          options: [{ version: '13.0.0' }],
+          errors: [
+            {
+              ...error('no-dynamic-import', '>=12.17.0 <13.0.0-0||>=13.2.0', '13.0.0'),
+              type: AST_NODE_TYPES.ImportExpression,
+            },
+          ],
+        },
+        {
+          code: 'import(source)',
+          options: [{ version: '13.1.0' }],
+          errors: [
+            {
+              ...error('no-dynamic-import', '>=12.17.0 <13.0.0-0||>=13.2.0', '13.1.0'),
+              type: AST_NODE_TYPES.ImportExpression,
+            },
+          ],
         },
       ],
     },
