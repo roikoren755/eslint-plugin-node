@@ -1,10 +1,20 @@
+import path from 'path';
 import type { TSESLint } from '@typescript-eslint/experimental-utils';
 
 import { getAllowModules } from './get-allow-modules';
 import { getPackageJson } from './get-package-json';
+import type { IPackageJson } from './get-package-json';
+import { getYarnWorkspaces } from './get-yarn-workspaces';
 import type { ImportTarget } from './import-target';
 
 export const extraneous = '"{{moduleName}}" is extraneous.';
+
+const getDependencies = (packageInfo: IPackageJson): string[] => [
+  ...Object.keys(packageInfo.dependencies ?? {}),
+  ...Object.keys(packageInfo.devDependencies ?? {}),
+  ...Object.keys(packageInfo.peerDependencies ?? {}),
+  ...Object.keys(packageInfo.optionalDependencies ?? {}),
+];
 
 /**
  * Checks whether or not each requirement target is published via package.json.
@@ -23,19 +33,21 @@ export const checkExtraneous = (
   filePath: string,
   targets: ImportTarget[],
 ): void => {
-  const packageInfo = getPackageJson(filePath);
+  const yarnWorkspaces = getYarnWorkspaces(context, options);
+  let packageInfo = getPackageJson(filePath);
+  const dependenciesArray: string[] = [];
+
+  if (yarnWorkspaces && packageInfo && !packageInfo.workspaces) {
+    dependenciesArray.push(...getDependencies(packageInfo));
+    packageInfo = getPackageJson(path.dirname(packageInfo.filePath));
+  }
 
   if (!packageInfo) {
     return;
   }
 
   const allowed = new Set(getAllowModules(context, options));
-  const dependencies = new Set([
-    ...Object.keys(packageInfo.dependencies ?? {}),
-    ...Object.keys(packageInfo.devDependencies ?? {}),
-    ...Object.keys(packageInfo.peerDependencies ?? {}),
-    ...Object.keys(packageInfo.optionalDependencies ?? {}),
-  ]);
+  const dependencies = new Set([...dependenciesArray, ...getDependencies(packageInfo)]);
 
   for (const target of targets) {
     const isExtraneous =

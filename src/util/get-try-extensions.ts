@@ -9,7 +9,7 @@ const DEFAULT_VALUE = Object.freeze(['.js', '.json', '.node']);
 /**
  * Gets `tryExtensions` property from a given option object.
  *
- * @param {object|undefined} option - An option object to get.
+ * @param {ITryExtensions|undefined} option - An option object to get.
  * @returns {string[]|null} The `tryExtensions` value, or `null`.
  */
 const get = (option?: ITryExtensions): string[] | null => {
