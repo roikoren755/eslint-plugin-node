@@ -106,8 +106,8 @@ If you installed `eslint` globally, you should install this plugin in the same w
 | [node-roikoren/no-exports-assign](./docs/rules/no-exports-assign.md) | disallow the assignment to `exports` | ⭐️ |
 | [node-roikoren/no-extraneous-import](./docs/rules/no-extraneous-import.md) | disallow `import` declarations which import extraneous modules | ⭐️ |
 | [node-roikoren/no-extraneous-require](./docs/rules/no-extraneous-require.md) | disallow `require()` expressions which import extraneous modules | ⭐️ |
-| [node-roikoren/no-missing-import](./docs/rules/no-missing-import.md) | disallow `import` declarations which import non-existence modules | ⭐️ |
-| [node-roikoren/no-missing-require](./docs/rules/no-missing-require.md) | disallow `require()` expressions which import non-existence modules | ⭐️ |
+| [node-roikoren/no-missing-import](./docs/rules/no-missing-import.md) | disallow `import` declarations which import non-existent modules | ⭐️ |
+| [node-roikoren/no-missing-require](./docs/rules/no-missing-require.md) | disallow `require()` expressions which import non-existent modules | ⭐️ |
 | [node-roikoren/no-new-require](./docs/rules/no-new-require.md) | disallow `new` operators with calls to `require` |  |
 | [node-roikoren/no-path-concat](./docs/rules/no-path-concat.md) | disallow string concatenation with `__dirname` and `__filename` |  |
 | [node-roikoren/no-process-exit](./docs/rules/no-process-exit.md) | disallow the use of `process.exit()` |  |

@@ -13,7 +13,7 @@ export default createRule<[options: IAllowModules & IResolvePaths & ITryExtensio
   name: 'no-missing-import',
   meta: {
     type: 'problem',
-    docs: { description: 'disallow `import` declarations which import non-existence modules', recommended: 'error' },
+    docs: { description: 'disallow `import` declarations which import non-existent modules', recommended: 'error' },
     schema: [
       {
         type: 'object',
