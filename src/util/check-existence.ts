@@ -2,6 +2,7 @@ import { exists } from './exists';
 import { getAllowModules } from './get-allow-modules';
 import type { ImportTarget } from './import-target';
 import type { TSESLint } from '@typescript-eslint/experimental-utils';
+import { getOnlyRelativePath } from './get-only-relative-path';
 
 export const missing = '"{{name}}" is not found.';
 
@@ -22,10 +23,14 @@ export const checkExistence = (
   targets: ImportTarget[],
 ): void => {
   const allowed = new Set(getAllowModules(context, options));
+  const onlyRelativePath = getOnlyRelativePath(context, options);
 
   for (const target of targets) {
     const missingModule =
-      (target.moduleName || target.moduleName === '') && !allowed.has(target.moduleName) && target.filePath === null;
+      !onlyRelativePath &&
+      (target.moduleName || target.moduleName === '') &&
+      !allowed.has(target.moduleName) &&
+      target.filePath === null;
     const missingFile = !target.moduleName && target.moduleName !== '' && !exists(target.filePath as string);
 
     if (missingModule || missingFile) {

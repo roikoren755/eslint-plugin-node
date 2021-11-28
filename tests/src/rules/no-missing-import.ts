@@ -100,6 +100,20 @@ new TSESLint.RuleTester({
           },
         ]
       : []),
+
+    // onlyRelativePath option
+    {
+      filename: fixture('test.js'),
+      code: "import 'no-exist-package-0';",
+      options: [{ onlyRelativePath: true }],
+      env: { node: true },
+    },
+    {
+      filename: fixture('test.js'),
+      code: "import './a.js';",
+      options: [{ onlyRelativePath: true }],
+      env: { node: true },
+    },
   ],
   invalid: [
     {
@@ -146,5 +160,14 @@ new TSESLint.RuleTester({
           },
         ]
       : []),
+
+    // onlyRelativePath option
+    {
+      filename: fixture('test.js'),
+      code: "import './c';",
+      options: [{ onlyRelativePath: true }],
+      env: { node: true },
+      errors: [error('./c')],
+    },
   ],
 });
