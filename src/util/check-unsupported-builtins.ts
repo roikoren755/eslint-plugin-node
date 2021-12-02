@@ -103,7 +103,7 @@ export const checkUnsupportedBuiltins = (
   ];
 
   for (const reference of references) {
-    const { node, path, info } = reference as typeof reference & { info: typeof reference['entry'] };
+    const { node, path, info } = reference;
     const name = path.join('.');
     const supported = isSupported(info, options.version);
 
