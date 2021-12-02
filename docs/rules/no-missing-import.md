@@ -90,6 +90,7 @@ Several rules have the same option, but we can set this option at once.
 - `allowModules`
 - `resolvePaths`
 - `tryExtensions`
+- `onlyRelativePath`
 
 ```js
 // .eslintrc.js
