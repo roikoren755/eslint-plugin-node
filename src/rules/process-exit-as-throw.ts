@@ -1,7 +1,8 @@
-import type { TSESTree } from '@typescript-eslint/typescript-estree';
-import { createRule } from '../util/create-rule';
+import type { EventEmitter } from 'events';
 import path from 'path';
-import EventEmitter = NodeJS.EventEmitter;
+import type { TSESTree } from '@typescript-eslint/typescript-estree';
+
+import { createRule } from '../util/create-rule';
 
 /**
  * Imports a specific module.

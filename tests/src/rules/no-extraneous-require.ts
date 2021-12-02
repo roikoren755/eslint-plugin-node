@@ -1,9 +1,9 @@
+import fs from 'fs';
 import path from 'path';
 import { TSESLint } from '@typescript-eslint/experimental-utils';
 import { AST_NODE_TYPES } from '@typescript-eslint/types';
 
 import rule from '../../../src/rules/no-extraneous-require';
-import fs from 'fs';
 
 const error = {
   messageId: 'extraneous' as const,
