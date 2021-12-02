@@ -1,5 +1,7 @@
 import type { TSESLint } from '@typescript-eslint/experimental-utils';
+
 import type { IRawOptions } from '../../src/util/check-unsupported-builtins';
+
 import { ecmaVersion } from './es2020';
 
 /**

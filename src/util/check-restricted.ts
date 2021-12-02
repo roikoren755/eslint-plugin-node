@@ -1,4 +1,5 @@
 import path from 'path';
+
 import type { TSESLint } from '@typescript-eslint/experimental-utils';
 import { Minimatch } from 'minimatch';
 import type { IMinimatch } from 'minimatch';

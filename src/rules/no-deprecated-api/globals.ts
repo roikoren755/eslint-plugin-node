@@ -1,6 +1,7 @@
 import { ASTUtils } from '@typescript-eslint/experimental-utils';
 
 import type { DeprecatedMap } from '../../util/enumerate-property-names';
+
 import { modules } from './modules';
 
 export const globals: DeprecatedMap = {

@@ -1,4 +1,5 @@
 import path from 'path';
+
 import type { TSESLint } from '@typescript-eslint/experimental-utils';
 
 import { createRule } from '../util/create-rule';

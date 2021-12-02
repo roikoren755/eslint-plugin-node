@@ -1,9 +1,10 @@
 import path from 'path';
+
 import { TSESLint } from '@typescript-eslint/experimental-utils';
 import { AST_NODE_TYPES } from '@typescript-eslint/types';
 
-import { DynamicImportSupported } from '../dynamic-import';
 import rule from '../../../src/rules/file-extension-in-import';
+import { DynamicImportSupported } from '../dynamic-import';
 
 const error = (ext: string, notForbid?: boolean): TSESLint.TestCaseError<`${'forbid' | 'require'}Ext`> => ({
   messageId: `${notForbid ? 'require' : 'forbid'}Ext`,

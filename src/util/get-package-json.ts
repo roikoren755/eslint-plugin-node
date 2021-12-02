@@ -1,5 +1,6 @@
-import fs from 'fs';
+import { readFileSync } from 'fs';
 import path from 'path';
+
 import type { PackageJson } from 'type-fest';
 
 import { Cache } from './cache';
@@ -22,7 +23,7 @@ const readPackageJson = (dir: string): IPackageJson | null => {
   const filePath = path.join(dir, 'package.json');
 
   try {
-    const text = fs.readFileSync(filePath, 'utf8');
+    const text = readFileSync(filePath, 'utf8');
     const data = JSON.parse(text) as IPackageJson | null;
 
     if (typeof data === 'object' && data !== null) {

@@ -1,5 +1,6 @@
 import type { EventEmitter } from 'events';
 import path from 'path';
+
 import type { TSESTree } from '@typescript-eslint/typescript-estree';
 
 import { createRule } from '../util/create-rule';

@@ -1,5 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
 import path from 'path';
+
 import { TSESLint } from '@typescript-eslint/experimental-utils';
 import { AST_NODE_TYPES } from '@typescript-eslint/types';
 

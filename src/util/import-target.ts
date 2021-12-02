@@ -1,4 +1,5 @@
 import path from 'path';
+
 import type { TSESTree } from '@typescript-eslint/typescript-estree';
 import { sync } from 'resolve';
 import type { SyncOpts } from 'resolve';
