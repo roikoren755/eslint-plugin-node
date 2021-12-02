@@ -3,7 +3,7 @@ import { ASTUtils } from '@typescript-eslint/experimental-utils';
 import type { TSESLint } from '@typescript-eslint/experimental-utils';
 import type { TSESTree } from '@typescript-eslint/typescript-estree';
 import eslintPluginEs from 'eslint-plugin-es-roikoren';
-import type { Range } from 'semver';
+import { Range } from 'semver';
 
 import type { IRawOptions } from '../../util/check-unsupported-builtins';
 import { parseOptions } from '../../util/check-unsupported-builtins';
@@ -17,7 +17,7 @@ interface INode {
 }
 
 interface ICase {
-  supported?: string;
+  supported?: Range | string;
   messageId: string;
   isStrict?: boolean;
   test?(aCase: INode): boolean;
@@ -172,7 +172,10 @@ const features: Record<string, { ruleId: keyof typeof eslintPluginEs['rules']; c
       },
     ],
   },
-  dynamicImport: { ruleId: 'no-dynamic-import', cases: [{ messageId: 'no-dynamic-import' }] },
+  dynamicImport: {
+    ruleId: 'no-dynamic-import',
+    cases: [{ supported: new Range('>=12.17 <13 || >=13.2'), messageId: 'no-dynamic-import' }],
+  },
   optionalChaining: {
     ruleId: 'no-optional-chaining',
     cases: [{ supported: '14.0.0', messageId: 'no-optional-chaining' }],
@@ -221,8 +224,17 @@ const defineVisitor = (
    * @param {{supported:string}} aCase The case object to check.
    * @returns {boolean} `true` if it's supporting.
    */
-  const isNotSupportingVersion = (aCase: ICase): boolean =>
-    !aCase.supported || options.version.intersects(getSemverRange(`<${aCase.supported}`) as Range);
+  const isNotSupportingVersion = (aCase: ICase): boolean => {
+    if (!aCase.supported) {
+      return true;
+    }
+
+    if (typeof aCase.supported === 'string') {
+      return options.version.intersects(getSemverRange(`<${aCase.supported}`) as Range);
+    }
+
+    return !options.version.intersects(aCase.supported);
+  };
 
   /**
    * Define the predicate function to check whether a given case object is supported on the configured node version.
@@ -398,7 +410,8 @@ export default createRule<[options: IRawOptions], string>({
       'no-bigint':
         "Bigint literals are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
       'no-bigint-property-names': 'Bigint literal property names are not supported yet.',
-      'no-dynamic-import': "'import()' expressions are not supported yet.",
+      'no-dynamic-import':
+        "'import()' expressions are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
       'no-optional-chaining':
         "Optional chainings are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
       'no-nullish-coalescing-operators':
