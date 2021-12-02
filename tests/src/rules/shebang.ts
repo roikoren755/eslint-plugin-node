@@ -1,11 +1,12 @@
 import path from 'path';
+
 import { TSESLint } from '@typescript-eslint/experimental-utils';
 import { AST_NODE_TYPES } from '@typescript-eslint/types';
 
 import rule from '../../../src/rules/shebang';
 import type { MessageIds } from '../../../src/rules/shebang';
 
-const error = (messageId: MessageIds): TSESLint.TestCaseError<MessageIds> => ({
+const error = <T extends MessageIds>(messageId: T): TSESLint.TestCaseError<T> => ({
   messageId,
   line: 1,
   column: 1,

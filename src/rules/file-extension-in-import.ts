@@ -1,12 +1,13 @@
 import { readdirSync } from 'fs';
 import path from 'path';
 
+import type { TSESLint } from '@typescript-eslint/experimental-utils';
+
 import { createRule } from '../util/create-rule';
 import { schema } from '../util/get-try-extensions';
 import type { ITryExtensions } from '../util/get-try-extensions';
-import { visitImport } from '../util/visit-import';
 import type { ImportTarget } from '../util/import-target';
-import type { TSESLint } from '@typescript-eslint/experimental-utils';
+import { visitImport } from '../util/visit-import';
 
 const packageNamePattern = /^(?:@[^/\\]+[/\\])?[^/\\]+$/u;
 const corePackageOverridePattern =

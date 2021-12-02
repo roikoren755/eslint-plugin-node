@@ -1,12 +1,13 @@
 /* eslint-disable max-lines */
 import path from 'path';
+
 import { TSESLint } from '@typescript-eslint/experimental-utils';
 import { AST_NODE_TYPES, AST_TOKEN_TYPES } from '@typescript-eslint/types';
 import { builtin } from 'globals';
 
+import rule from '../../../../src/rules/no-unsupported-features/es-syntax';
 import { concat } from '../../concat';
 import { ecmaVersion } from '../../es2020';
-import rule from '../../../../src/rules/no-unsupported-features/es-syntax';
 
 const error = (
   messageId: string,

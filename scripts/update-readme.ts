@@ -1,4 +1,4 @@
-import fs from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 
 import { categories, rules } from './rules';
@@ -60,12 +60,10 @@ ${rules
   .join('\n')}
 `;
 
-fs.writeFileSync(
+writeFileSync(
   filePath,
-  fs
-    .readFileSync(filePath, 'utf8')
-    .replace(
-      /<!--RULES_TABLE_START-->[\s\S]*<!--RULES_TABLE_END-->/u,
-      `<!--RULES_TABLE_START-->\n${content}\n<!--RULES_TABLE_END-->`,
-    ),
+  readFileSync(filePath, 'utf8').replace(
+    /<!--RULES_TABLE_START-->[\s\S]*<!--RULES_TABLE_END-->/u,
+    `<!--RULES_TABLE_START-->\n${content}\n<!--RULES_TABLE_END-->`,
+  ),
 );

@@ -1,4 +1,5 @@
 import path from 'path';
+
 import { ASTUtils } from '@typescript-eslint/experimental-utils';
 import type { TSESLint } from '@typescript-eslint/experimental-utils';
 import type { TSESTree } from '@typescript-eslint/typescript-estree';

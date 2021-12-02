@@ -1,5 +1,5 @@
-import { Minimatch } from 'minimatch';
 import type { TSESLint } from '@typescript-eslint/experimental-utils';
+import { Minimatch } from 'minimatch';
 
 export interface IConvertPath {
   convertPath?: {

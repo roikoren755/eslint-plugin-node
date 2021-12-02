@@ -1,4 +1,5 @@
 import path from 'path';
+
 import { ASTUtils } from '@typescript-eslint/experimental-utils';
 import type { TSESTree } from '@typescript-eslint/typescript-estree';
 import isCoreModule from 'is-core-module';
@@ -6,8 +7,8 @@ import isCoreModule from 'is-core-module';
 import { getResolvePaths } from './get-resolve-paths';
 import { getTryExtensions } from './get-try-extensions';
 import { ImportTarget } from './import-target';
-import { stripImportPathParams } from './strip-import-path-params';
 import type { Visitor } from './interfaces';
+import { stripImportPathParams } from './strip-import-path-params';
 
 /**
  * Gets a list of `require()` targets.

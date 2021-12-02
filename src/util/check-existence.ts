@@ -1,8 +1,9 @@
+import type { TSESLint } from '@typescript-eslint/experimental-utils';
+
 import { exists } from './exists';
 import { getAllowModules } from './get-allow-modules';
-import type { ImportTarget } from './import-target';
-import type { TSESLint } from '@typescript-eslint/experimental-utils';
 import { getOnlyRelativePath } from './get-only-relative-path';
+import type { ImportTarget } from './import-target';
 
 export const missing = '"{{name}}" is not found.';
 

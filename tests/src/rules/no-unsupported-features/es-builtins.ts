@@ -1,10 +1,10 @@
 /* eslint-disable max-lines */
-import { builtin } from 'globals';
 import { TSESLint } from '@typescript-eslint/experimental-utils';
 import { AST_NODE_TYPES } from '@typescript-eslint/types';
+import { builtin } from 'globals';
 
-import { concat } from '../../concat';
 import rule from '../../../../src/rules/no-unsupported-features/es-builtins';
+import { concat } from '../../concat';
 
 const error = (name: string, supported: string, version: string): TSESLint.TestCaseError<'unsupported'> => ({
   messageId: 'unsupported',

@@ -1,9 +1,10 @@
 import path from 'path';
+
 import { TSESLint } from '@typescript-eslint/experimental-utils';
 import { AST_NODE_TYPES } from '@typescript-eslint/types';
 
-import { DynamicImportSupported } from '../dynamic-import';
 import rule from '../../../src/rules/no-unpublished-import';
+import { DynamicImportSupported } from '../dynamic-import';
 
 if (!DynamicImportSupported) {
   // eslint-disable-next-line no-console
