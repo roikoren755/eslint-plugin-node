@@ -1,5 +1,6 @@
-import fs from 'fs';
+import { writeFileSync } from 'fs';
 import path from 'path';
+
 import { TSESLint } from '@typescript-eslint/experimental-utils';
 import camelcase from 'camelcase';
 
@@ -50,7 +51,7 @@ export default {
 `;
 
 const run = async (): Promise<void> => {
-  fs.writeFileSync(filePath, rawContent);
+  writeFileSync(filePath, rawContent);
 
   await TSESLint.ESLint.outputFixes((await new TSESLint.ESLint({ fix: true }).lintFiles([filePath])) as never);
 };

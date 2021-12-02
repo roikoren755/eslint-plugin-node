@@ -1,10 +1,11 @@
-import fs from 'fs';
+import { symlinkSync, unlinkSync } from 'fs';
 import path from 'path';
+
 import { TSESLint } from '@typescript-eslint/experimental-utils';
 import { AST_NODE_TYPES } from '@typescript-eslint/types';
 
-import { DynamicImportSupported } from '../dynamic-import';
 import rule from '../../../src/rules/no-extraneous-import';
+import { DynamicImportSupported } from '../dynamic-import';
 
 if (!DynamicImportSupported) {
   // eslint-disable-next-line no-console
@@ -27,8 +28,8 @@ const error = {
 const fixture = (name: string): string => path.resolve(__dirname, '../../fixtures/no-extraneous', name);
 
 // We need to simulate `yarn workspaces` by creating symlinks inside `node_modules`
-fs.symlinkSync(fixture('yarnWorkspaces/aaa'), fixture('yarnWorkspaces/node_modules/aaa'));
-fs.symlinkSync(fixture('yarnWorkspaces/bbb'), fixture('yarnWorkspaces/node_modules/bbb'));
+symlinkSync(fixture('yarnWorkspaces/aaa'), fixture('yarnWorkspaces/node_modules/aaa'));
+symlinkSync(fixture('yarnWorkspaces/bbb'), fixture('yarnWorkspaces/node_modules/bbb'));
 
 new TSESLint.RuleTester({
   parserOptions: { ecmaVersion: 2015, sourceType: 'module' },
@@ -79,5 +80,5 @@ new TSESLint.RuleTester({
   ],
 });
 
-fs.unlinkSync(fixture('yarnWorkspaces/node_modules/aaa'));
-fs.unlinkSync(fixture('yarnWorkspaces/node_modules/bbb'));
+unlinkSync(fixture('yarnWorkspaces/node_modules/aaa'));
+unlinkSync(fixture('yarnWorkspaces/node_modules/bbb'));

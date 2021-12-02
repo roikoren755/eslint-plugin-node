@@ -8,6 +8,7 @@ import { enumeratePropertyNames } from '../../util/enumerate-property-names';
 import type { IDeprecated } from '../../util/enumerate-property-names';
 import { getConfiguredNodeVersion } from '../../util/get-configured-node-version';
 import { getSemverRange } from '../../util/get-semver-range';
+
 import { globals } from './globals';
 import { modules } from './modules';
 

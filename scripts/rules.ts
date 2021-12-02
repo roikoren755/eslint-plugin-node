@@ -1,6 +1,7 @@
 import path from 'path';
-import glob from 'fast-glob';
+
 import type { TSESLint } from '@typescript-eslint/experimental-utils';
+import glob from 'fast-glob';
 
 const rootDir = path.resolve(__dirname, '../src/rules/');
 

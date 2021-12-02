@@ -1,6 +1,7 @@
 import type { TSESLint } from '@typescript-eslint/experimental-utils';
 
 import { getPackageJson } from '../util/get-package-json';
+
 import moduleConfig from './recommended-module';
 import scriptConfig from './recommended-script';
 

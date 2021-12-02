@@ -1,4 +1,5 @@
 import assert from 'assert';
+
 import { TSESLint } from '@typescript-eslint/experimental-utils';
 
 import rule, { supported } from '../../../src/rules/process-exit-as-throw';
