@@ -1385,6 +1385,72 @@ new TSESLint.RuleTester({
     },
 
     // ----------------------------------------------------------------------
+    // ES2021
+    // ----------------------------------------------------------------------
+    {
+      keyword: 'logicalAssignmentOperators',
+      requiredEcmaVersion: 2021,
+      valid: [
+        { code: 'a ||= b', options: [{ version: '15.0.0' }] },
+        { code: 'a &&= b', options: [{ version: '15.0.0' }] },
+        { code: 'a ??= b', options: [{ version: '15.0.0' }] },
+      ],
+      invalid: [
+        {
+          code: 'a ||= b',
+          options: [{ version: '14.0.0' }],
+          errors: [
+            {
+              ...error('no-logical-assignment-operators', '15.0.0', '14.0.0'),
+              column: 3,
+              type: AST_TOKEN_TYPES.Punctuator,
+            },
+          ],
+        },
+        {
+          code: 'a &&= b',
+          options: [{ version: '14.0.0' }],
+          errors: [
+            {
+              ...error('no-logical-assignment-operators', '15.0.0', '14.0.0'),
+              column: 3,
+              type: AST_TOKEN_TYPES.Punctuator,
+            },
+          ],
+        },
+        {
+          code: 'a ??= b',
+          options: [{ version: '14.0.0' }],
+          errors: [
+            {
+              ...error('no-logical-assignment-operators', '15.0.0', '14.0.0'),
+              column: 3,
+              type: AST_TOKEN_TYPES.Punctuator,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      keyword: 'numericSeparators',
+      requiredEcmaVersion: 2021,
+      valid: [{ code: 'a = 123_456_789', options: [{ version: '12.5.0' }] }],
+      invalid: [
+        {
+          code: 'a = 123_456_789',
+          options: [{ version: '12.4.0' }],
+          errors: [
+            {
+              ...error('no-numeric-separators', '12.5.0', '12.4.0'),
+              column: 5,
+              type: AST_NODE_TYPES.Literal,
+            },
+          ],
+        },
+      ],
+    },
+
+    // ----------------------------------------------------------------------
     // MISC
     // ----------------------------------------------------------------------
     {

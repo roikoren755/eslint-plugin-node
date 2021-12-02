@@ -184,6 +184,18 @@ const features: Record<string, { ruleId: keyof typeof eslintPluginEs['rules']; c
     ruleId: 'no-nullish-coalescing-operators',
     cases: [{ supported: '14.0.0', messageId: 'no-nullish-coalescing-operators' }],
   },
+
+  // --------------------------------------------------------------------------
+  // ES2021
+  // --------------------------------------------------------------------------
+  logicalAssignmentOperators: {
+    ruleId: 'no-logical-assignment-operators',
+    cases: [{ supported: '15.0.0', messageId: 'no-logical-assignment-operators' }],
+  },
+  numericSeparators: {
+    ruleId: 'no-numeric-separators',
+    cases: [{ supported: '12.5.0', messageId: 'no-numeric-separators' }],
+  },
 };
 const keywords = Object.keys(features);
 
@@ -294,6 +306,11 @@ const defineVisitor = (
   );
 };
 
+const getMessage = (name: string, singular?: boolean): string =>
+  `${name} ${
+    singular ? 'is' : 'are'
+  } not supported until Node.js {{supported}}. The configured version range is '{{version}}'.`;
+
 export const category = 'Possible Errors';
 export default createRule<[options: IRawOptions], string>({
   name: 'no-unsupported-features/es-syntax',
@@ -314,108 +331,75 @@ export default createRule<[options: IRawOptions], string>({
       // ------------------------------------------------------------------
       // ES2015
       // ------------------------------------------------------------------
-      'no-arrow-functions':
-        "Arrow functions are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-binary-numeric-literals':
-        "Binary numeric literals are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-block-scoped-functions-strict':
-        "Block-scoped functions in strict mode are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-block-scoped-functions-sloppy':
-        "Block-scoped functions in non-strict mode are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-block-scoped-variables-strict':
-        "Block-scoped variables in strict mode are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-block-scoped-variables-sloppy':
-        "Block-scoped variables in non-strict mode are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-classes-strict':
-        "Classes in strict mode are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-classes-sloppy':
-        "Classes in non-strict mode are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-computed-properties':
-        "Computed properties are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-default-parameters':
-        "Default parameters are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-destructuring':
-        "Destructuring is not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-for-of-loops':
-        "'for-of' loops are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-generators':
-        "Generator functions are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
+      'no-arrow-functions': getMessage('Arrow functions'),
+      'no-binary-numeric-literals': getMessage('Binary numeric literals'),
+      'no-block-scoped-functions-strict': getMessage('Block-scoped functions in strict mode'),
+      'no-block-scoped-functions-sloppy': getMessage('Block-scoped functions in non-strict mode'),
+      'no-block-scoped-variables-strict': getMessage('Block-scoped variables in strict mode'),
+      'no-block-scoped-variables-sloppy': getMessage('Block-scoped variables in non-strict mode'),
+      'no-classes-strict': getMessage('Classes in strict mode'),
+      'no-classes-sloppy': getMessage('Classes in non-strict mode'),
+      'no-computed-properties': getMessage('Computed properties'),
+      'no-default-parameters': getMessage('Default parameters'),
+      'no-destructuring': getMessage('Destructuring', true),
+      'no-for-of-loops': getMessage("'for-of' loops"),
+      'no-generators': getMessage('Generator functions'),
       'no-modules': 'Import and export declarations are not supported yet.',
-      'no-new-target':
-        "'new.target' is not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-object-super-properties':
-        "'super' in object literals is not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-octal-numeric-literals':
-        "Octal numeric literals are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-property-shorthands':
-        "Property shorthands are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-property-shorthands-getset':
-        "Property shorthands of 'get' and 'set' are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-regexp-u-flag':
-        "RegExp 'u' flag is not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-regexp-y-flag':
-        "RegExp 'y' flag is not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-rest-parameters':
-        "Rest parameters are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-spread-elements':
-        "Spread elements are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-template-literals':
-        "Template literals are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-unicode-codepoint-escapes':
-        "Unicode code point escapes are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
+      'no-new-target': getMessage("'new.target'", true),
+      'no-object-super-properties': getMessage("'super' in object literals", true),
+      'no-octal-numeric-literals': getMessage('Octal numeric literals'),
+      'no-property-shorthands': getMessage('Property shorthands'),
+      'no-property-shorthands-getset': getMessage("Property shorthands of 'get' and 'set'"),
+      'no-regexp-u-flag': getMessage("RegExp 'u' flag", true),
+      'no-regexp-y-flag': getMessage("RegExp 'y' flag", true),
+      'no-rest-parameters': getMessage('Rest parameters'),
+      'no-spread-elements': getMessage('Spread elements'),
+      'no-template-literals': getMessage('Template literals'),
+      'no-unicode-codepoint-escapes': getMessage('Unicode code point escapes'),
 
       // ------------------------------------------------------------------
       // ES2016
       // ------------------------------------------------------------------
-      'no-exponential-operators':
-        "Exponential operators are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
+      'no-exponential-operators': getMessage('Exponential operators'),
 
       // ------------------------------------------------------------------
       // ES2017
       // ------------------------------------------------------------------
-      'no-async-functions':
-        "Async functions are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-trailing-function-commas':
-        "Trailing commas in function syntax are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
+      'no-async-functions': getMessage('Async functions'),
+      'no-trailing-function-commas': getMessage('Trailing commas in function syntax'),
 
       // ------------------------------------------------------------------
       // ES2018
       // ------------------------------------------------------------------
-      'no-async-iteration':
-        "Async iteration is not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-malformed-template-literals':
-        "Malformed template literals are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-regexp-lookbehind-assertions':
-        "RegExp lookbehind assertions are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-regexp-named-capture-groups':
-        "RegExp named capture groups are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-regexp-s-flag':
-        "RegExp 's' flag is not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-regexp-unicode-property-escapes':
-        "RegExp Unicode property escapes are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-rest-spread-properties':
-        "Rest/spread properties are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
+      'no-async-iteration': getMessage('Async iteration', true),
+      'no-malformed-template-literals': getMessage('Malformed template literals'),
+      'no-regexp-lookbehind-assertions': getMessage('RegExp lookbehind assertions'),
+      'no-regexp-named-capture-groups': getMessage('RegExp named capture groups'),
+      'no-regexp-s-flag': getMessage("RegExp 's' flag", true),
+      'no-regexp-unicode-property-escapes': getMessage('RegExp Unicode property escapes'),
+      'no-rest-spread-properties': getMessage('Rest/spread properties'),
 
       // ------------------------------------------------------------------
       // ES2019
       // ------------------------------------------------------------------
-      'no-json-superset':
-        "'\\u{{code}}' in string literals is not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-optional-catch-binding':
-        "The omission of 'catch' binding is not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
+      'no-json-superset': getMessage("'\\u{{code}}' in string literals", true),
+      'no-optional-catch-binding': getMessage("The omission of 'catch' binding", true),
 
       // ------------------------------------------------------------------
       // ES2020
       // ------------------------------------------------------------------
-      'no-bigint':
-        "Bigint literals are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
+      'no-bigint': getMessage('Bigint literals'),
       'no-bigint-property-names': 'Bigint literal property names are not supported yet.',
       'no-dynamic-import':
         "'import()' expressions are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-optional-chaining':
-        "Optional chainings are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
-      'no-nullish-coalescing-operators':
-        "Nullish coalescing operators are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
+      'no-optional-chaining': getMessage('Optional chainings'),
+      'no-nullish-coalescing-operators': getMessage('Nullish coalescing operators'),
+
+      // ------------------------------------------------------------------
+      // ES2021
+      // ------------------------------------------------------------------
+      'no-logical-assignment-operators': getMessage('Logical assignment operators'),
+      'no-numeric-separators': getMessage('Numeric separators'),
     },
   },
   defaultOptions: [{}],
