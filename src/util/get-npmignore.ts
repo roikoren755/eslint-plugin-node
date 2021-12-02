@@ -1,5 +1,6 @@
-import fs from 'fs';
+import { readFileSync } from 'fs';
 import path from 'path';
+
 import ignore from 'ignore';
 
 import { Cache } from './cache';
@@ -131,7 +132,7 @@ const parseNpmignore = (basedir: string, filesFieldExists: boolean): TestFunctio
 
   const ig = ignore();
 
-  ig.add(fs.readFileSync(filePath, 'utf8'));
+  ig.add(readFileSync(filePath, 'utf8'));
 
   return not(ig.createFilter());
 };

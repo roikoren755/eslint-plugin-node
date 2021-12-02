@@ -1,4 +1,5 @@
 import path from 'path';
+
 import { TSESLint } from '@typescript-eslint/experimental-utils';
 import { AST_NODE_TYPES } from '@typescript-eslint/types';
 
@@ -112,6 +113,20 @@ new TSESLint.RuleTester().run('no-missing-require', rule, {
 
     // require.resolve
     { filename: fixture('test.js'), code: "require.resolve('eslint');", env: { node: true } },
+
+    // onlyRelativePath option
+    {
+      filename: fixture('test.js'),
+      code: "require('no-exist-package-0');",
+      options: [{ onlyRelativePath: true }],
+      env: { node: true },
+    },
+    {
+      filename: fixture('test.js'),
+      code: "require('./a.js');",
+      options: [{ onlyRelativePath: true }],
+      env: { node: true },
+    },
   ],
   invalid: [
     {
@@ -157,6 +172,15 @@ new TSESLint.RuleTester().run('no-missing-require', rule, {
       code: "require.resolve('no-exist-package-0');",
       env: { node: true },
       errors: [{ ...error('no-exist-package-0'), column: 17 }],
+    },
+
+    // onlyRelativePath option
+    {
+      filename: fixture('test.js'),
+      code: "require('./c');",
+      options: [{ onlyRelativePath: true }],
+      env: { node: true },
+      errors: [error('./c')],
     },
   ],
 });

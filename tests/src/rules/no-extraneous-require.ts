@@ -1,9 +1,10 @@
+import { symlinkSync, unlinkSync } from 'fs';
 import path from 'path';
+
 import { TSESLint } from '@typescript-eslint/experimental-utils';
 import { AST_NODE_TYPES } from '@typescript-eslint/types';
 
 import rule from '../../../src/rules/no-extraneous-require';
-import fs from 'fs';
 
 const error = {
   messageId: 'extraneous' as const,
@@ -21,8 +22,8 @@ const error = {
 const fixture = (name: string): string => path.resolve(__dirname, '../../fixtures/no-extraneous', name);
 
 // We need to simulate `yarn workspaces` by creating symlinks inside `node_modules`
-fs.symlinkSync(fixture('yarnWorkspaces/aaa'), fixture('yarnWorkspaces/node_modules/aaa'));
-fs.symlinkSync(fixture('yarnWorkspaces/bbb'), fixture('yarnWorkspaces/node_modules/bbb'));
+symlinkSync(fixture('yarnWorkspaces/aaa'), fixture('yarnWorkspaces/node_modules/aaa'));
+symlinkSync(fixture('yarnWorkspaces/bbb'), fixture('yarnWorkspaces/node_modules/bbb'));
 
 new TSESLint.RuleTester({ env: { node: true } } as unknown as TSESLint.RuleTesterConfig).run(
   'no-extraneous-require',
@@ -68,5 +69,5 @@ new TSESLint.RuleTester({ env: { node: true } } as unknown as TSESLint.RuleTeste
   },
 );
 
-fs.unlinkSync(fixture('yarnWorkspaces/node_modules/aaa'));
-fs.unlinkSync(fixture('yarnWorkspaces/node_modules/bbb'));
+unlinkSync(fixture('yarnWorkspaces/node_modules/aaa'));
+unlinkSync(fixture('yarnWorkspaces/node_modules/bbb'));

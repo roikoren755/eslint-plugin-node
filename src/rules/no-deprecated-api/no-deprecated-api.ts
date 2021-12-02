@@ -8,6 +8,7 @@ import { enumeratePropertyNames } from '../../util/enumerate-property-names';
 import type { IDeprecated } from '../../util/enumerate-property-names';
 import { getConfiguredNodeVersion } from '../../util/get-configured-node-version';
 import { getSemverRange } from '../../util/get-semver-range';
+
 import { globals } from './globals';
 import { modules } from './modules';
 
@@ -130,7 +131,7 @@ export default createRule<Options, 'deprecated'>({
         const tracker = new ASTUtils.ReferenceTracker(context.getScope(), { mode: 'legacy' });
 
         for (const report of tracker.iterateGlobalReferences(globals)) {
-          const { node, path, type, info } = report as typeof report & { info: typeof report['entry'] };
+          const { node, path, type, info } = report;
           const name = toName(type, path);
 
           if (!ignoredGlobalItems.has(name)) {
@@ -139,7 +140,7 @@ export default createRule<Options, 'deprecated'>({
         }
 
         for (const report of [...tracker.iterateCjsReferences(modules), ...tracker.iterateEsmReferences(modules)]) {
-          const { node, path, type, info } = report as typeof report & { info: typeof report['entry'] };
+          const { node, path, type, info } = report;
           const name = toName(type, path);
           const suffix = path.length === 1 ? ' module' : '';
 

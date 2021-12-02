@@ -1,4 +1,5 @@
 import type { Range } from 'semver';
+
 import { getPackageJson } from './get-package-json';
 import { getSemverRange } from './get-semver-range';
 

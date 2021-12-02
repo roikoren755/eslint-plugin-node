@@ -1,20 +1,19 @@
-import fs from 'fs';
+import { writeFileSync } from 'fs';
 import path from 'path';
-import { TSESLint } from '@typescript-eslint/experimental-utils';
 
-const logger = console;
+import { TSESLint } from '@typescript-eslint/experimental-utils';
 
 // main
 const run = async (ruleId: string): Promise<void> => {
   if (!ruleId) {
-    logger.error('Usage: yarn new <RuleID>');
+    console.error('Usage: yarn new <RuleID>');
     process.exitCode = 1;
 
     return;
   }
 
   if (!/^[\w-]+$/u.test(ruleId)) {
-    logger.error("Invalid RuleID '%s'.", ruleId);
+    console.error("Invalid RuleID '%s'.", ruleId);
     process.exitCode = 1;
 
     return;
@@ -24,7 +23,7 @@ const run = async (ruleId: string): Promise<void> => {
   const testFile = path.resolve(__dirname, `../tests/lib/rules/${ruleId}.ts`);
   const docFile = path.resolve(__dirname, `../docs/rules/${ruleId}.md`);
 
-  fs.writeFileSync(
+  writeFileSync(
     ruleFile,
     `import { createRule } from '../util/create-rule';
 
@@ -43,7 +42,7 @@ export default createRule({
 });
 `,
   );
-  fs.writeFileSync(
+  writeFileSync(
     testFile,
     `import { TSESLint } from '@typescript-eslint/experimental-utils';
 import { AST_NODE_TYPES } from '@typescript-eslint/types';
@@ -58,7 +57,7 @@ new TSESLint.RuleTester().run('${ruleId}', rule, {
 });
 `,
   );
-  fs.writeFileSync(
+  writeFileSync(
     docFile,
     `#  (node-roikoren/${ruleId})
 

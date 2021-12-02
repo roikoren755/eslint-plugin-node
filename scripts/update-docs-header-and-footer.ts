@@ -1,7 +1,8 @@
-import fs from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 
 import { version } from '../package.json';
+
 import { rules } from './rules';
 import type { IRuleInfo } from './rules';
 
@@ -74,9 +75,9 @@ const renderFooter = (rule: IRuleInfo): string => {
 
 for (const rule of rules) {
   const filePath = path.resolve(docsRoot, `${rule.name}.md`);
-  const original = fs.readFileSync(filePath, 'utf8');
+  const original = readFileSync(filePath, 'utf8');
   const body = original.replace(headerPattern, '').replace(footerPattern, '');
   const content = `${renderHeader(rule)}${body}${renderFooter(rule)}\n`;
 
-  fs.writeFileSync(filePath, content);
+  writeFileSync(filePath, content);
 }

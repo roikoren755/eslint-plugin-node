@@ -1,4 +1,5 @@
 import path from 'path';
+
 import type { TSESLint } from '@typescript-eslint/experimental-utils';
 
 import { getAllowModules } from './get-allow-modules';

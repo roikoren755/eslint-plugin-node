@@ -1,4 +1,5 @@
 import type { TSESLint } from '@typescript-eslint/experimental-utils';
+
 import type { ImportTarget } from './import-target';
 
 export type Visitor = (

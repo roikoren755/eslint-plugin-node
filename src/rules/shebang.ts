@@ -1,11 +1,12 @@
 import path from 'path';
-import { createRule } from '../util/create-rule';
 
+import type { TSESLint } from '@typescript-eslint/experimental-utils';
+
+import { createRule } from '../util/create-rule';
 import { schema as convertPathSchema, getConvertPath } from '../util/get-convert-path';
 import type { IConvertPath } from '../util/get-convert-path';
 import { getPackageJson } from '../util/get-package-json';
 import type { IPackageJson } from '../util/get-package-json';
-import type { TSESLint } from '@typescript-eslint/experimental-utils';
 
 const NODE_SHEBANG = '#!/usr/bin/env node\n';
 const SHEBANG_PATTERN = /^(#!.+?)?(\r)?\n/u;

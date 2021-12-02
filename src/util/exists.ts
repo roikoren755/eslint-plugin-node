@@ -1,5 +1,6 @@
 import { readdirSync, statSync } from 'fs';
 import path from 'path';
+
 import { Cache } from './cache';
 
 const ROOT = /^(?:[/.]|\.\.|[A-Z]:\\|\\\\)(?:[/\\]\.\.)*$/u;

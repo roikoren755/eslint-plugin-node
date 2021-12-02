@@ -1,9 +1,10 @@
 import path from 'path';
+
 import { TSESLint } from '@typescript-eslint/experimental-utils';
 import { AST_NODE_TYPES } from '@typescript-eslint/types';
 
-import { DynamicImportSupported } from '../dynamic-import';
 import rule from '../../../src/rules/no-missing-import';
+import { DynamicImportSupported } from '../dynamic-import';
 
 if (!DynamicImportSupported) {
   // eslint-disable-next-line no-console
@@ -100,6 +101,20 @@ new TSESLint.RuleTester({
           },
         ]
       : []),
+
+    // onlyRelativePath option
+    {
+      filename: fixture('test.js'),
+      code: "import 'no-exist-package-0';",
+      options: [{ onlyRelativePath: true }],
+      env: { node: true },
+    },
+    {
+      filename: fixture('test.js'),
+      code: "import './a.js';",
+      options: [{ onlyRelativePath: true }],
+      env: { node: true },
+    },
   ],
   invalid: [
     {
@@ -146,5 +161,14 @@ new TSESLint.RuleTester({
           },
         ]
       : []),
+
+    // onlyRelativePath option
+    {
+      filename: fixture('test.js'),
+      code: "import './c';",
+      options: [{ onlyRelativePath: true }],
+      env: { node: true },
+      errors: [error('./c')],
+    },
   ],
 });

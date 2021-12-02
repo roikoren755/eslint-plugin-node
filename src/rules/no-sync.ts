@@ -1,5 +1,6 @@
-import { createRule } from '../util/create-rule';
 import type { TSESTree } from '@typescript-eslint/typescript-estree';
+
+import { createRule } from '../util/create-rule';
 
 export const category = 'Stylistic Issues';
 export default createRule<[options: { allowAtRootLevel: boolean }], 'noSync'>({
