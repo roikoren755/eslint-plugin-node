@@ -22,6 +22,17 @@ new TSESLint.RuleTester({
   rule,
   concat([
     {
+      keyword: 'AggregateError',
+      valid: [{ code: 'if (error instanceof AggregateError) {}', options: [{ version: '15.0.0' }] }],
+      invalid: [
+        {
+          code: 'if (error instanceof AggregateError) {}',
+          options: [{ version: '14.0.0' }],
+          errors: [{ ...error('AggregateError', '15.0.0', '14.0.0'), type: AST_NODE_TYPES.Identifier, column: 22 }],
+        },
+      ],
+    },
+    {
       keyword: 'Array.from',
       valid: [
         { code: 'Array.foo(a)', options: [{ version: '3.9.9' }] },
@@ -58,6 +69,17 @@ new TSESLint.RuleTester({
           code: '(function() { BigInt })()',
           options: [{ version: '10.3.0' }],
           errors: [{ ...error('BigInt', '10.4.0', '10.3.0'), column: 15, type: AST_NODE_TYPES.Identifier }],
+        },
+      ],
+    },
+    {
+      keyword: 'FinalizationRegistry',
+      valid: [{ code: 'new FinalizationRegistry(() => {})', options: [{ version: '14.6.0' }] }],
+      invalid: [
+        {
+          code: 'new FinalizationRegistry(() => {})',
+          options: [{ version: '14.5.0' }],
+          errors: [{ ...error('FinalizationRegistry', '14.6.0', '14.5.0'), type: AST_NODE_TYPES.Identifier, column: 5 }],
         },
       ],
     },
@@ -449,6 +471,21 @@ new TSESLint.RuleTester({
       ],
     },
     {
+      keyword: 'Promise.any',
+      valid: [
+        { code: '(function(Promise) { Promise.any }(a))', options: [{ version: '14.0.0' }] },
+        { code: 'Promise.any', options: [{ version: '15.0.0' }] },
+      ],
+      invalid: [
+        { code: 'Promise.any', options: [{ version: '14.0.0' }], errors: [error('Promise.any', '15.0.0', '14.0.0')] },
+        {
+          code: 'function wrap() { Promise.any }',
+          options: [{ version: '14.0.0' }],
+          errors: [{ ...error('Promise.any', '15.0.0', '14.0.0'), column: 19 }],
+        },
+      ],
+    },
+    {
       keyword: 'Proxy',
       valid: [
         { code: '(function(Proxy) { Proxy }(a))', options: [{ version: '5.9.9' }] },
@@ -794,6 +831,25 @@ new TSESLint.RuleTester({
           code: 'function wrap() { WeakMap }',
           options: [{ version: '0.11.9' }],
           errors: [{ ...error('WeakMap', '0.12.0', '0.11.9'), column: 19, type: AST_NODE_TYPES.Identifier }],
+        },
+      ],
+    },
+    {
+      keyword: 'WeakRef',
+      valid: [
+        { code: '(function(WeakRef) { WeakRef }(a))', options: [{ version: '14.5.0' }] },
+        { code: 'WeakRef', options: [{ version: '14.6.0' }] },
+      ],
+      invalid: [
+        {
+          code: 'WeakRef',
+          options: [{ version: '14.5.0' }],
+          errors: [{ ...error('WeakRef', '14.6.0', '14.5.0'), type: AST_NODE_TYPES.Identifier }],
+        },
+        {
+          code: 'function wrap() { WeakRef }',
+          options: [{ version: '14.5.0' }],
+          errors: [{ ...error('WeakRef', '14.6.0', '14.5.0'), type: AST_NODE_TYPES.Identifier, column: 19 }],
         },
       ],
     },

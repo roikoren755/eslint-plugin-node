@@ -28,7 +28,8 @@
     "release": "changeset publish",
     "test": "nyc mocha tests/**/*.ts --reporter dot --timeout 4000",
     "type": "tsc",
-    "update": "ts-node scripts/update"
+    "update": "ts-node scripts/update",
+    "watch": "mocha tests/**/*.ts --reporter progress --timeout 4000 --watch"
   },
   "resolutions": {
     "prettier": "2.5.0"
