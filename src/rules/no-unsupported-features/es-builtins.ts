@@ -7,11 +7,13 @@ import { enumeratePropertyNames } from '../../util/enumerate-property-names';
 
 const trackMap: { globals: SupportMap } = {
   globals: {
+    AggregateError: { [ASTUtils.ReferenceTracker.READ]: { supported: '15.0.0' } },
     Array: {
       from: { [ASTUtils.ReferenceTracker.READ]: { supported: '4.0.0' } },
       of: { [ASTUtils.ReferenceTracker.READ]: { supported: '4.0.0' } },
     },
     BigInt: { [ASTUtils.ReferenceTracker.READ]: { supported: '10.4.0' } },
+    FinalizationRegistry: { [ASTUtils.ReferenceTracker.READ]: { supported: '14.6.0' } },
     Map: { [ASTUtils.ReferenceTracker.READ]: { supported: '0.12.0' } },
     Math: {
       acosh: { [ASTUtils.ReferenceTracker.READ]: { supported: '0.12.0' } },
@@ -56,6 +58,7 @@ const trackMap: { globals: SupportMap } = {
     Promise: {
       [ASTUtils.ReferenceTracker.READ]: { supported: '0.12.0' },
       allSettled: { [ASTUtils.ReferenceTracker.READ]: { supported: '12.9.0' } },
+      any: { [ASTUtils.ReferenceTracker.READ]: { supported: '15.0.0' } },
     },
     Proxy: { [ASTUtils.ReferenceTracker.READ]: { supported: '6.0.0' } },
     Reflect: { [ASTUtils.ReferenceTracker.READ]: { supported: '6.0.0' } },
@@ -78,6 +81,7 @@ const trackMap: { globals: SupportMap } = {
     Float64Array: { [ASTUtils.ReferenceTracker.READ]: { supported: '0.10.0' } },
     DataView: { [ASTUtils.ReferenceTracker.READ]: { supported: '0.10.0' } },
     WeakMap: { [ASTUtils.ReferenceTracker.READ]: { supported: '0.12.0' } },
+    WeakRef: { [ASTUtils.ReferenceTracker.READ]: { supported: '14.6.0' } },
     WeakSet: { [ASTUtils.ReferenceTracker.READ]: { supported: '0.12.0' } },
     Atomics: { [ASTUtils.ReferenceTracker.READ]: { supported: '8.10.0' } },
     SharedArrayBuffer: { [ASTUtils.ReferenceTracker.READ]: { supported: '8.10.0' } },
