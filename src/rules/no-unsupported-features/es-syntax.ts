@@ -306,10 +306,10 @@ const defineVisitor = (
   );
 };
 
-const getMessage = (name: string, singular?: boolean): string =>
-  `${name} ${
-    singular ? 'is' : 'are'
-  } not supported until Node.js {{supported}}. The configured version range is '{{version}}'.`;
+const getMessage = (name: string, singular?: boolean, notSupported?: boolean): string =>
+  `${name} ${singular ? 'is' : 'are'} not supported ${
+    notSupported ? 'yet' : "until Node.js {{supported}}. The configured version range is '{{version}}'."
+  }`;
 
 export const category = 'Possible Errors';
 export default createRule<[options: IRawOptions], string>({
@@ -344,7 +344,7 @@ export default createRule<[options: IRawOptions], string>({
       'no-destructuring': getMessage('Destructuring', true),
       'no-for-of-loops': getMessage("'for-of' loops"),
       'no-generators': getMessage('Generator functions'),
-      'no-modules': 'Import and export declarations are not supported yet.',
+      'no-modules': getMessage('Import and export declarations', false, true),
       'no-new-target': getMessage("'new.target'", true),
       'no-object-super-properties': getMessage("'super' in object literals", true),
       'no-octal-numeric-literals': getMessage('Octal numeric literals'),
@@ -389,9 +389,8 @@ export default createRule<[options: IRawOptions], string>({
       // ES2020
       // ------------------------------------------------------------------
       'no-bigint': getMessage('Bigint literals'),
-      'no-bigint-property-names': 'Bigint literal property names are not supported yet.',
-      'no-dynamic-import':
-        "'import()' expressions are not supported until Node.js {{supported}}. The configured version range is '{{version}}'.",
+      'no-bigint-property-names': getMessage('Bigint literal property names', false, true),
+      'no-dynamic-import': getMessage("'import()' expressions"),
       'no-optional-chaining': getMessage('Optional chainings'),
       'no-nullish-coalescing-operators': getMessage('Nullish coalescing operators'),
 
