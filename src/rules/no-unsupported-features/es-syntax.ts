@@ -65,7 +65,7 @@ const features: Record<string, { ruleId: keyof typeof eslintPluginEs['rules']; c
   destructuring: { ruleId: 'no-destructuring', cases: [{ supported: '6.0.0', messageId: 'no-destructuring' }] },
   forOfLoops: { ruleId: 'no-for-of-loops', cases: [{ supported: '0.12.0', messageId: 'no-for-of-loops' }] },
   generators: { ruleId: 'no-generators', cases: [{ supported: '4.0.0', messageId: 'no-generators' }] },
-  modules: { ruleId: 'no-modules', cases: [{ messageId: 'no-modules' }] },
+  modules: { ruleId: 'no-modules', cases: [{ supported: '13.2.0', messageId: 'no-modules' }] },
   'new.target': { ruleId: 'no-new-target', cases: [{ supported: '5.0.0', messageId: 'no-new-target' }] },
   objectSuperProperties: {
     ruleId: 'no-object-super-properties',
@@ -344,7 +344,7 @@ export default createRule<[options: IRawOptions], string>({
       'no-destructuring': getMessage('Destructuring', true),
       'no-for-of-loops': getMessage("'for-of' loops"),
       'no-generators': getMessage('Generator functions'),
-      'no-modules': getMessage('Import and export declarations', false, true),
+      'no-modules': getMessage('Import and export declarations', false),
       'no-new-target': getMessage("'new.target'", true),
       'no-object-super-properties': getMessage("'super' in object literals", true),
       'no-octal-numeric-literals': getMessage('Octal numeric literals'),
