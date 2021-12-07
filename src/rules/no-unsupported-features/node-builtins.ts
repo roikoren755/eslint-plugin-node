@@ -164,7 +164,9 @@ const modules = {
     hrtime: { bigint: { [ASTUtils.ReferenceTracker.READ]: { supported: '10.7.0' } } },
     ppid: { [ASTUtils.ReferenceTracker.READ]: { supported: '9.2.0', backported: ['6.13.0', '8.10.0'] } },
     release: { [ASTUtils.ReferenceTracker.READ]: { supported: '3.0.0' } },
-    report: { [ASTUtils.ReferenceTracker.READ]: { experimental: '11.8.0' } },
+    report: {
+      [ASTUtils.ReferenceTracker.READ]: { supported: '13.12.0', backported: ['12.17.0'], experimental: '11.8.0' },
+    },
     resourceUsage: { [ASTUtils.ReferenceTracker.READ]: { supported: '12.6.0' } },
     setegid: { [ASTUtils.ReferenceTracker.READ]: { supported: '2.0.0' } },
     seteuid: { [ASTUtils.ReferenceTracker.READ]: { supported: '2.0.0' } },
