@@ -10,6 +10,7 @@ const error = (name: string, supported?: string, version?: string): TSESLint.Tes
   line: 1,
   column: 1,
   data: { name, supported, version },
+  type: AST_NODE_TYPES.MemberExpression,
 });
 
 new TSESLint.RuleTester({
@@ -100,14 +101,12 @@ new TSESLint.RuleTester({
         {
           code: "require('assert').deepStrictEqual()",
           options: [{ version: '3.9.9' }],
-          errors: [{ ...error('assert.deepStrictEqual', '4.0.0', '3.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('assert.deepStrictEqual', '4.0.0', '3.9.9')],
         },
         {
           code: "var assert = require('assert'); assert.deepStrictEqual()",
           options: [{ version: '3.9.9' }],
-          errors: [
-            { ...error('assert.deepStrictEqual', '4.0.0', '3.9.9'), column: 33, type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [{ ...error('assert.deepStrictEqual', '4.0.0', '3.9.9'), column: 33 }],
         },
         {
           code: "var { deepStrictEqual } = require('assert'); deepStrictEqual()",
@@ -117,9 +116,7 @@ new TSESLint.RuleTester({
         {
           code: "import assert from 'assert'; assert.deepStrictEqual()",
           options: [{ version: '3.9.9' }],
-          errors: [
-            { ...error('assert.deepStrictEqual', '4.0.0', '3.9.9'), column: 30, type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [{ ...error('assert.deepStrictEqual', '4.0.0', '3.9.9'), column: 30 }],
         },
         {
           code: "import { deepStrictEqual } from 'assert'; deepStrictEqual()",
@@ -131,40 +128,32 @@ new TSESLint.RuleTester({
         {
           code: "require('assert').notDeepStrictEqual()",
           options: [{ version: '3.9.9' }],
-          errors: [{ ...error('assert.notDeepStrictEqual', '4.0.0', '3.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('assert.notDeepStrictEqual', '4.0.0', '3.9.9')],
         },
         {
           code: "require('assert').rejects()",
           options: [{ version: '9.9.9' }],
-          errors: [{ ...error('assert.rejects', '10.0.0', '9.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('assert.rejects', '10.0.0', '9.9.9')],
         },
         {
           code: "require('assert').doesNotReject()",
           options: [{ version: '9.9.9' }],
-          errors: [{ ...error('assert.doesNotReject', '10.0.0', '9.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('assert.doesNotReject', '10.0.0', '9.9.9')],
         },
         {
           code: "require('assert').strict.rejects()",
           options: [{ version: '9.9.9' }],
-          errors: [{ ...error('assert.strict.rejects', '10.0.0', '9.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('assert.strict.rejects', '10.0.0', '9.9.9')],
         },
         {
           code: "require('assert').strict.doesNotReject()",
           options: [{ version: '9.9.9' }],
-          errors: [
-            { ...error('assert.strict.doesNotReject', '10.0.0', '9.9.9'), type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [error('assert.strict.doesNotReject', '10.0.0', '9.9.9')],
         },
         {
           code: "var assert = require('assert').strict",
           options: [{ version: '9.8.9' }],
-          errors: [
-            {
-              ...error('assert.strict', '9.9.0 (backported: ^8.13.0)', '9.8.9'),
-              column: 14,
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [{ ...error('assert.strict', '9.9.0 (backported: ^8.13.0)', '9.8.9'), column: 14 }],
         },
         {
           code: "var {strict: assert} = require('assert'); assert.rejects()",
@@ -175,7 +164,7 @@ new TSESLint.RuleTester({
               column: 6,
               type: AST_NODE_TYPES.Property,
             },
-            { ...error('assert.strict.rejects', '10.0.0', '9.8.9'), column: 43, type: AST_NODE_TYPES.MemberExpression },
+            { ...error('assert.strict.rejects', '10.0.0', '9.8.9'), column: 43 },
           ],
         },
         {
@@ -282,14 +271,12 @@ new TSESLint.RuleTester({
         {
           code: "require('async_hooks').createHook()",
           options: [{ version: '8.0.9' }],
-          errors: [{ ...error('async_hooks.createHook', '8.1.0', '8.0.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('async_hooks.createHook', '8.1.0', '8.0.9')],
         },
         {
           code: "var hooks = require('async_hooks'); hooks.createHook()",
           options: [{ version: '8.0.9' }],
-          errors: [
-            { ...error('async_hooks.createHook', '8.1.0', '8.0.9'), column: 37, type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [{ ...error('async_hooks.createHook', '8.1.0', '8.0.9'), column: 37 }],
         },
         {
           code: "var { createHook } = require('async_hooks'); createHook()",
@@ -299,9 +286,7 @@ new TSESLint.RuleTester({
         {
           code: "import async_hooks from 'async_hooks'; async_hooks.createHook()",
           options: [{ version: '8.0.9' }],
-          errors: [
-            { ...error('async_hooks.createHook', '8.1.0', '8.0.9'), column: 40, type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [{ ...error('async_hooks.createHook', '8.1.0', '8.0.9'), column: 40 }],
         },
         {
           code: "import { createHook } from 'async_hooks'; createHook()",
@@ -325,11 +310,7 @@ new TSESLint.RuleTester({
           code: "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
           options: [{ version: '13.9.0' }],
           errors: [
-            {
-              ...error('async_hooks.AsyncLocalStorage', '13.10.0 (backported: ^12.17.0)', '13.9.0'),
-              column: 38,
-              type: AST_NODE_TYPES.MemberExpression,
-            },
+            { ...error('async_hooks.AsyncLocalStorage', '13.10.0 (backported: ^12.17.0)', '13.9.0'), column: 38 },
           ],
         },
         {
@@ -347,11 +328,7 @@ new TSESLint.RuleTester({
           code: "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
           options: [{ version: '12.16.0' }],
           errors: [
-            {
-              ...error('async_hooks.AsyncLocalStorage', '13.10.0 (backported: ^12.17.0)', '12.16.0'),
-              column: 38,
-              type: AST_NODE_TYPES.MemberExpression,
-            },
+            { ...error('async_hooks.AsyncLocalStorage', '13.10.0 (backported: ^12.17.0)', '12.16.0'), column: 38 },
           ],
         },
       ],
@@ -431,34 +408,32 @@ new TSESLint.RuleTester({
         {
           code: 'Buffer.alloc',
           options: [{ version: '4.4.9' }],
-          errors: [{ ...error('Buffer.alloc', '4.5.0', '4.4.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('Buffer.alloc', '4.5.0', '4.4.9')],
         },
         {
           code: 'Buffer.allocUnsafe',
           options: [{ version: '4.4.9' }],
-          errors: [{ ...error('Buffer.allocUnsafe', '4.5.0', '4.4.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('Buffer.allocUnsafe', '4.5.0', '4.4.9')],
         },
         {
           code: 'Buffer.allocUnsafeSlow',
           options: [{ version: '4.4.9' }],
-          errors: [{ ...error('Buffer.allocUnsafeSlow', '4.5.0', '4.4.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('Buffer.allocUnsafeSlow', '4.5.0', '4.4.9')],
         },
         {
           code: 'Buffer.from',
           options: [{ version: '4.4.9' }],
-          errors: [{ ...error('Buffer.from', '4.5.0', '4.4.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('Buffer.from', '4.5.0', '4.4.9')],
         },
         {
           code: "require('buffer').constants",
           options: [{ version: '8.1.9' }],
-          errors: [{ ...error('buffer.constants', '8.2.0', '8.1.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('buffer.constants', '8.2.0', '8.1.9')],
         },
         {
           code: "var cp = require('buffer'); cp.constants",
           options: [{ version: '8.1.9' }],
-          errors: [
-            { ...error('buffer.constants', '8.2.0', '8.1.9'), column: 29, type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [{ ...error('buffer.constants', '8.2.0', '8.1.9'), column: 29 }],
         },
         {
           code: "var { constants } = require('buffer');",
@@ -468,9 +443,7 @@ new TSESLint.RuleTester({
         {
           code: "import cp from 'buffer'; cp.constants",
           options: [{ version: '8.1.9' }],
-          errors: [
-            { ...error('buffer.constants', '8.2.0', '8.1.9'), column: 26, type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [{ ...error('buffer.constants', '8.2.0', '8.1.9'), column: 26 }],
         },
         {
           code: "import { constants } from 'buffer'",
@@ -480,48 +453,32 @@ new TSESLint.RuleTester({
         {
           code: "var {Buffer: b} = require('buffer'); b.alloc",
           options: [{ version: '4.4.9' }],
-          errors: [
-            { ...error('buffer.Buffer.alloc', '4.5.0', '4.4.9'), column: 38, type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [{ ...error('buffer.Buffer.alloc', '4.5.0', '4.4.9'), column: 38 }],
         },
         {
           code: "var {Buffer: b} = require('buffer'); b.allocUnsafe",
           options: [{ version: '4.4.9' }],
-          errors: [
-            {
-              ...error('buffer.Buffer.allocUnsafe', '4.5.0', '4.4.9'),
-              column: 38,
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [{ ...error('buffer.Buffer.allocUnsafe', '4.5.0', '4.4.9'), column: 38 }],
         },
         {
           code: "var {Buffer: b} = require('buffer'); b.allocUnsafeSlow",
           options: [{ version: '4.4.9' }],
-          errors: [
-            {
-              ...error('buffer.Buffer.allocUnsafeSlow', '4.5.0', '4.4.9'),
-              column: 38,
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [{ ...error('buffer.Buffer.allocUnsafeSlow', '4.5.0', '4.4.9'), column: 38 }],
         },
         {
           code: "var {Buffer: b} = require('buffer'); b.from",
           options: [{ version: '4.4.9' }],
-          errors: [
-            { ...error('buffer.Buffer.from', '4.5.0', '4.4.9'), column: 38, type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [{ ...error('buffer.Buffer.from', '4.5.0', '4.4.9'), column: 38 }],
         },
         {
           code: "require('buffer').kMaxLength",
           options: [{ version: '2.9.9' }],
-          errors: [{ ...error('buffer.kMaxLength', '3.0.0', '2.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('buffer.kMaxLength', '3.0.0', '2.9.9')],
         },
         {
           code: "require('buffer').transcode",
           options: [{ version: '7.0.9' }],
-          errors: [{ ...error('buffer.transcode', '7.1.0', '7.0.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('buffer.transcode', '7.1.0', '7.0.9')],
         },
         {
           code: "const { Blob } = require('buffer'); new Blob();",
@@ -531,9 +488,7 @@ new TSESLint.RuleTester({
         {
           code: "import buffer from 'buffer'; new buffer.Blob();",
           options: [{ version: '15.7.0' }],
-          errors: [
-            { ...error('buffer.Blob', '(none yet)', '15.7.0'), column: 34, type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [{ ...error('buffer.Blob', '(none yet)', '15.7.0'), column: 34 }],
         },
       ],
     },
@@ -575,18 +530,12 @@ new TSESLint.RuleTester({
         {
           code: "require('child_process').ChildProcess",
           options: [{ version: '2.1.9' }],
-          errors: [{ ...error('child_process.ChildProcess', '2.2.0', '2.1.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('child_process.ChildProcess', '2.2.0', '2.1.9')],
         },
         {
           code: "var cp = require('child_process'); cp.ChildProcess",
           options: [{ version: '2.1.9' }],
-          errors: [
-            {
-              ...error('child_process.ChildProcess', '2.2.0', '2.1.9'),
-              column: 36,
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [{ ...error('child_process.ChildProcess', '2.2.0', '2.1.9'), column: 36 }],
         },
         {
           code: "var { ChildProcess } = require('child_process'); ChildProcess",
@@ -598,13 +547,7 @@ new TSESLint.RuleTester({
         {
           code: "import cp from 'child_process'; cp.ChildProcess",
           options: [{ version: '2.1.9' }],
-          errors: [
-            {
-              ...error('child_process.ChildProcess', '2.2.0', '2.1.9'),
-              column: 33,
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [{ ...error('child_process.ChildProcess', '2.2.0', '2.1.9'), column: 33 }],
         },
         {
           code: "import { ChildProcess } from 'child_process'",
@@ -676,27 +619,17 @@ new TSESLint.RuleTester({
         {
           code: 'console.clear()',
           options: [{ version: '8.2.9' }],
-          errors: [
-            { ...error('console.clear', '8.3.0 (backported: ^6.13.0)', '8.2.9'), type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [error('console.clear', '8.3.0 (backported: ^6.13.0)', '8.2.9')],
         },
         {
           code: "require('console').clear()",
           options: [{ version: '8.2.9' }],
-          errors: [
-            { ...error('console.clear', '8.3.0 (backported: ^6.13.0)', '8.2.9'), type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [error('console.clear', '8.3.0 (backported: ^6.13.0)', '8.2.9')],
         },
         {
           code: "var c = require('console'); c.clear()",
           options: [{ version: '8.2.9' }],
-          errors: [
-            {
-              ...error('console.clear', '8.3.0 (backported: ^6.13.0)', '8.2.9'),
-              column: 29,
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [{ ...error('console.clear', '8.3.0 (backported: ^6.13.0)', '8.2.9'), column: 29 }],
         },
         {
           code: "var { clear } = require('console'); clear()",
@@ -712,90 +645,77 @@ new TSESLint.RuleTester({
         {
           code: "import c from 'console'; c.clear()",
           options: [{ version: '8.2.9' }],
-          errors: [
-            {
-              ...error('console.clear', '8.3.0 (backported: ^6.13.0)', '8.2.9'),
-              column: 26,
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [{ ...error('console.clear', '8.3.0 (backported: ^6.13.0)', '8.2.9'), column: 26 }],
         },
         {
           code: 'console.count()',
           options: [{ version: '8.2.9' }],
-          errors: [
-            { ...error('console.count', '8.3.0 (backported: ^6.13.0)', '8.2.9'), type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [error('console.count', '8.3.0 (backported: ^6.13.0)', '8.2.9')],
         },
         {
           code: 'console.countReset()',
           options: [{ version: '8.2.9' }],
-          errors: [
-            {
-              ...error('console.countReset', '8.3.0 (backported: ^6.13.0)', '8.2.9'),
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [error('console.countReset', '8.3.0 (backported: ^6.13.0)', '8.2.9')],
         },
         {
           code: 'console.debug()',
           options: [{ version: '7.9.9' }],
-          errors: [{ ...error('console.debug', '8.0.0', '7.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('console.debug', '8.0.0', '7.9.9')],
         },
         {
           code: 'console.dirxml()',
           options: [{ version: '7.9.9' }],
-          errors: [{ ...error('console.dirxml', '8.0.0', '7.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('console.dirxml', '8.0.0', '7.9.9')],
         },
         {
           code: 'console.group()',
           options: [{ version: '8.4.9' }],
-          errors: [{ ...error('console.group', '8.5.0', '8.4.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('console.group', '8.5.0', '8.4.9')],
         },
         {
           code: 'console.groupCollapsed()',
           options: [{ version: '8.4.9' }],
-          errors: [{ ...error('console.groupCollapsed', '8.5.0', '8.4.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('console.groupCollapsed', '8.5.0', '8.4.9')],
         },
         {
           code: 'console.groupEnd()',
           options: [{ version: '8.4.9' }],
-          errors: [{ ...error('console.groupEnd', '8.5.0', '8.4.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('console.groupEnd', '8.5.0', '8.4.9')],
         },
         {
           code: 'console.table()',
           options: [{ version: '9.9.9' }],
-          errors: [{ ...error('console.table', '10.0.0', '9.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('console.table', '10.0.0', '9.9.9')],
         },
         {
           code: 'console.markTimeline()',
           options: [{ version: '7.9.9' }],
-          errors: [{ ...error('console.markTimeline', '8.0.0', '7.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('console.markTimeline', '8.0.0', '7.9.9')],
         },
         {
           code: 'console.profile()',
           options: [{ version: '7.9.9' }],
-          errors: [{ ...error('console.profile', '8.0.0', '7.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('console.profile', '8.0.0', '7.9.9')],
         },
         {
           code: 'console.profileEnd()',
           options: [{ version: '7.9.9' }],
-          errors: [{ ...error('console.profileEnd', '8.0.0', '7.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('console.profileEnd', '8.0.0', '7.9.9')],
         },
         {
           code: 'console.timeStamp()',
           options: [{ version: '7.9.9' }],
-          errors: [{ ...error('console.timeStamp', '8.0.0', '7.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('console.timeStamp', '8.0.0', '7.9.9')],
         },
         {
           code: 'console.timeline()',
           options: [{ version: '7.9.9' }],
-          errors: [{ ...error('console.timeline', '8.0.0', '7.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('console.timeline', '8.0.0', '7.9.9')],
         },
         {
           code: 'console.timelineEnd()',
           options: [{ version: '7.9.9' }],
-          errors: [{ ...error('console.timelineEnd', '8.0.0', '7.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('console.timelineEnd', '8.0.0', '7.9.9')],
         },
       ],
     },
@@ -885,14 +805,12 @@ new TSESLint.RuleTester({
         {
           code: "require('crypto').constants",
           options: [{ version: '6.2.9' }],
-          errors: [{ ...error('crypto.constants', '6.3.0', '6.2.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('crypto.constants', '6.3.0', '6.2.9')],
         },
         {
           code: "var hooks = require('crypto'); hooks.constants",
           options: [{ version: '6.2.9' }],
-          errors: [
-            { ...error('crypto.constants', '6.3.0', '6.2.9'), column: 32, type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [{ ...error('crypto.constants', '6.3.0', '6.2.9'), column: 32 }],
         },
         {
           code: "var { constants } = require('crypto'); constants",
@@ -902,9 +820,7 @@ new TSESLint.RuleTester({
         {
           code: "import crypto from 'crypto'; crypto.constants",
           options: [{ version: '6.2.9' }],
-          errors: [
-            { ...error('crypto.constants', '6.3.0', '6.2.9'), column: 30, type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [{ ...error('crypto.constants', '6.3.0', '6.2.9'), column: 30 }],
         },
         {
           code: "import { constants } from 'crypto'; constants",
@@ -914,107 +830,77 @@ new TSESLint.RuleTester({
         {
           code: "require('crypto').Certificate.exportChallenge()",
           options: [{ version: '8.9.9' }],
-          errors: [
-            { ...error('crypto.Certificate.exportChallenge', '9.0.0', '8.9.9'), type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [error('crypto.Certificate.exportChallenge', '9.0.0', '8.9.9')],
         },
         {
           code: "var { Certificate: c } = require('crypto'); c.exportChallenge()",
           options: [{ version: '8.9.9' }],
-          errors: [
-            {
-              ...error('crypto.Certificate.exportChallenge', '9.0.0', '8.9.9'),
-              column: 45,
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [{ ...error('crypto.Certificate.exportChallenge', '9.0.0', '8.9.9'), column: 45 }],
         },
         {
           code: "var { Certificate: c } = require('crypto'); c.exportPublicKey()",
           options: [{ version: '8.9.9' }],
-          errors: [
-            {
-              ...error('crypto.Certificate.exportPublicKey', '9.0.0', '8.9.9'),
-              column: 45,
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [{ ...error('crypto.Certificate.exportPublicKey', '9.0.0', '8.9.9'), column: 45 }],
         },
         {
           code: "var { Certificate: c } = require('crypto'); c.verifySpkac()",
           options: [{ version: '8.9.9' }],
-          errors: [
-            {
-              ...error('crypto.Certificate.verifySpkac', '9.0.0', '8.9.9'),
-              column: 45,
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [{ ...error('crypto.Certificate.verifySpkac', '9.0.0', '8.9.9'), column: 45 }],
         },
         {
           code: "require('crypto').fips",
           options: [{ version: '5.9.9' }],
-          errors: [{ ...error('crypto.fips', '6.0.0', '5.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('crypto.fips', '6.0.0', '5.9.9')],
         },
         {
           code: "require('crypto').getCurves",
           options: [{ version: '2.2.9' }],
-          errors: [{ ...error('crypto.getCurves', '2.3.0', '2.2.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('crypto.getCurves', '2.3.0', '2.2.9')],
         },
         {
           code: "require('crypto').getFips",
           options: [{ version: '9.9.9' }],
-          errors: [{ ...error('crypto.getFips', '10.0.0', '9.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('crypto.getFips', '10.0.0', '9.9.9')],
         },
         {
           code: "require('crypto').privateEncrypt",
           options: [{ version: '1.0.9' }],
-          errors: [{ ...error('crypto.privateEncrypt', '1.1.0', '1.0.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('crypto.privateEncrypt', '1.1.0', '1.0.9')],
         },
         {
           code: "require('crypto').publicDecrypt",
           options: [{ version: '1.0.9' }],
-          errors: [{ ...error('crypto.publicDecrypt', '1.1.0', '1.0.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('crypto.publicDecrypt', '1.1.0', '1.0.9')],
         },
         {
           code: "require('crypto').randomFillSync",
           options: [{ version: '7.9.9' }],
-          errors: [
-            {
-              ...error('crypto.randomFillSync', '7.10.0 (backported: ^6.13.0)', '7.9.9'),
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [error('crypto.randomFillSync', '7.10.0 (backported: ^6.13.0)', '7.9.9')],
         },
         {
           code: "require('crypto').randomFill",
           options: [{ version: '7.9.9' }],
-          errors: [
-            {
-              ...error('crypto.randomFill', '7.10.0 (backported: ^6.13.0)', '7.9.9'),
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [error('crypto.randomFill', '7.10.0 (backported: ^6.13.0)', '7.9.9')],
         },
         {
           code: "require('crypto').scrypt",
           options: [{ version: '10.4.9' }],
-          errors: [{ ...error('crypto.scrypt', '10.5.0', '10.4.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('crypto.scrypt', '10.5.0', '10.4.9')],
         },
         {
           code: "require('crypto').scryptSync",
           options: [{ version: '10.4.9' }],
-          errors: [{ ...error('crypto.scryptSync', '10.5.0', '10.4.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('crypto.scryptSync', '10.5.0', '10.4.9')],
         },
         {
           code: "require('crypto').setFips",
           options: [{ version: '9.9.9' }],
-          errors: [{ ...error('crypto.setFips', '10.0.0', '9.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('crypto.setFips', '10.0.0', '9.9.9')],
         },
         {
           code: "require('crypto').timingSafeEqual",
           options: [{ version: '6.5.9' }],
-          errors: [{ ...error('crypto.timingSafeEqual', '6.6.0', '6.5.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('crypto.timingSafeEqual', '6.6.0', '6.5.9')],
         },
       ],
     },
@@ -1051,12 +937,12 @@ new TSESLint.RuleTester({
         {
           code: "require('dns').Resolver",
           options: [{ version: '8.2.9' }],
-          errors: [{ ...error('dns.Resolver', '8.3.0', '8.2.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('dns.Resolver', '8.3.0', '8.2.9')],
         },
         {
           code: "var hooks = require('dns'); hooks.Resolver",
           options: [{ version: '8.2.9' }],
-          errors: [{ ...error('dns.Resolver', '8.3.0', '8.2.9'), column: 29, type: AST_NODE_TYPES.MemberExpression }],
+          errors: [{ ...error('dns.Resolver', '8.3.0', '8.2.9'), column: 29 }],
         },
         {
           code: "var { Resolver } = require('dns'); Resolver",
@@ -1066,7 +952,7 @@ new TSESLint.RuleTester({
         {
           code: "import dns from 'dns'; dns.Resolver",
           options: [{ version: '8.2.9' }],
-          errors: [{ ...error('dns.Resolver', '8.3.0', '8.2.9'), column: 24, type: AST_NODE_TYPES.MemberExpression }],
+          errors: [{ ...error('dns.Resolver', '8.3.0', '8.2.9'), column: 24 }],
         },
         {
           code: "import { Resolver } from 'dns'; Resolver",
@@ -1076,17 +962,12 @@ new TSESLint.RuleTester({
         {
           code: "require('dns').resolvePtr",
           options: [{ version: '5.9.9' }],
-          errors: [{ ...error('dns.resolvePtr', '6.0.0', '5.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('dns.resolvePtr', '6.0.0', '5.9.9')],
         },
         {
           code: "require('dns').promises",
           options: [{ version: '11.13.9' }],
-          errors: [
-            {
-              ...error('dns.promises', '11.14.0 (backported: ^10.17.0)', '11.13.9'),
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [error('dns.promises', '11.14.0 (backported: ^10.17.0)', '11.13.9')],
         },
       ],
     },
@@ -1163,23 +1044,12 @@ new TSESLint.RuleTester({
         {
           code: "require('fs').promises",
           options: [{ version: '11.13.9' }],
-          errors: [
-            {
-              ...error('fs.promises', '11.14.0 (backported: ^10.17.0)', '11.13.9'),
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [error('fs.promises', '11.14.0 (backported: ^10.17.0)', '11.13.9')],
         },
         {
           code: "var fs = require('fs'); fs.promises",
           options: [{ version: '11.13.9' }],
-          errors: [
-            {
-              ...error('fs.promises', '11.14.0 (backported: ^10.17.0)', '11.13.9'),
-              column: 25,
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [{ ...error('fs.promises', '11.14.0 (backported: ^10.17.0)', '11.13.9'), column: 25 }],
         },
         {
           code: "var { promises } = require('fs'); promises",
@@ -1195,13 +1065,7 @@ new TSESLint.RuleTester({
         {
           code: "import fs from 'fs'; fs.promises",
           options: [{ version: '11.13.9' }],
-          errors: [
-            {
-              ...error('fs.promises', '11.14.0 (backported: ^10.17.0)', '11.13.9'),
-              column: 22,
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [{ ...error('fs.promises', '11.14.0 (backported: ^10.17.0)', '11.13.9'), column: 22 }],
         },
         {
           code: "import { promises } from 'fs'",
@@ -1217,145 +1081,107 @@ new TSESLint.RuleTester({
         {
           code: "require('fs').copyFile",
           options: [{ version: '8.4.9' }],
-          errors: [{ ...error('fs.copyFile', '8.5.0', '8.4.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('fs.copyFile', '8.5.0', '8.4.9')],
         },
         {
           code: "require('fs').copyFileSync",
           options: [{ version: '8.4.9' }],
-          errors: [{ ...error('fs.copyFileSync', '8.5.0', '8.4.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('fs.copyFileSync', '8.5.0', '8.4.9')],
         },
         {
           code: "require('fs').mkdtemp",
           options: [{ version: '5.9.9' }],
-          errors: [{ ...error('fs.mkdtemp', '5.10.0', '5.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('fs.mkdtemp', '5.10.0', '5.9.9')],
         },
         {
           code: "require('fs').mkdtempSync",
           options: [{ version: '5.9.9' }],
-          errors: [{ ...error('fs.mkdtempSync', '5.10.0', '5.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('fs.mkdtempSync', '5.10.0', '5.9.9')],
         },
         {
           code: "require('fs').realpath.native",
           options: [{ version: '9.1.9' }],
-          errors: [{ ...error('fs.realpath.native', '9.2.0', '9.1.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('fs.realpath.native', '9.2.0', '9.1.9')],
         },
         {
           code: "require('fs').realpathSync.native",
           options: [{ version: '9.1.9' }],
-          errors: [{ ...error('fs.realpathSync.native', '9.2.0', '9.1.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('fs.realpathSync.native', '9.2.0', '9.1.9')],
         },
         {
           code: "require('fs').lutimes",
           options: [{ version: '14.4.0' }],
-          errors: [
-            { ...error('fs.lutimes', '14.5.0 (backported: ^12.19.0)', '14.4.0'), type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [error('fs.lutimes', '14.5.0 (backported: ^12.19.0)', '14.4.0')],
         },
         {
           code: "require('fs').lutimesSync",
           options: [{ version: '14.4.0' }],
-          errors: [
-            {
-              ...error('fs.lutimesSync', '14.5.0 (backported: ^12.19.0)', '14.4.0'),
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [error('fs.lutimesSync', '14.5.0 (backported: ^12.19.0)', '14.4.0')],
         },
         {
           code: "require('fs').readv",
           options: [{ version: '13.12.0' }],
-          errors: [
-            { ...error('fs.readv', '13.13.0 (backported: ^12.17.0)', '13.12.0'), type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [error('fs.readv', '13.13.0 (backported: ^12.17.0)', '13.12.0')],
         },
         {
           code: "require('fs').readvSync",
           options: [{ version: '13.12.0' }],
-          errors: [
-            {
-              ...error('fs.readvSync', '13.13.0 (backported: ^12.17.0)', '13.12.0'),
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [error('fs.readvSync', '13.13.0 (backported: ^12.17.0)', '13.12.0')],
         },
         {
           code: "require('fs').opendir",
           options: [{ version: '12.11.0' }],
-          errors: [{ ...error('fs.opendir', '12.12.0', '12.11.0'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('fs.opendir', '12.12.0', '12.11.0')],
         },
         {
           code: "require('fs').opendirSync",
           options: [{ version: '12.11.0' }],
-          errors: [{ ...error('fs.opendirSync', '12.12.0', '12.11.0'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('fs.opendirSync', '12.12.0', '12.11.0')],
         },
         {
           code: "require('fs').rm",
           options: [{ version: '14.13.0' }],
-          errors: [{ ...error('fs.rm', '14.14.0', '14.13.0'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('fs.rm', '14.14.0', '14.13.0')],
         },
         {
           code: "require('fs').rmSync",
           options: [{ version: '14.13.0' }],
-          errors: [{ ...error('fs.rmSync', '14.14.0', '14.13.0'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('fs.rmSync', '14.14.0', '14.13.0')],
         },
         {
           code: "require('fs').read",
           options: [{ version: '13.10.0' }],
-          errors: [
-            { ...error('fs.read', '13.11.0 (backported: ^12.17.0)', '13.10.0'), type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [error('fs.read', '13.11.0 (backported: ^12.17.0)', '13.10.0')],
         },
         {
           code: "require('fs').readSync",
           options: [{ version: '13.10.0' }],
-          errors: [
-            {
-              ...error('fs.readSync', '13.11.0 (backported: ^12.17.0)', '13.10.0'),
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [error('fs.readSync', '13.11.0 (backported: ^12.17.0)', '13.10.0')],
         },
         {
           code: "require('fs').read",
           options: [{ version: '12.16.0' }],
-          errors: [
-            { ...error('fs.read', '13.11.0 (backported: ^12.17.0)', '12.16.0'), type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [error('fs.read', '13.11.0 (backported: ^12.17.0)', '12.16.0')],
         },
         {
           code: "require('fs').readSync",
           options: [{ version: '12.16.0' }],
-          errors: [
-            {
-              ...error('fs.readSync', '13.11.0 (backported: ^12.17.0)', '12.16.0'),
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [error('fs.readSync', '13.11.0 (backported: ^12.17.0)', '12.16.0')],
         },
         {
           code: "require('fs').Dir",
           options: [{ version: '12.11.0' }],
-          errors: [{ ...error('fs.Dir', '12.12.0', '12.11.0'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('fs.Dir', '12.12.0', '12.11.0')],
         },
         {
           code: "require('fs').StatWatcher",
           options: [{ version: '14.2.0' }],
-          errors: [
-            {
-              ...error('fs.StatWatcher', '14.3.0 (backported: ^12.20.0)', '14.2.0'),
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [error('fs.StatWatcher', '14.3.0 (backported: ^12.20.0)', '14.2.0')],
         },
         {
           code: "require('fs').StatWatcher",
           options: [{ version: '12.19.0' }],
-          errors: [
-            {
-              ...error('fs.StatWatcher', '14.3.0 (backported: ^12.20.0)', '12.19.0'),
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [error('fs.StatWatcher', '14.3.0 (backported: ^12.20.0)', '12.19.0')],
         },
       ],
     },
@@ -1366,9 +1192,9 @@ new TSESLint.RuleTester({
     {
       valid: [
         { code: "import * as fs from 'fs/promises';", options: [{ version: '14.0.0' }] },
-        { code: "require('fs/promise')", options: [{ version: '14.0.0' }] },
+        { code: "require('fs/promises')", options: [{ version: '14.0.0' }] },
         { code: "import * as fs from 'fs/promises';", options: [{ version: '13.14.0', ignores: ['fs/promises'] }] },
-        { code: "require('fs/promise')", options: [{ version: '13.14.0', ignores: ['fs/promises'] }] },
+        { code: "require('fs/promises')", options: [{ version: '13.14.0', ignores: ['fs/promises'] }] },
       ],
       invalid: [
         {
@@ -1466,17 +1292,12 @@ new TSESLint.RuleTester({
         {
           code: 'require.resolve.paths()',
           options: [{ version: '8.8.9' }],
-          errors: [{ ...error('require.resolve.paths', '8.9.0', '8.8.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('require.resolve.paths', '8.9.0', '8.8.9')],
         },
         {
           code: "require('module').builtinModules",
           options: [{ version: '9.2.9' }],
-          errors: [
-            {
-              ...error('module.builtinModules', '9.3.0 (backported: ^6.13.0, ^8.10.0)', '9.2.9'),
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [error('module.builtinModules', '9.3.0 (backported: ^6.13.0, ^8.10.0)', '9.2.9')],
         },
       ],
     },
@@ -1516,12 +1337,12 @@ new TSESLint.RuleTester({
         {
           code: "require('os').constants",
           options: [{ version: '6.2.9' }],
-          errors: [{ ...error('os.constants', '6.3.0', '6.2.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('os.constants', '6.3.0', '6.2.9')],
         },
         {
           code: "var hooks = require('os'); hooks.constants",
           options: [{ version: '6.2.9' }],
-          errors: [{ ...error('os.constants', '6.3.0', '6.2.9'), column: 28, type: AST_NODE_TYPES.MemberExpression }],
+          errors: [{ ...error('os.constants', '6.3.0', '6.2.9'), column: 28 }],
         },
         {
           code: "var { constants } = require('os'); constants",
@@ -1531,7 +1352,7 @@ new TSESLint.RuleTester({
         {
           code: "import os from 'os'; os.constants",
           options: [{ version: '6.2.9' }],
-          errors: [{ ...error('os.constants', '6.3.0', '6.2.9'), column: 22, type: AST_NODE_TYPES.MemberExpression }],
+          errors: [{ ...error('os.constants', '6.3.0', '6.2.9'), column: 22 }],
         },
         {
           code: "import { constants } from 'os'; constants",
@@ -1541,12 +1362,12 @@ new TSESLint.RuleTester({
         {
           code: "require('os').homedir",
           options: [{ version: '2.2.9' }],
-          errors: [{ ...error('os.homedir', '2.3.0', '2.2.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('os.homedir', '2.3.0', '2.2.9')],
         },
         {
           code: "require('os').userInfo",
           options: [{ version: '5.9.9' }],
-          errors: [{ ...error('os.userInfo', '6.0.0', '5.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('os.userInfo', '6.0.0', '5.9.9')],
         },
       ],
     },
@@ -1588,36 +1409,28 @@ new TSESLint.RuleTester({
         {
           code: "require('path').toNamespacedPath()",
           options: [{ version: '8.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'path.toNamespacedPath', supported: '9.0.0', version: '8.9.9' } },
-          ],
+          errors: [error('path.toNamespacedPath', '9.0.0', '8.9.9')],
         },
         {
           code: "var path = require('path'); path.toNamespacedPath()",
           options: [{ version: '8.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'path.toNamespacedPath', supported: '9.0.0', version: '8.9.9' } },
-          ],
+          errors: [{ ...error('path.toNamespacedPath', '9.0.0', '8.9.9'), column: 29 }],
         },
         {
           code: "var { toNamespacedPath } = require('path'); toNamespacedPath()",
           options: [{ version: '8.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'path.toNamespacedPath', supported: '9.0.0', version: '8.9.9' } },
-          ],
+          errors: [{ ...error('path.toNamespacedPath', '9.0.0', '8.9.9'), column: 7, type: AST_NODE_TYPES.Property }],
         },
         {
           code: "import path from 'path'; path.toNamespacedPath()",
           options: [{ version: '8.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'path.toNamespacedPath', supported: '9.0.0', version: '8.9.9' } },
-          ],
+          errors: [{ ...error('path.toNamespacedPath', '9.0.0', '8.9.9'), column: 26 }],
         },
         {
           code: "import { toNamespacedPath } from 'path'; toNamespacedPath()",
           options: [{ version: '8.9.9' }],
           errors: [
-            { messageId: 'unsupported', data: { name: 'path.toNamespacedPath', supported: '9.0.0', version: '8.9.9' } },
+            { ...error('path.toNamespacedPath', '9.0.0', '8.9.9'), column: 10, type: AST_NODE_TYPES.ImportSpecifier },
           ],
         },
       ],
@@ -1637,17 +1450,17 @@ new TSESLint.RuleTester({
         {
           code: "require('perf_hooks')",
           options: [{ version: '8.4.9' }],
-          errors: [{ messageId: 'unsupported', data: { name: 'perf_hooks', supported: '8.5.0', version: '8.4.9' } }],
+          errors: [{ ...error('perf_hooks', '8.5.0', '8.4.9'), type: AST_NODE_TYPES.CallExpression }],
         },
         {
           code: "import perf_hooks from 'perf_hooks'",
           options: [{ version: '8.4.9' }],
-          errors: [{ messageId: 'unsupported', data: { name: 'perf_hooks', supported: '8.5.0', version: '8.4.9' } }],
+          errors: [{ ...error('perf_hooks', '8.5.0', '8.4.9'), type: AST_NODE_TYPES.ImportDeclaration }],
         },
         {
           code: "import { open } from 'perf_hooks'",
           options: [{ version: '8.4.9' }],
-          errors: [{ messageId: 'unsupported', data: { name: 'perf_hooks', supported: '8.5.0', version: '8.4.9' } }],
+          errors: [{ ...error('perf_hooks', '8.5.0', '8.4.9'), type: AST_NODE_TYPES.ImportDeclaration }],
         },
       ],
     },
@@ -1670,6 +1483,8 @@ new TSESLint.RuleTester({
         { code: 'process.hasUncaughtExceptionCaptureCallback', options: [{ version: '9.3.0' }] },
         { code: 'process.ppid', options: [{ version: '9.2.0' }] },
         { code: 'process.release', options: [{ version: '3.0.0' }] },
+        { code: 'process.report', options: [{ version: '13.12.0' }] },
+        { code: 'process.report', options: [{ version: '12.17.0' }] },
         { code: 'process.setegid', options: [{ version: '2.0.0' }] },
         { code: 'process.seteuid', options: [{ version: '2.0.0' }] },
         { code: 'process.setUncaughtExceptionCaptureCallback', options: [{ version: '9.3.0' }] },
@@ -1694,6 +1509,7 @@ new TSESLint.RuleTester({
         },
         { code: 'process.ppid', options: [{ version: '9.1.9', ignores: ['process.ppid'] }] },
         { code: 'process.release', options: [{ version: '2.9.9', ignores: ['process.release'] }] },
+        { code: 'process.report', options: [{ version: '11.7.9', ignores: ['process.report'] }] },
         { code: 'process.setegid', options: [{ version: '1.9.9', ignores: ['process.setegid'] }] },
         { code: 'process.seteuid', options: [{ version: '1.9.9', ignores: ['process.seteuid'] }] },
         {
@@ -1705,113 +1521,87 @@ new TSESLint.RuleTester({
         {
           code: 'process.argv0',
           options: [{ version: '6.3.9' }],
-          errors: [{ messageId: 'unsupported', data: { name: 'process.argv0', supported: '6.4.0', version: '6.3.9' } }],
+          errors: [error('process.argv0', '6.4.0', '6.3.9')],
         },
         {
           code: "require('process').argv0",
           options: [{ version: '6.3.9' }],
-          errors: [{ messageId: 'unsupported', data: { name: 'process.argv0', supported: '6.4.0', version: '6.3.9' } }],
+          errors: [error('process.argv0', '6.4.0', '6.3.9')],
         },
         {
           code: "var c = require('process'); c.argv0",
           options: [{ version: '6.3.9' }],
-          errors: [{ messageId: 'unsupported', data: { name: 'process.argv0', supported: '6.4.0', version: '6.3.9' } }],
+          errors: [{ ...error('process.argv0', '6.4.0', '6.3.9'), column: 29 }],
         },
         {
           code: "var { argv0 } = require('process'); argv0",
           options: [{ version: '6.3.9' }],
-          errors: [{ messageId: 'unsupported', data: { name: 'process.argv0', supported: '6.4.0', version: '6.3.9' } }],
+          errors: [{ ...error('process.argv0', '6.4.0', '6.3.9'), column: 7, type: AST_NODE_TYPES.Property }],
         },
         {
           code: "import c from 'process'; c.argv0",
           options: [{ version: '6.3.9' }],
-          errors: [{ messageId: 'unsupported', data: { name: 'process.argv0', supported: '6.4.0', version: '6.3.9' } }],
+          errors: [{ ...error('process.argv0', '6.4.0', '6.3.9'), column: 26 }],
         },
         {
           code: 'process.channel',
           options: [{ version: '7.0.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'process.channel', supported: '7.1.0', version: '7.0.9' } },
-          ],
+          errors: [error('process.channel', '7.1.0', '7.0.9')],
         },
         {
           code: 'process.cpuUsage',
           options: [{ version: '6.0.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'process.cpuUsage', supported: '6.1.0', version: '6.0.9' } },
-          ],
+          errors: [error('process.cpuUsage', '6.1.0', '6.0.9')],
         },
         {
           code: 'process.emitWarning',
           options: [{ version: '5.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'process.emitWarning', supported: '6.0.0', version: '5.9.9' } },
-          ],
+          errors: [error('process.emitWarning', '6.0.0', '5.9.9')],
         },
         {
           code: 'process.getegid',
           options: [{ version: '1.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'process.getegid', supported: '2.0.0', version: '1.9.9' } },
-          ],
+          errors: [error('process.getegid', '2.0.0', '1.9.9')],
         },
         {
           code: 'process.geteuid',
           options: [{ version: '1.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'process.geteuid', supported: '2.0.0', version: '1.9.9' } },
-          ],
+          errors: [error('process.geteuid', '2.0.0', '1.9.9')],
         },
         {
           code: 'process.hasUncaughtExceptionCaptureCallback',
           options: [{ version: '9.2.9' }],
-          errors: [
-            {
-              messageId: 'unsupported',
-              data: { name: 'process.hasUncaughtExceptionCaptureCallback', supported: '9.3.0', version: '9.2.9' },
-            },
-          ],
+          errors: [error('process.hasUncaughtExceptionCaptureCallback', '9.3.0', '9.2.9')],
         },
         {
           code: 'process.ppid',
           options: [{ version: '9.1.9' }],
-          errors: [
-            {
-              messageId: 'unsupported',
-              data: { name: 'process.ppid', supported: '9.2.0 (backported: ^6.13.0, ^8.10.0)', version: '9.1.9' },
-            },
-          ],
+          errors: [error('process.ppid', '9.2.0 (backported: ^6.13.0, ^8.10.0)', '9.1.9')],
         },
         {
           code: 'process.release',
           options: [{ version: '2.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'process.release', supported: '3.0.0', version: '2.9.9' } },
-          ],
+          errors: [error('process.release', '3.0.0', '2.9.9')],
+        },
+        {
+          code: 'process.report',
+          options: [{ version: '11.7.9' }],
+          errors: [error('process.report', '13.12.0 (backported: ^12.17.0)', '11.7.9')],
         },
         {
           code: 'process.setegid',
           options: [{ version: '1.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'process.setegid', supported: '2.0.0', version: '1.9.9' } },
-          ],
+          errors: [error('process.setegid', '2.0.0', '1.9.9')],
         },
         {
           code: 'process.seteuid',
           options: [{ version: '1.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'process.seteuid', supported: '2.0.0', version: '1.9.9' } },
-          ],
+          errors: [error('process.seteuid', '2.0.0', '1.9.9')],
         },
         {
           code: 'process.setUncaughtExceptionCaptureCallback',
           options: [{ version: '9.2.9' }],
-          errors: [
-            {
-              messageId: 'unsupported',
-              data: { name: 'process.setUncaughtExceptionCaptureCallback', supported: '9.3.0', version: '9.2.9' },
-            },
-          ],
+          errors: [error('process.setUncaughtExceptionCaptureCallback', '9.3.0', '9.2.9')],
         },
       ],
     },
@@ -1852,44 +1642,32 @@ new TSESLint.RuleTester({
         {
           code: "require('stream').finished()",
           options: [{ version: '9.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'stream.finished', supported: '10.0.0', version: '9.9.9' } },
-          ],
+          errors: [error('stream.finished', '10.0.0', '9.9.9')],
         },
         {
           code: "var hooks = require('stream'); hooks.finished()",
           options: [{ version: '9.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'stream.finished', supported: '10.0.0', version: '9.9.9' } },
-          ],
+          errors: [{ ...error('stream.finished', '10.0.0', '9.9.9'), column: 32 }],
         },
         {
           code: "var { finished } = require('stream'); finished()",
           options: [{ version: '9.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'stream.finished', supported: '10.0.0', version: '9.9.9' } },
-          ],
+          errors: [{ ...error('stream.finished', '10.0.0', '9.9.9'), column: 7, type: AST_NODE_TYPES.Property }],
         },
         {
           code: "import stream from 'stream'; stream.finished()",
           options: [{ version: '9.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'stream.finished', supported: '10.0.0', version: '9.9.9' } },
-          ],
+          errors: [{ ...error('stream.finished', '10.0.0', '9.9.9'), column: 30 }],
         },
         {
           code: "import { finished } from 'stream'; finished()",
           options: [{ version: '9.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'stream.finished', supported: '10.0.0', version: '9.9.9' } },
-          ],
+          errors: [{ ...error('stream.finished', '10.0.0', '9.9.9'), column: 10, type: AST_NODE_TYPES.ImportSpecifier }],
         },
         {
           code: "require('stream').pipeline()",
           options: [{ version: '9.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'stream.pipeline', supported: '10.0.0', version: '9.9.9' } },
-          ],
+          errors: [error('stream.pipeline', '10.0.0', '9.9.9')],
         },
       ],
     },
@@ -1908,17 +1686,17 @@ new TSESLint.RuleTester({
         {
           code: "require('trace_events')",
           options: [{ version: '9.9.9' }],
-          errors: [{ messageId: 'unsupported', data: { name: 'trace_events', supported: '10.0.0', version: '9.9.9' } }],
+          errors: [{ ...error('trace_events', '10.0.0', '9.9.9'), type: AST_NODE_TYPES.CallExpression }],
         },
         {
           code: "import trace_events from 'trace_events'",
           options: [{ version: '9.9.9' }],
-          errors: [{ messageId: 'unsupported', data: { name: 'trace_events', supported: '10.0.0', version: '9.9.9' } }],
+          errors: [{ ...error('trace_events', '10.0.0', '9.9.9'), type: AST_NODE_TYPES.ImportDeclaration }],
         },
         {
           code: "import { createTracing } from 'trace_events'",
           options: [{ version: '9.9.9' }],
-          errors: [{ messageId: 'unsupported', data: { name: 'trace_events', supported: '10.0.0', version: '9.9.9' } }],
+          errors: [{ ...error('trace_events', '10.0.0', '9.9.9'), type: AST_NODE_TYPES.ImportDeclaration }],
         },
       ],
     },
@@ -1957,88 +1735,60 @@ new TSESLint.RuleTester({
         {
           code: 'URL',
           options: [{ version: '9.9.9' }],
-          errors: [{ messageId: 'unsupported', data: { name: 'URL', supported: '10.0.0', version: '9.9.9' } }],
+          errors: [{ ...error('URL', '10.0.0', '9.9.9'), type: AST_NODE_TYPES.Identifier }],
         },
         {
           code: 'URLSearchParams',
           options: [{ version: '9.9.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'URLSearchParams', supported: '10.0.0', version: '9.9.9' } },
-          ],
+          errors: [{ ...error('URLSearchParams', '10.0.0', '9.9.9'), type: AST_NODE_TYPES.Identifier }],
         },
         {
           code: "require('url').URL",
           options: [{ version: '6.9.9' }],
-          errors: [
-            {
-              messageId: 'unsupported',
-              data: { name: 'url.URL', supported: '7.0.0 (backported: ^6.13.0)', version: '6.9.9' },
-            },
-          ],
+          errors: [error('url.URL', '7.0.0 (backported: ^6.13.0)', '6.9.9')],
         },
         {
           code: "var cp = require('url'); cp.URL",
           options: [{ version: '6.9.9' }],
-          errors: [
-            {
-              messageId: 'unsupported',
-              data: { name: 'url.URL', supported: '7.0.0 (backported: ^6.13.0)', version: '6.9.9' },
-            },
-          ],
+          errors: [{ ...error('url.URL', '7.0.0 (backported: ^6.13.0)', '6.9.9'), column: 26 }],
         },
         {
           code: "var { URL } = require('url');",
           options: [{ version: '6.9.9' }],
           errors: [
-            {
-              messageId: 'unsupported',
-              data: { name: 'url.URL', supported: '7.0.0 (backported: ^6.13.0)', version: '6.9.9' },
-            },
+            { ...error('url.URL', '7.0.0 (backported: ^6.13.0)', '6.9.9'), column: 7, type: AST_NODE_TYPES.Property },
           ],
         },
         {
           code: "import cp from 'url'; cp.URL",
           options: [{ version: '6.9.9' }],
-          errors: [
-            {
-              messageId: 'unsupported',
-              data: { name: 'url.URL', supported: '7.0.0 (backported: ^6.13.0)', version: '6.9.9' },
-            },
-          ],
+          errors: [{ ...error('url.URL', '7.0.0 (backported: ^6.13.0)', '6.9.9'), column: 23 }],
         },
         {
           code: "import { URL } from 'url'",
           options: [{ version: '6.9.9' }],
           errors: [
             {
-              messageId: 'unsupported',
-              data: { name: 'url.URL', supported: '7.0.0 (backported: ^6.13.0)', version: '6.9.9' },
+              ...error('url.URL', '7.0.0 (backported: ^6.13.0)', '6.9.9'),
+              column: 10,
+              type: AST_NODE_TYPES.ImportSpecifier,
             },
           ],
         },
         {
           code: "require('url').URLSearchParams",
           options: [{ version: '7.4.9' }],
-          errors: [
-            {
-              messageId: 'unsupported',
-              data: { name: 'url.URLSearchParams', supported: '7.5.0 (backported: ^6.13.0)', version: '7.4.9' },
-            },
-          ],
+          errors: [error('url.URLSearchParams', '7.5.0 (backported: ^6.13.0)', '7.4.9')],
         },
         {
           code: "require('url').domainToASCII",
           options: [{ version: '7.3.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'url.domainToASCII', supported: '7.4.0', version: '7.3.9' } },
-          ],
+          errors: [error('url.domainToASCII', '7.4.0', '7.3.9')],
         },
         {
           code: "require('url').domainToUnicode",
           options: [{ version: '7.3.9' }],
-          errors: [
-            { messageId: 'unsupported', data: { name: 'url.domainToUnicode', supported: '7.4.0', version: '7.3.9' } },
-          ],
+          errors: [error('url.domainToUnicode', '7.4.0', '7.3.9')],
         },
       ],
     },
@@ -2107,14 +1857,12 @@ new TSESLint.RuleTester({
         {
           code: "require('util').callbackify",
           options: [{ version: '8.1.9' }],
-          errors: [{ ...error('util.callbackify', '8.2.0', '8.1.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('util.callbackify', '8.2.0', '8.1.9')],
         },
         {
           code: "var hooks = require('util'); hooks.callbackify",
           options: [{ version: '8.1.9' }],
-          errors: [
-            { ...error('util.callbackify', '8.2.0', '8.1.9'), column: 30, type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [{ ...error('util.callbackify', '8.2.0', '8.1.9'), column: 30 }],
         },
         {
           code: "var { callbackify } = require('util'); callbackify",
@@ -2124,9 +1872,7 @@ new TSESLint.RuleTester({
         {
           code: "import util from 'util'; util.callbackify",
           options: [{ version: '8.1.9' }],
-          errors: [
-            { ...error('util.callbackify', '8.2.0', '8.1.9'), column: 26, type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [{ ...error('util.callbackify', '8.2.0', '8.1.9'), column: 26 }],
         },
         {
           code: "import { callbackify } from 'util'; callbackify",
@@ -2136,52 +1882,47 @@ new TSESLint.RuleTester({
         {
           code: "require('util').formatWithOptions",
           options: [{ version: '9.9.9' }],
-          errors: [{ ...error('util.formatWithOptions', '10.0.0', '9.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('util.formatWithOptions', '10.0.0', '9.9.9')],
         },
         {
           code: "require('util').getSystemErrorName",
           options: [{ version: '9.6.9' }],
-          errors: [
-            {
-              ...error('util.getSystemErrorName', '9.7.0 (backported: ^8.12.0)', '9.6.9'),
-              type: AST_NODE_TYPES.MemberExpression,
-            },
-          ],
+          errors: [error('util.getSystemErrorName', '9.7.0 (backported: ^8.12.0)', '9.6.9')],
         },
         {
           code: "require('util').inspect.custom",
           options: [{ version: '6.5.9' }],
-          errors: [{ ...error('util.inspect.custom', '6.6.0', '6.5.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('util.inspect.custom', '6.6.0', '6.5.9')],
         },
         {
           code: "require('util').inspect.defaultOptions",
           options: [{ version: '6.3.9' }],
-          errors: [{ ...error('util.inspect.defaultOptions', '6.4.0', '6.3.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('util.inspect.defaultOptions', '6.4.0', '6.3.9')],
         },
         {
           code: "require('util').isDeepStrictEqual",
           options: [{ version: '8.9.9' }],
-          errors: [{ ...error('util.isDeepStrictEqual', '9.0.0', '8.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('util.isDeepStrictEqual', '9.0.0', '8.9.9')],
         },
         {
           code: "require('util').promisify",
           options: [{ version: '7.9.9' }],
-          errors: [{ ...error('util.promisify', '8.0.0', '7.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('util.promisify', '8.0.0', '7.9.9')],
         },
         {
           code: "require('util').TextDecoder",
           options: [{ version: '8.8.9' }],
-          errors: [{ ...error('util.TextDecoder', '8.9.0', '8.8.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('util.TextDecoder', '8.9.0', '8.8.9')],
         },
         {
           code: "require('util').TextEncoder",
           options: [{ version: '8.8.9' }],
-          errors: [{ ...error('util.TextEncoder', '8.9.0', '8.8.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('util.TextEncoder', '8.9.0', '8.8.9')],
         },
         {
           code: "require('util').types",
           options: [{ version: '9.9.9' }],
-          errors: [{ ...error('util.types', '10.0.0', '9.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('util.types', '10.0.0', '9.9.9')],
         },
       ],
     },
@@ -2276,14 +2017,12 @@ new TSESLint.RuleTester({
         {
           code: "require('v8').cachedDataVersionTag()",
           options: [{ version: '7.9.9' }],
-          errors: [{ ...error('v8.cachedDataVersionTag', '8.0.0', '7.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('v8.cachedDataVersionTag', '8.0.0', '7.9.9')],
         },
         {
           code: "var hooks = require('v8'); hooks.cachedDataVersionTag()",
           options: [{ version: '7.9.9' }],
-          errors: [
-            { ...error('v8.cachedDataVersionTag', '8.0.0', '7.9.9'), column: 28, type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [{ ...error('v8.cachedDataVersionTag', '8.0.0', '7.9.9'), column: 28 }],
         },
         {
           code: "var { cachedDataVersionTag } = require('v8'); cachedDataVersionTag()",
@@ -2293,9 +2032,7 @@ new TSESLint.RuleTester({
         {
           code: "import v8 from 'v8'; v8.cachedDataVersionTag()",
           options: [{ version: '7.9.9' }],
-          errors: [
-            { ...error('v8.cachedDataVersionTag', '8.0.0', '7.9.9'), column: 22, type: AST_NODE_TYPES.MemberExpression },
-          ],
+          errors: [{ ...error('v8.cachedDataVersionTag', '8.0.0', '7.9.9'), column: 22 }],
         },
         {
           code: "import { cachedDataVersionTag } from 'v8'; cachedDataVersionTag()",
@@ -2307,37 +2044,37 @@ new TSESLint.RuleTester({
         {
           code: "require('v8').getHeapSpaceStatistics()",
           options: [{ version: '5.9.9' }],
-          errors: [{ ...error('v8.getHeapSpaceStatistics', '6.0.0', '5.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('v8.getHeapSpaceStatistics', '6.0.0', '5.9.9')],
         },
         {
           code: "require('v8').serialize()",
           options: [{ version: '7.9.9' }],
-          errors: [{ ...error('v8.serialize', '8.0.0', '7.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('v8.serialize', '8.0.0', '7.9.9')],
         },
         {
           code: "require('v8').deserialize()",
           options: [{ version: '7.9.9' }],
-          errors: [{ ...error('v8.deserialize', '8.0.0', '7.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('v8.deserialize', '8.0.0', '7.9.9')],
         },
         {
           code: "require('v8').Serializer",
           options: [{ version: '7.9.9' }],
-          errors: [{ ...error('v8.Serializer', '8.0.0', '7.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('v8.Serializer', '8.0.0', '7.9.9')],
         },
         {
           code: "require('v8').Deserializer",
           options: [{ version: '7.9.9' }],
-          errors: [{ ...error('v8.Deserializer', '8.0.0', '7.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('v8.Deserializer', '8.0.0', '7.9.9')],
         },
         {
           code: "require('v8').DefaultSerializer",
           options: [{ version: '7.9.9' }],
-          errors: [{ ...error('v8.DefaultSerializer', '8.0.0', '7.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('v8.DefaultSerializer', '8.0.0', '7.9.9')],
         },
         {
           code: "require('v8').DefaultDeserializer",
           options: [{ version: '7.9.9' }],
-          errors: [{ ...error('v8.DefaultDeserializer', '8.0.0', '7.9.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('v8.DefaultDeserializer', '8.0.0', '7.9.9')],
         },
       ],
     },
@@ -2364,12 +2101,12 @@ new TSESLint.RuleTester({
         {
           code: "require('vm').Module",
           options: [{ version: '9.5.9' }],
-          errors: [{ ...error('vm.Module', '9.6.0', '9.5.9'), type: AST_NODE_TYPES.MemberExpression }],
+          errors: [error('vm.Module', '9.6.0', '9.5.9')],
         },
         {
           code: "var vm = require('vm'); vm.Module",
           options: [{ version: '9.5.9' }],
-          errors: [{ ...error('vm.Module', '9.6.0', '9.5.9'), column: 25, type: AST_NODE_TYPES.MemberExpression }],
+          errors: [{ ...error('vm.Module', '9.6.0', '9.5.9'), column: 25 }],
         },
         {
           code: "var { Module } = require('vm'); Module",
@@ -2379,7 +2116,7 @@ new TSESLint.RuleTester({
         {
           code: "import vm from 'vm'; vm.Module",
           options: [{ version: '9.5.9' }],
-          errors: [{ ...error('vm.Module', '9.6.0', '9.5.9'), column: 22, type: AST_NODE_TYPES.MemberExpression }],
+          errors: [{ ...error('vm.Module', '9.6.0', '9.5.9'), column: 22 }],
         },
         {
           code: "import { Module } from 'vm'; Module",
