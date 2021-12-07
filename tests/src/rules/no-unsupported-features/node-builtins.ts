@@ -1253,24 +1253,26 @@ new TSESLint.RuleTester({
     // ----------------------------------------------------------------------
     {
       valid: [
+        { code: "require('inspector')", options: [{ version: '14.18.0' }] },
         { code: "require('inspector')", options: [{ version: '7.9.9', ignores: ['inspector'] }] },
+        { code: "import inspector from 'inspector'", options: [{ version: '14.18.0' }] },
         { code: "import inspector from 'inspector'", options: [{ version: '7.9.9', ignores: ['inspector'] }] },
       ],
       invalid: [
         {
           code: "require('inspector')",
-          options: [{ version: '7.9.9' }],
-          errors: [{ ...error('inspector', '(none yet)', '7.9.9'), type: AST_NODE_TYPES.CallExpression }],
+          options: [{ version: '14.17.9' }],
+          errors: [{ ...error('inspector', '14.18.0', '14.17.9'), type: AST_NODE_TYPES.CallExpression }],
         },
         {
           code: "import inspector from 'inspector'",
-          options: [{ version: '7.9.9' }],
-          errors: [{ ...error('inspector', '(none yet)', '7.9.9'), type: AST_NODE_TYPES.ImportDeclaration }],
+          options: [{ version: '14.17.9' }],
+          errors: [{ ...error('inspector', '14.18.0', '14.17.9'), type: AST_NODE_TYPES.ImportDeclaration }],
         },
         {
           code: "import { open } from 'inspector'",
-          options: [{ version: '7.9.9' }],
-          errors: [{ ...error('inspector', '(none yet)', '7.9.9'), type: AST_NODE_TYPES.ImportDeclaration }],
+          options: [{ version: '14.17.9' }],
+          errors: [{ ...error('inspector', '14.18.0', '14.17.9'), type: AST_NODE_TYPES.ImportDeclaration }],
         },
       ],
     },
