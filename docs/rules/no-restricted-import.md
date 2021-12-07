@@ -112,5 +112,5 @@ import pick from 'lodash/pick';
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.1/src/rules/no-restricted-import.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.1/tests/src/rules/no-restricted-import.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.2/src/rules/no-restricted-import.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.2/tests/src/rules/no-restricted-import.ts)

@@ -159,5 +159,5 @@ For example:
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.1/src/rules/no-unsupported-features/es-builtins.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.1/tests/src/rules/no-unsupported-features/es-builtins.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.2/src/rules/no-unsupported-features/es-builtins.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.2/tests/src/rules/no-unsupported-features/es-builtins.ts)
