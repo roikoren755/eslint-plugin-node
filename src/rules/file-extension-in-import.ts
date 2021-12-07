@@ -36,6 +36,8 @@ type MessageId = `${'forbid' | 'require'}Ext`;
 
 const shouldIgnore = (name: string): boolean => packageNamePattern.test(name) || corePackageOverridePattern.test(name);
 
+const getExtension = (ext: string, exts: string[]): string => ext || exts[0];
+
 const verify = (
   options: Options,
   context: TSESLint.RuleContext<MessageId, Options>,
@@ -57,7 +59,7 @@ const verify = (
     return;
   }
 
-  const ext = resolvedExt || existingExts[0];
+  const ext = getExtension(resolvedExt, existingExts);
   const style = overrideStyle?.[ext] ?? defaultStyle;
 
   // Verify.
