@@ -10,6 +10,13 @@ import type { ImportTarget } from './import-target';
 
 export const notPublished = '"{{name}}" is not published.';
 
+const getDependencies = (packageInfo: ReturnType<typeof getPackageJson>): Set<string | null> =>
+  new Set<string | null>([
+    ...Object.keys(packageInfo?.dependencies ?? {}),
+    ...Object.keys(packageInfo?.peerDependencies ?? {}),
+    ...Object.keys(packageInfo?.optionalDependencies ?? {}),
+  ]);
+
 /**
  * Checks whether or not each requirement target is published via package.json.
  *
@@ -40,11 +47,7 @@ export const checkPublish = (
   const toRelative = (fullPath: string): string => convertPath(path.relative(basedir, fullPath).replace(/\\/gu, '/'));
   const npmignore = getNpmignore(filePath);
   const devDependencies = new Set<string | null>(Object.keys(packageInfo.devDependencies ?? {}));
-  const dependencies = new Set<string | null>([
-    ...Object.keys(packageInfo.dependencies ?? {}),
-    ...Object.keys(packageInfo.peerDependencies ?? {}),
-    ...Object.keys(packageInfo.optionalDependencies ?? {}),
-  ]);
+  const dependencies = getDependencies(packageInfo);
 
   if (!npmignore.test(toRelative(filePath))) {
     // This file is published, so this cannot import private files.

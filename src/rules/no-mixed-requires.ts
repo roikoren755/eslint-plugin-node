@@ -175,7 +175,7 @@ const isGrouped = (allowCall: boolean, declarations: TSESTree.VariableDeclarator
 
   for (const declaration of declarations) {
     if (getDeclarationType(allowCall, declaration.init) === DECL_REQUIRE) {
-      found[inferModuleType(declaration.init as TSESTree.CallExpression)] = true;
+      found[inferModuleType(declaration.init as never)] = true;
     }
   }
 

@@ -66,6 +66,45 @@ const getShebangInfo = (
   };
 };
 
+const visitor =
+  (
+    context: Readonly<TSESLint.RuleContext<MessageIds, [options: IConvertPath]>>,
+    sourceCode: Readonly<TSESLint.SourceCode>,
+    info: ReturnType<typeof getShebangInfo>,
+    needsShebang: boolean,
+  ): TSESLint.RuleListener['Program'] =>
+  (node) => {
+    if (needsShebang) {
+      if (NODE_SHEBANG_PATTERN.test(info.shebang)) {
+        if (info.bom) {
+          context.report({ node, messageId: 'bom', fix: (fixer) => fixer.removeRange([-1, 0]) });
+        }
+
+        if (info.cr) {
+          context.report({
+            node,
+            messageId: 'cr',
+            fix: (fixer) => {
+              const index = sourceCode.text.indexOf('\r');
+
+              return fixer.removeRange([index, index + 1]);
+            },
+          });
+        }
+      } else {
+        // Shebang is lacking.
+        context.report({
+          node,
+          messageId: 'shebang',
+          fix: (fixer) => fixer.replaceTextRange([-1, info.length], NODE_SHEBANG),
+        });
+      }
+    } else if (info.shebang) {
+      // Shebang is extra.
+      context.report({ node, messageId: 'noShebang', fix: (fixer) => fixer.removeRange([0, info.length]) });
+    }
+  };
+
 export type MessageIds = 'bom' | 'cr' | 'noShebang' | 'shebang';
 
 export const category = 'Possible Errors';
@@ -110,38 +149,6 @@ export default createRule<[options: IConvertPath], MessageIds>({
     const needsShebang = isBinFile(filePath, p.bin, basedir);
     const info = getShebangInfo(sourceCode);
 
-    return {
-      Program(node) {
-        if (needsShebang) {
-          if (NODE_SHEBANG_PATTERN.test(info.shebang)) {
-            if (info.bom) {
-              context.report({ node, messageId: 'bom', fix: (fixer) => fixer.removeRange([-1, 0]) });
-            }
-
-            if (info.cr) {
-              context.report({
-                node,
-                messageId: 'cr',
-                fix: (fixer) => {
-                  const index = sourceCode.text.indexOf('\r');
-
-                  return fixer.removeRange([index, index + 1]);
-                },
-              });
-            }
-          } else {
-            // Shebang is lacking.
-            context.report({
-              node,
-              messageId: 'shebang',
-              fix: (fixer) => fixer.replaceTextRange([-1, info.length], NODE_SHEBANG),
-            });
-          }
-        } else if (info.shebang) {
-          // Shebang is extra.
-          context.report({ node, messageId: 'noShebang', fix: (fixer) => fixer.removeRange([0, info.length]) });
-        }
-      },
-    };
+    return { Program: visitor(context, sourceCode, info, needsShebang) };
   },
 });

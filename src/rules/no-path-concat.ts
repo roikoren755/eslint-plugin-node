@@ -117,7 +117,7 @@ const isConcat = (node: TSESTree.Node, sepNodes: Set<TSESTree.Node>, globalScope
   } else if (parent?.type === 'TemplateLiteral') {
     collectFirstCharsOfTemplateElement(
       parent,
-      parent.expressions.indexOf(node as TSESTree.Expression) + 1,
+      parent.expressions.indexOf(node as never) + 1,
       sepNodes,
       globalScope,
       /* out */ nextChars,

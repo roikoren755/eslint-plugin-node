@@ -34,13 +34,15 @@ type Style = 'always' | 'never';
 type Options = readonly [style: Style, options?: ITryExtensions & Record<string, Style>];
 type MessageId = `${'forbid' | 'require'}Ext`;
 
+const shouldIgnore = (name: string): boolean => packageNamePattern.test(name) || corePackageOverridePattern.test(name);
+
 const verify = (
   options: Options,
   context: TSESLint.RuleContext<MessageId, Options>,
   { filePath, name, node }: ImportTarget,
 ): void => {
-  // Ignore if it's not resolved to a file or it's a bare module.
-  if (!filePath || packageNamePattern.test(name) || corePackageOverridePattern.test(name)) {
+  // Ignore if it's not resolved to a file, or it's a bare module.
+  if (!filePath || shouldIgnore(name)) {
     return;
   }
 

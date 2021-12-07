@@ -1,7 +1,6 @@
 import path from 'path';
 
 import { ASTUtils } from '@typescript-eslint/experimental-utils';
-import type { TSESTree } from '@typescript-eslint/typescript-estree';
 import isCoreModule from 'is-core-module';
 
 import { getResolvePaths } from './get-resolve-paths';
@@ -15,7 +14,7 @@ import { stripImportPathParams } from './strip-import-path-params';
  *
  * Core modules of Node.js (e.g. `fs`, `http`) are excluded.
  *
- * @param {RuleContext} context - The rule context.
+ * @param {TSESLint.RuleContext} context - The rule context.
  * @param {readonly unknown[]} ruleOptions - The rule options.
  * @param {Object} [options] - The flag to include core modules.
  * @param {boolean} [options.includeCore] - The flag to include core modules.
@@ -38,7 +37,7 @@ export const visitRequire: Visitor = (context, ruleOptions, { includeCore, optio
 
       for (const { node } of references) {
         if ('arguments' in node) {
-          const [targetNode] = (node as TSESTree.CallExpression).arguments;
+          const [targetNode] = node.arguments;
           const rawName = ASTUtils.getStringIfConstant(targetNode);
           const name = rawName && stripImportPathParams(rawName);
 
