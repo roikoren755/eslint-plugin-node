@@ -12,6 +12,8 @@ const ACCEPTABLE_PARENTS = new Set([
   'ConditionalExpression',
   'Program',
   'VariableDeclaration',
+  'TSAsExpression',
+  'TSTypeAssertion',
 ]);
 
 /**
