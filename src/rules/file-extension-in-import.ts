@@ -62,6 +62,8 @@ const shouldIgnore = (name: string): boolean => packageNamePattern.test(name) ||
 
 const getExtension = (ext: string, exts: string[]): string => ext || exts[0];
 
+const safeExtname = (str?: string): string => path.extname(str ?? '');
+
 const verify = (
   options: Options,
   context: TSESLint.RuleContext<MessageId, Options>,
@@ -88,7 +90,7 @@ const verify = (
 
   // Verify.
   if (style === 'always' && ext !== originalExt) {
-    const referencingFileExt = path.extname(context.getPhysicalFilename?.() ?? '');
+    const referencingFileExt = safeExtname(context.getPhysicalFilename?.());
     const fileExtensionToAdd = getFileExtensionToAdd(ext, referencingFileExt);
 
     context.report({
