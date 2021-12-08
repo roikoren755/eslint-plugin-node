@@ -12,6 +12,11 @@ import { visitImport } from '../util/visit-import';
 const packageNamePattern = /^(?:@[^/\\]+[/\\])?[^/\\]+$/u;
 const corePackageOverridePattern =
   /^(?:assert|async_hooks|buffer|child_process|cluster|console|constants|crypto|dgram|dns|domain|events|fs|http|http2|https|inspector|module|net|os|path|perf_hooks|process|punycode|querystring|readline|repl|stream|string_decoder|sys|timers|tls|trace_events|tty|url|util|v8|vm|worker_threads|zlib)[/\\]$/u;
+const typescriptFileExtensionMapping = {
+  '.cts': '.cjs',
+  '.mts': '.mjs',
+  '.ts': '.js',
+};
 
 /**
  * Get all file extensions of the files which have the same basename.
@@ -31,6 +36,25 @@ const getExistingExtensions = (filePath: string): string[] => {
 };
 
 type Style = 'always' | 'never';
+
+/**
+ * Get the file extension that should be added in an import statement,
+ * based on the given file extension of the referenced file.
+ *
+ * For example, in typescript, when referencing another typescript from a typescript file,
+ * a .js extension should be used instead of the original .ts extension of the referenced file.
+ * @param {string} referencedFileExt The original file extension of the referenced file.
+ * @param {string} referencingFileExt The original file extension of the file the contains the import statement.
+ * @returns {string} The file extension to append to the import statement.
+ */
+const getFileExtensionToAdd = (referencedFileExt: string, referencingFileExt: string): string => {
+  if (referencingFileExt in typescriptFileExtensionMapping && referencedFileExt in typescriptFileExtensionMapping) {
+    return typescriptFileExtensionMapping[referencedFileExt as keyof typeof typescriptFileExtensionMapping];
+  }
+
+  return referencedFileExt;
+};
+
 type Options = readonly [style: Style, options?: ITryExtensions & Record<string, Style>];
 type MessageId = `${'forbid' | 'require'}Ext`;
 
@@ -64,10 +88,13 @@ const verify = (
 
   // Verify.
   if (style === 'always' && ext !== originalExt) {
+    const referencingFileExt = path.extname(context.getPhysicalFilename?.() ?? '');
+    const fileExtensionToAdd = getFileExtensionToAdd(ext, referencingFileExt);
+
     context.report({
       node,
       messageId: 'requireExt',
-      data: { ext },
+      data: { ext: fileExtensionToAdd },
       fix: (fixer) => {
         if (existingExts.length !== 1) {
           return null;
@@ -75,7 +102,7 @@ const verify = (
 
         const index = node.range[1] - 1;
 
-        return fixer.insertTextBeforeRange([index, index], ext);
+        return fixer.insertTextBeforeRange([index, index], fileExtensionToAdd);
       },
     });
   } else if (style === 'never' && ext === originalExt) {
