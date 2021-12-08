@@ -44,12 +44,19 @@ type Style = 'always' | 'never';
  * For example, in typescript, when referencing another typescript from a typescript file,
  * a .js extension should be used instead of the original .ts extension of the referenced file.
  * @param {string} referencedFileExt The original file extension of the referenced file.
- * @param {string} referencingFileExt The original file extension of the file the contains the import statement.
+ * @param {TSESLint.RuleContext<string, readonly unknown[]>} context The original file extension of the file the contains the import statement.
  * @returns {string} The file extension to append to the import statement.
  */
-const getFileExtensionToAdd = (referencedFileExt: string, referencingFileExt: string): string => {
-  if (referencingFileExt in typescriptFileExtensionMapping && referencedFileExt in typescriptFileExtensionMapping) {
-    return typescriptFileExtensionMapping[referencedFileExt as keyof typeof typescriptFileExtensionMapping];
+const getFileExtensionToAdd = (
+  referencedFileExt: string,
+  context: TSESLint.RuleContext<string, readonly unknown[]>,
+): string => {
+  if (context.getPhysicalFilename) {
+    const referencingFileExt = path.extname(context.getPhysicalFilename());
+
+    if (referencingFileExt in typescriptFileExtensionMapping && referencedFileExt in typescriptFileExtensionMapping) {
+      return typescriptFileExtensionMapping[referencedFileExt as keyof typeof typescriptFileExtensionMapping];
+    }
   }
 
   return referencedFileExt;
@@ -61,8 +68,6 @@ type MessageId = `${'forbid' | 'require'}Ext`;
 const shouldIgnore = (name: string): boolean => packageNamePattern.test(name) || corePackageOverridePattern.test(name);
 
 const getExtension = (ext: string, exts: string[]): string => ext || exts[0];
-
-const safeExtname = (str?: string): string => path.extname(str ?? '');
 
 const verify = (
   options: Options,
@@ -90,8 +95,7 @@ const verify = (
 
   // Verify.
   if (style === 'always' && ext !== originalExt) {
-    const referencingFileExt = safeExtname(context.getPhysicalFilename?.());
-    const fileExtensionToAdd = getFileExtensionToAdd(ext, referencingFileExt);
+    const fileExtensionToAdd = getFileExtensionToAdd(ext, context);
 
     context.report({
       node,

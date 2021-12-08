@@ -1688,6 +1688,17 @@ eslint-plugin-import@2.25.3:
     resolve "^1.20.0"
     tsconfig-paths "^3.11.0"
 
+"eslint-plugin-node-roikoren@file:.":
+  version "0.0.2"
+  dependencies:
+    "@typescript-eslint/experimental-utils" "5.6.0"
+    eslint-plugin-es-roikoren "0.0.7"
+    ignore "5.1.9"
+    is-core-module "2.8.0"
+    minimatch "3.0.4"
+    resolve "1.20.0"
+    semver "7.3.5"
+
 eslint-plugin-prettier@4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/eslint-plugin-prettier/-/eslint-plugin-prettier-4.0.0.tgz#8b99d1e4b8b24a762472b4567992023619cb98e0"

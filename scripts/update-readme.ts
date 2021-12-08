@@ -47,18 +47,20 @@ ${category.rules.map((rule) => renderRule(rule)).join('\n')}
 `;
 
 const filePath = path.resolve(__dirname, '../README.md');
-const content = `${categories.map((category) => renderCategory(category)).join('\n')}
+const deprecatedRules = rules.filter((rule) => rule.deprecated);
+const depracatedRulesSection =
+  deprecatedRules.length === 0
+    ? ''
+    : `
 ### Deprecated rules
 
 These rules have been deprecated in accordance with the [deprecation policy](https://eslint.org/docs/user-guide/rule-deprecation), and replaced by newer rules:
 
 | Rule ID | Replaced by |
 |:--------|:------------|
-${rules
-  .filter((rule) => rule.deprecated)
-  .map((rule) => renderDeprecatedRule(rule))
-  .join('\n')}
+${deprecatedRules.map((rule) => renderDeprecatedRule(rule)).join('\n')}
 `;
+const content = `${categories.map((category) => renderCategory(category)).join('\n')}${depracatedRulesSection}`;
 
 writeFileSync(
   filePath,
