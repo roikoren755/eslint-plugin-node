@@ -119,5 +119,5 @@ const pick = require('lodash/pick');
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.1/src/rules/no-restricted-require.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.1/tests/src/rules/no-restricted-require.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.2/src/rules/no-restricted-require.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.2/tests/src/rules/no-restricted-require.ts)

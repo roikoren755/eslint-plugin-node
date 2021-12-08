@@ -115,5 +115,5 @@ var async = require('async'),
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.1/src/rules/no-mixed-requires.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.1/tests/src/rules/no-mixed-requires.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.2/src/rules/no-mixed-requires.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.2/tests/src/rules/no-mixed-requires.ts)
