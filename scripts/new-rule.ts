@@ -6,7 +6,7 @@ import { TSESLint } from '@typescript-eslint/experimental-utils';
 // main
 const run = async (ruleId: string): Promise<void> => {
   if (!ruleId) {
-    console.error('Usage: yarn new <RuleID>');
+    console.error('Usage: npm run new <RuleID>');
     process.exitCode = 1;
 
     return;

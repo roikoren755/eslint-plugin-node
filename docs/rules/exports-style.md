@@ -109,5 +109,5 @@ exports.bar = 1
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.2/src/rules/exports-style.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.2/tests/src/rules/exports-style.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v1.0.0/src/rules/exports-style.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v1.0.0/tests/src/rules/exports-style.ts)

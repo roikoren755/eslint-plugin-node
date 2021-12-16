@@ -205,7 +205,7 @@ Please use GitHub's Issues/PRs.
 
 ### Development Tools
 
-- `yarn test` runs tests and measures coverage.
-- `yarn coverage` shows the coverage result of `yarn test` command.
-- `yarn clean` removes the coverage result of `yarn test` command.
+- `npm test` runs tests and measures coverage.
+- `npm run coverage` shows the coverage result of `npm test` command.
+- `npm run clean` removes the coverage result of `npm test` command.
 

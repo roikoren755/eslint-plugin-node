@@ -44,5 +44,5 @@ var appHeader = new AppHeader();
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.2/src/rules/no-new-require.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v0.0.2/tests/src/rules/no-new-require.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v1.0.0/src/rules/no-new-require.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v1.0.0/tests/src/rules/no-new-require.ts)
