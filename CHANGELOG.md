@@ -1,5 +1,21 @@
 # eslint-plugin-node-roikoren
 
+## 1.0.0
+
+### Major Changes
+
+- [#36](https://github.com/roikoren755/eslint-plugin-node/pull/36) [`8dad17d`](https://github.com/roikoren755/eslint-plugin-node/commit/8dad17dede9afb949a3bef22bead4fbf00f787a4) Thanks [@roikoren755](https://github.com/roikoren755)! - chore: drop npm, fix exports
+
+### Patch Changes
+
+- [#28](https://github.com/roikoren755/eslint-plugin-node/pull/28) [`f7899f8`](https://github.com/roikoren755/eslint-plugin-node/commit/f7899f8202994315dc1c6c7501446b07d499bea0) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-plugin-eslint-plugin to v4.0.3
+
+* [#32](https://github.com/roikoren755/eslint-plugin-node/pull/32) [`f0643e2`](https://github.com/roikoren755/eslint-plugin-node/commit/f0643e25637f012f17fa3c8b8bdb882dd6fe5681) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update typescript-eslint monorepo to v5.7.0
+
+- [#33](https://github.com/roikoren755/eslint-plugin-node/pull/33) [`acec1b7`](https://github.com/roikoren755/eslint-plugin-node/commit/acec1b7a755e7fe3b51fb3c28df37ea91066c945) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency typescript to v4.5.4
+
+* [#31](https://github.com/roikoren755/eslint-plugin-node/pull/31) [`e671d50`](https://github.com/roikoren755/eslint-plugin-node/commit/e671d50bd1f16466e256f44525438552d5d90a50) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency typescript to v4.5.3
+
 ## 0.0.2
 
 ### Patch Changes
