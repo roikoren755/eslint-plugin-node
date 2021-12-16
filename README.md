@@ -54,14 +54,13 @@ If you installed `eslint` globally, you should install this plugin in the same w
 
 **.eslintrc.json** (An example)
 
-```jsonc
+```json
 {
   "extends": [
     "eslint:recommended",
     "plugin:node-roikoren/recommended"
   ],
   "parserOptions": {
-    // Only ESLint 6.2.0 and later support ES2020.
     "ecmaVersion": 2020
   },
   "rules": {
@@ -148,14 +147,6 @@ If you installed `eslint` globally, you should install this plugin in the same w
 | [node-roikoren/prefer-global/url](./docs/rules/prefer-global/url.md) | enforce either `URL` or `require("url").URL` |  |
 | [node-roikoren/prefer-promises/dns](./docs/rules/prefer-promises/dns.md) | enforce `require("dns").promises` |  |
 | [node-roikoren/prefer-promises/fs](./docs/rules/prefer-promises/fs.md) | enforce `require("fs").promises` |  |
-
-### Deprecated rules
-
-These rules have been deprecated in accordance with the [deprecation policy](https://eslint.org/docs/user-guide/rule-deprecation), and replaced by newer rules:
-
-| Rule ID | Replaced by |
-|:--------|:------------|
-
 
 <!--RULES_TABLE_END-->
 

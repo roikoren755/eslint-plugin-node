@@ -31,15 +31,15 @@
     "update": "ts-node scripts/update",
     "watch": "mocha tests/**/*.ts --reporter progress --timeout 4000 --watch"
   },
+  "peerDependencies": {
+    "eslint": "^7 || ^8"
+  },
   "resolutions": {
     "prettier": "2.5.1"
   },
-  "peerDependencies": {
-    "eslint": "^5 || ^6 || ^7 || ^8"
-  },
   "dependencies": {
     "@typescript-eslint/experimental-utils": "5.7.0",
-    "eslint-plugin-es-roikoren": "1.0.1",
+    "eslint-plugin-es-roikoren": "2.0.0",
     "ignore": "5.1.9",
     "is-core-module": "2.8.0",
     "minimatch": "3.0.4",
@@ -66,6 +66,7 @@
     "eslint-import-resolver-typescript": "2.5.0",
     "eslint-plugin-eslint-plugin": "4.1.0",
     "eslint-plugin-import": "2.25.3",
+    "eslint-plugin-node-roikoren": "file:.",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-unicorn": "39.0.0",
     "fast-glob": "3.2.7",
