@@ -113,5 +113,5 @@ For Example:
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v1.0.0/src/rules/no-unpublished-require.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v1.0.0/tests/src/rules/no-unpublished-require.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.0/src/rules/no-unpublished-require.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.0/tests/src/rules/no-unpublished-require.ts)

@@ -1,5 +1,17 @@
 # eslint-plugin-node-roikoren
 
+## 2.0.0
+
+### Major Changes
+
+- [#30](https://github.com/roikoren755/eslint-plugin-node/pull/30) [`6254b0e`](https://github.com/roikoren755/eslint-plugin-node/commit/6254b0e0d2905a7e892fd0a1a0934aa0f786b9d5) Thanks [@roikoren755](https://github.com/roikoren755)! - feat: drop support for eslint <7
+
+### Patch Changes
+
+- [#30](https://github.com/roikoren755/eslint-plugin-node/pull/30) [`6254b0e`](https://github.com/roikoren755/eslint-plugin-node/commit/6254b0e0d2905a7e892fd0a1a0934aa0f786b9d5) Thanks [@roikoren755](https://github.com/roikoren755)! - fix: add right extensions for typescript files
+
+* [#30](https://github.com/roikoren755/eslint-plugin-node/pull/30) [`6254b0e`](https://github.com/roikoren755/eslint-plugin-node/commit/6254b0e0d2905a7e892fd0a1a0934aa0f786b9d5) Thanks [@roikoren755](https://github.com/roikoren755)! - test: add recommended config tests
+
 ## 1.0.0
 
 ### Major Changes

@@ -66,5 +66,5 @@ const u = new URLSearchParams(s)
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v1.0.0/src/rules/prefer-global/url-search-params.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v1.0.0/tests/src/rules/prefer-global/url-search-params.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.0/src/rules/prefer-global/url-search-params.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.0/tests/src/rules/prefer-global/url-search-params.ts)
