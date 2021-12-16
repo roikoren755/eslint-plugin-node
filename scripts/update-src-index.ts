@@ -35,7 +35,7 @@ import recommendedScript from './configs/recommended-script';
 import recommended from './configs/recommended';
 ${ruleImports}
 
-export default {
+export = {
   configs: {
     'recommended-module': recommendedModule,
     'recommended-script': recommendedScript,

@@ -11,7 +11,7 @@
     "node_modules"
   ],
   "license": "MIT",
-  "main": "./index.js",
+  "main": "src/index.js",
   "files": [
     "**/*.js"
   ],
@@ -19,12 +19,11 @@
     "build": "tsc --project tsconfig.prod.json",
     "clean": "tsc --build --clean && rimraf .nyc_output coverage",
     "coverage": "nyc report -r lcov",
-    "deduplicate": "yarn-deduplicate -s fewer",
     "lint": "eslint . --cache",
     "new": "ts-node scripts/new-rule",
-    "postrelease": "yarn clean",
+    "postrelease": "npm run clean",
     "prepare": "husky install",
-    "prerelease": "yarn build",
+    "prerelease": "npm run build",
     "release": "changeset publish",
     "test": "nyc mocha tests/**/*.ts --reporter dot --timeout 4000",
     "type": "tsc",
@@ -34,9 +33,12 @@
   "resolutions": {
     "prettier": "2.5.1"
   },
+  "peerDependencies": {
+    "eslint": "^5 || ^6 || ^7 || ^8"
+  },
   "dependencies": {
     "@typescript-eslint/experimental-utils": "5.7.0",
-    "eslint-plugin-es-roikoren": "0.0.7",
+    "eslint-plugin-es-roikoren": "1.0.1",
     "ignore": "5.1.9",
     "is-core-module": "2.8.0",
     "minimatch": "3.0.4",
@@ -61,7 +63,7 @@
     "eslint": "8.4.1",
     "eslint-config-prettier": "8.3.0",
     "eslint-import-resolver-typescript": "2.5.0",
-    "eslint-plugin-eslint-plugin": "4.0.3",
+    "eslint-plugin-eslint-plugin": "4.1.0",
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-unicorn": "39.0.0",
@@ -73,8 +75,7 @@
     "nyc": "15.1.0",
     "prettier": "2.5.1",
     "type-fest": "2.8.0",
-    "typescript": "4.5.4",
-    "yarn-deduplicate": "3.1.0"
+    "typescript": "4.5.4"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [

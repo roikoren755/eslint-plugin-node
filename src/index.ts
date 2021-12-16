@@ -42,7 +42,7 @@ import preferPromisesFs from './rules/prefer-promises/fs';
 import processExitAsThrow from './rules/process-exit-as-throw';
 import shebang from './rules/shebang';
 
-export default {
+export = {
   configs: {
     'recommended-module': recommendedModule,
     'recommended-script': recommendedScript,
