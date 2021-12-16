@@ -13,7 +13,8 @@
   "license": "MIT",
   "main": "src/index.js",
   "files": [
-    "**/*.js"
+    "src/**/*.js",
+    "src/**/*.d.ts"
   ],
   "scripts": {
     "build": "tsc --project tsconfig.prod.json",
