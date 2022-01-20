@@ -76,7 +76,7 @@
     "mocha": "9.1.3",
     "nyc": "15.1.0",
     "prettier": "2.5.1",
-    "type-fest": "2.8.0",
+    "type-fest": "2.10.0",
     "typescript": "4.5.4"
   },
   "lint-staged": {
