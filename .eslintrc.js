@@ -99,6 +99,7 @@ module.exports = {
     'prefer-destructuring': ERROR,
     'prefer-exponentiation-operator': ERROR,
     'prefer-numeric-literals': ERROR,
+    'prefer-object-has-own': ERROR,
     'prefer-promise-reject-errors': ERROR,
     'prefer-regex-literals': ERROR,
     'prefer-template': ERROR,
