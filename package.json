@@ -41,7 +41,7 @@
     "@typescript-eslint/experimental-utils": "5.7.0",
     "eslint-plugin-es-roikoren": "2.0.0",
     "ignore": "^5.2.0",
-    "is-core-module": "2.8.0",
+    "is-core-module": "^2.8.0",
     "minimatch": "3.0.4",
     "resolve": "^1.22.0",
     "semver": "7.3.5"
@@ -73,6 +73,7 @@
     "globals": "13.12.0",
     "husky": "7.0.4",
     "ignore": "5.2.0",
+    "is-core-module": "2.8.1",
     "lint-staged": "12.3.3",
     "mocha": "9.1.4",
     "nyc": "15.1.0",
