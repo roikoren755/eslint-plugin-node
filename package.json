@@ -38,7 +38,7 @@
     "prettier": "2.5.1"
   },
   "dependencies": {
-    "@typescript-eslint/experimental-utils": "5.7.0",
+    "@typescript-eslint/experimental-utils": "5.16.0",
     "eslint-plugin-es-roikoren": "2.0.0",
     "ignore": "^5.2.0",
     "is-core-module": "^2.8.0",
@@ -56,10 +56,10 @@
     "@types/mocha": "9.1.0",
     "@types/resolve": "1.20.1",
     "@types/semver": "7.3.9",
-    "@typescript-eslint/eslint-plugin": "5.7.0",
-    "@typescript-eslint/parser": "5.7.0",
-    "@typescript-eslint/types": "5.7.0",
-    "@typescript-eslint/typescript-estree": "5.7.0",
+    "@typescript-eslint/eslint-plugin": "5.16.0",
+    "@typescript-eslint/parser": "5.16.0",
+    "@typescript-eslint/types": "5.16.0",
+    "@typescript-eslint/typescript-estree": "5.16.0",
     "camelcase": "6.3.0",
     "eslint": "8.11.0",
     "eslint-config-prettier": "8.5.0",
