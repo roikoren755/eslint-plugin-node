@@ -1,4 +1,4 @@
-import { ASTUtils } from '@typescript-eslint/experimental-utils';
+import { ASTUtils } from '@typescript-eslint/utils';
 
 import type { DeprecatedMap } from '../../util/enumerate-property-names';
 

@@ -1,4 +1,4 @@
-import { ASTUtils } from '@typescript-eslint/experimental-utils';
+import { ASTUtils } from '@typescript-eslint/utils';
 
 import { checkForPreferGlobal, defaultOptions, schema } from '../../util/check-prefer-global';
 import type { MessageIds, Options } from '../../util/check-prefer-global';

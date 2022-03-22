@@ -237,6 +237,10 @@ module.exports = {
   overrides: [
     { files: ['./.eslintrc.js', './.prettierrc.js', './commitlint.config.js'], rules: { 'no-undef': OFF } },
     {
+      files: ['./.eslintrc.js', './src/index.ts', './src/configs/*.ts'],
+      rules: { '@typescript-eslint/naming-convention': OFF },
+    },
+    {
       files: [
         './src/configs/recommended*.ts',
         './src/rules/*.ts',

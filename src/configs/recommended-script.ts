@@ -1,13 +1,11 @@
-import type { TSESLint } from '@typescript-eslint/experimental-utils';
+import type { TSESLint } from '@typescript-eslint/utils';
 
 import { commonGlobals, commonRules } from './commons';
 
 const recommendedScript: TSESLint.Linter.Config = {
   globals: {
     ...commonGlobals,
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     __dirname: 'readonly',
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     __filename: 'readonly',
     exports: 'writable',
     module: 'readonly',

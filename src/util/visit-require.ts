@@ -1,6 +1,6 @@
 import path from 'path';
 
-import { ASTUtils } from '@typescript-eslint/experimental-utils';
+import { ASTUtils } from '@typescript-eslint/utils';
 import isCoreModule from 'is-core-module';
 
 import { getResolvePaths } from './get-resolve-paths';

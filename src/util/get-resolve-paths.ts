@@ -1,4 +1,4 @@
-import type { JSONSchema, TSESLint } from '@typescript-eslint/experimental-utils';
+import type { JSONSchema, TSESLint } from '@typescript-eslint/utils';
 
 export interface IResolvePaths {
   resolvePaths?: readonly string[];

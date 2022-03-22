@@ -1,5 +1,5 @@
-import { ASTUtils } from '@typescript-eslint/experimental-utils';
-import type { TSESLint } from '@typescript-eslint/experimental-utils';
+import { ASTUtils } from '@typescript-eslint/utils';
+import type { TSESLint } from '@typescript-eslint/utils';
 import { lt, major } from 'semver';
 import type { Range } from 'semver';
 

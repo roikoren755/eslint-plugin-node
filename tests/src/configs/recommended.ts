@@ -1,7 +1,7 @@
 import assert from 'assert';
 import path from 'path';
 
-import { TSESLint } from '@typescript-eslint/experimental-utils';
+import { TSESLint } from '@typescript-eslint/utils';
 
 const originalCwd = process.cwd();
 

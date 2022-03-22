@@ -1,4 +1,4 @@
-import { TSESLint } from '@typescript-eslint/experimental-utils';
+import { TSESLint } from '@typescript-eslint/utils';
 
 const ES2021Supported = (() => {
   const messages = new TSESLint.Linter().verify('0n', { parserOptions: { ecmaVersion: 2021 } });

@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-import { TSESLint } from '@typescript-eslint/experimental-utils';
+import { TSESLint } from '@typescript-eslint/utils';
 
 import rule, { supported } from '../../../src/rules/process-exit-as-throw';
 
@@ -15,6 +15,7 @@ describe('process-exit-as-throw', () => {
   (supported ? it : xit)("should get unreachable error after 'process.exit()'.", () => {
     const code = ['foo();', 'process.exit(1);', 'bar();'].join('\n');
 
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     const messages = linter.verify(code, { rules: { 'no-unreachable': 'error', 'process-exit-as-throw': 'error' } });
 
     assert.strictEqual(messages.length, 1);
@@ -24,6 +25,7 @@ describe('process-exit-as-throw', () => {
   (supported ? it : xit)("should get no unreachable error after 'process.exit()' if this rule is turned off.", () => {
     const code = ['foo();', 'process.exit(1);', 'bar();'].join('\n');
 
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     const messages = linter.verify(code, { rules: { 'no-unreachable': 'error', 'process-exit-as-throw': 'off' } });
 
     assert.strictEqual(messages.length, 0);
@@ -39,6 +41,7 @@ describe('process-exit-as-throw', () => {
       '}',
     ].join('\n');
 
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     const messages = linter.verify(code, { rules: { 'consistent-return': 'error', 'process-exit-as-throw': 'error' } });
 
     assert.strictEqual(messages.length, 0);

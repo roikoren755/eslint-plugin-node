@@ -1,6 +1,6 @@
 import path from 'path';
 
-import type { TSESLint } from '@typescript-eslint/experimental-utils';
+import type { TSESLint } from '@typescript-eslint/utils';
 
 import { createRule } from '../util/create-rule';
 import { schema as convertPathSchema, getConvertPath } from '../util/get-convert-path';
