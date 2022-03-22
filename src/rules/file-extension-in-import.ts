@@ -1,7 +1,7 @@
 import { readdirSync } from 'fs';
 import path from 'path';
 
-import type { TSESLint } from '@typescript-eslint/experimental-utils';
+import type { TSESLint } from '@typescript-eslint/utils';
 
 import { createRule } from '../util/create-rule';
 import { schema } from '../util/get-try-extensions';
@@ -13,9 +13,11 @@ const packageNamePattern = /^(?:@[^/\\]+[/\\])?[^/\\]+$/u;
 const corePackageOverridePattern =
   /^(?:assert|async_hooks|buffer|child_process|cluster|console|constants|crypto|dgram|dns|domain|events|fs|http|http2|https|inspector|module|net|os|path|perf_hooks|process|punycode|querystring|readline|repl|stream|string_decoder|sys|timers|tls|trace_events|tty|url|util|v8|vm|worker_threads|zlib)[/\\]$/u;
 const typescriptFileExtensionMapping = {
+  /* eslint-disable @typescript-eslint/naming-convention */
   '.cts': '.cjs',
   '.mts': '.mjs',
   '.ts': '.js',
+  /* eslint-enable @typescript-eslint/naming-convention */
 };
 
 /**

@@ -1,4 +1,4 @@
-import { ASTUtils } from '@typescript-eslint/experimental-utils';
+import { ASTUtils } from '@typescript-eslint/utils';
 
 import { checkUnsupportedBuiltins } from '../../util/check-unsupported-builtins';
 import type { IRawOptions, SupportMap } from '../../util/check-unsupported-builtins';

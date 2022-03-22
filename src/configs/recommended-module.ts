@@ -1,9 +1,8 @@
-import type { TSESLint } from '@typescript-eslint/experimental-utils';
+import type { TSESLint } from '@typescript-eslint/utils';
 
 import { commonGlobals, commonRules } from './commons';
 
 const recommendedModule: TSESLint.Linter.Config = {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   globals: { ...commonGlobals, __dirname: 'off', __filename: 'off', exports: 'off', module: 'off', require: 'off' },
   parserOptions: { ecmaFeatures: { globalReturn: false }, ecmaVersion: 2019, sourceType: 'module' },
   plugins: ['node-roikoren'],

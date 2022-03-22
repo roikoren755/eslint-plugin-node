@@ -1,4 +1,4 @@
-import type { TSESLint } from '@typescript-eslint/experimental-utils';
+import type { TSESLint } from '@typescript-eslint/utils';
 
 import { exists } from './exists';
 import { getAllowModules } from './get-allow-modules';

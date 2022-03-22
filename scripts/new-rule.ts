@@ -1,7 +1,7 @@
 import { writeFileSync } from 'fs';
 import path from 'path';
 
-import { TSESLint } from '@typescript-eslint/experimental-utils';
+import { TSESLint } from '@typescript-eslint/utils';
 
 // main
 const run = async (ruleId: string): Promise<void> => {
@@ -44,8 +44,8 @@ export default createRule({
   );
   writeFileSync(
     testFile,
-    `import { TSESLint } from '@typescript-eslint/experimental-utils';
-import { AST_NODE_TYPES } from '@typescript-eslint/types';
+    `import { AST_NODE_TYPES } from '@typescript-eslint/types';
+import { TSESLint } from '@typescript-eslint/utils';
 
 import rule from '../../../src/rules/${ruleId}';
 

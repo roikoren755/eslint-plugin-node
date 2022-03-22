@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
-import { ASTUtils } from '@typescript-eslint/experimental-utils';
-import type { TSESLint } from '@typescript-eslint/experimental-utils';
 import type { TSESTree } from '@typescript-eslint/typescript-estree';
+import { ASTUtils } from '@typescript-eslint/utils';
+import type { TSESLint } from '@typescript-eslint/utils';
 import eslintPluginEs from 'eslint-plugin-es-roikoren';
 import { Range } from 'semver';
 
@@ -66,6 +66,7 @@ const features: Record<string, { ruleId: keyof typeof eslintPluginEs['rules']; c
   forOfLoops: { ruleId: 'no-for-of-loops', cases: [{ supported: '0.12.0', messageId: 'no-for-of-loops' }] },
   generators: { ruleId: 'no-generators', cases: [{ supported: '4.0.0', messageId: 'no-generators' }] },
   modules: { ruleId: 'no-modules', cases: [{ supported: '13.2.0', messageId: 'no-modules' }] },
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   'new.target': { ruleId: 'no-new-target', cases: [{ supported: '5.0.0', messageId: 'no-new-target' }] },
   objectSuperProperties: {
     ruleId: 'no-object-super-properties',
@@ -331,6 +332,7 @@ export default createRule<[options: IRawOptions], string>({
       // ------------------------------------------------------------------
       // ES2015
       // ------------------------------------------------------------------
+      /* eslint-disable @typescript-eslint/naming-convention */
       'no-arrow-functions': getMessage('Arrow functions'),
       'no-binary-numeric-literals': getMessage('Binary numeric literals'),
       'no-block-scoped-functions-strict': getMessage('Block-scoped functions in strict mode'),
@@ -399,6 +401,7 @@ export default createRule<[options: IRawOptions], string>({
       // ------------------------------------------------------------------
       'no-logical-assignment-operators': getMessage('Logical assignment operators'),
       'no-numeric-separators': getMessage('Numeric separators'),
+      /* eslint-enable @typescript-eslint/naming-convention */
     },
   },
   defaultOptions: [{}],

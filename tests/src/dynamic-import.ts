@@ -1,4 +1,4 @@
-import { TSESLint } from '@typescript-eslint/experimental-utils';
+import { TSESLint } from '@typescript-eslint/utils';
 
 export const DynamicImportSupported = (() => {
   const messages = new TSESLint.Linter().verify('import(s)', { parserOptions: { ecmaVersion: 2020 } });

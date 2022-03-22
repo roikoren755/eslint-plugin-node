@@ -1,8 +1,8 @@
 /* eslint-disable max-lines */
 import path from 'path';
 
-import { TSESLint } from '@typescript-eslint/experimental-utils';
 import { AST_NODE_TYPES } from '@typescript-eslint/types';
+import { TSESLint } from '@typescript-eslint/utils';
 import { gte } from 'semver';
 
 import rule from '../../../src/rules/file-extension-in-import';
@@ -43,12 +43,14 @@ new TSESLint.RuleTester({
     { filename: fixture('test.js'), code: "import './a'", options: ['never'] },
     { filename: fixture('test.js'), code: "import './b'", options: ['never'] },
     { filename: fixture('test.js'), code: "import './c'", options: ['never'] },
+    /* eslint-disable @typescript-eslint/naming-convention */
     { filename: fixture('test.js'), code: "import './a'", options: ['always', { '.js': 'never' }] },
     { filename: fixture('test.js'), code: "import './b.json'", options: ['always', { '.js': 'never' }] },
     { filename: fixture('test.js'), code: "import './c.mjs'", options: ['always', { '.js': 'never' }] },
     { filename: fixture('test.js'), code: "import './a'", options: ['never', { '.json': 'always' }] },
     { filename: fixture('test.js'), code: "import './b.json'", options: ['never', { '.json': 'always' }] },
     { filename: fixture('test.js'), code: "import './c'", options: ['never', { '.json': 'always' }] },
+    /* eslint-enable @typescript-eslint/naming-convention */
   ],
   invalid: [
     {
@@ -115,6 +117,7 @@ new TSESLint.RuleTester({
       filename: fixture('test.js'),
       code: "import './a.js'",
       output: "import './a'",
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       options: ['always', { '.js': 'never' }],
       errors: [error('js')],
     },
@@ -122,6 +125,7 @@ new TSESLint.RuleTester({
       filename: fixture('test.js'),
       code: "import './b'",
       output: "import './b.json'",
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       options: ['always', { '.js': 'never' }],
       errors: [error('json', true)],
     },
@@ -129,6 +133,7 @@ new TSESLint.RuleTester({
       filename: fixture('test.js'),
       code: "import './c'",
       output: "import './c.mjs'",
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       options: ['always', { '.js': 'never' }],
       errors: [error('mjs', true)],
     },
@@ -136,6 +141,7 @@ new TSESLint.RuleTester({
       filename: fixture('test.js'),
       code: "import './a.js'",
       output: "import './a'",
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       options: ['never', { '.json': 'always' }],
       errors: [error('js')],
     },
@@ -143,6 +149,7 @@ new TSESLint.RuleTester({
       filename: fixture('test.js'),
       code: "import './b'",
       output: "import './b.json'",
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       options: ['never', { '.json': 'always' }],
       errors: [error('json', true)],
     },
@@ -150,6 +157,7 @@ new TSESLint.RuleTester({
       filename: fixture('test.js'),
       code: "import './c.mjs'",
       output: "import './c'",
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       options: ['never', { '.json': 'always' }],
       errors: [error('mjs')],
     },
@@ -215,12 +223,14 @@ if (gte(TSESLint.ESLint.version ?? TSESLint.Linter.version ?? TSESLint.CLIEngine
       { filename: fixture('test.ts', true), code: "import './a'", options: ['never'] },
       { filename: fixture('test.ts', true), code: "import './b'", options: ['never'] },
       { filename: fixture('test.ts', true), code: "import './c'", options: ['never'] },
+      /* eslint-disable @typescript-eslint/naming-convention */
       { filename: fixture('test.ts', true), code: "import './a'", options: ['always', { '.ts': 'never' }] },
       { filename: fixture('test.ts', true), code: "import './b.json'", options: ['always', { '.ts': 'never' }] },
       { filename: fixture('test.ts', true), code: "import './c.mts'", options: ['always', { '.ts': 'never' }] },
       { filename: fixture('test.ts', true), code: "import './a'", options: ['never', { '.json': 'always' }] },
       { filename: fixture('test.ts', true), code: "import './b.json'", options: ['never', { '.json': 'always' }] },
       { filename: fixture('test.ts', true), code: "import './c'", options: ['never', { '.json': 'always' }] },
+      /* eslint-enable @typescript-eslint/naming-convention */
     ],
     invalid: [
       {
@@ -287,6 +297,7 @@ if (gte(TSESLint.ESLint.version ?? TSESLint.Linter.version ?? TSESLint.CLIEngine
         filename: fixture('test.ts', true),
         code: "import './a.ts'",
         output: "import './a'",
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         options: ['always', { '.ts': 'never' }],
         errors: [error('ts')],
       },
@@ -294,6 +305,7 @@ if (gte(TSESLint.ESLint.version ?? TSESLint.Linter.version ?? TSESLint.CLIEngine
         filename: fixture('test.ts', true),
         code: "import './b'",
         output: "import './b.json'",
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         options: ['always', { '.ts': 'never' }],
         errors: [error('json', true)],
       },
@@ -301,6 +313,7 @@ if (gte(TSESLint.ESLint.version ?? TSESLint.Linter.version ?? TSESLint.CLIEngine
         filename: fixture('test.ts', true),
         code: "import './c'",
         output: "import './c.mjs'",
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         options: ['always', { '.ts': 'never' }],
         errors: [error('mjs', true)],
       },
@@ -308,6 +321,7 @@ if (gte(TSESLint.ESLint.version ?? TSESLint.Linter.version ?? TSESLint.CLIEngine
         filename: fixture('test.ts', true),
         code: "import './a.ts'",
         output: "import './a'",
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         options: ['never', { '.json': 'always' }],
         errors: [error('ts')],
       },
@@ -315,6 +329,7 @@ if (gte(TSESLint.ESLint.version ?? TSESLint.Linter.version ?? TSESLint.CLIEngine
         filename: fixture('test.ts', true),
         code: "import './b'",
         output: "import './b.json'",
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         options: ['never', { '.json': 'always' }],
         errors: [error('json', true)],
       },
@@ -322,6 +337,7 @@ if (gte(TSESLint.ESLint.version ?? TSESLint.Linter.version ?? TSESLint.CLIEngine
         filename: fixture('test.ts', true),
         code: "import './c.mts'",
         output: "import './c'",
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         options: ['never', { '.json': 'always' }],
         errors: [error('mts')],
       },

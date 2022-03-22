@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import { ASTUtils } from '@typescript-eslint/experimental-utils';
+import { ASTUtils } from '@typescript-eslint/utils';
 
 import type { DeprecatedMap } from '../../util/enumerate-property-names';
 
@@ -197,6 +197,7 @@ export const modules: DeprecatedMap = {
   },
   // safe-buffer.Buffer function/constructror is just a re-export of buffer.Buffer
   // and should be deprecated likewise.
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   'safe-buffer': {
     Buffer: {
       [ASTUtils.ReferenceTracker.CONSTRUCT]: {

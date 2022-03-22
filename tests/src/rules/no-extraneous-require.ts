@@ -1,8 +1,8 @@
 import { symlinkSync, unlinkSync } from 'fs';
 import path from 'path';
 
-import { TSESLint } from '@typescript-eslint/experimental-utils';
 import { AST_NODE_TYPES } from '@typescript-eslint/types';
+import { TSESLint } from '@typescript-eslint/utils';
 
 import rule from '../../../src/rules/no-extraneous-require';
 

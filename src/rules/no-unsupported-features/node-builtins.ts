@@ -1,4 +1,4 @@
-import { ASTUtils } from '@typescript-eslint/experimental-utils';
+import { ASTUtils } from '@typescript-eslint/utils';
 
 import type { IRawOptions } from '../../util/check-unsupported-builtins';
 import { checkUnsupportedBuiltins } from '../../util/check-unsupported-builtins';
@@ -121,6 +121,7 @@ const modules = {
     Dir: { [ASTUtils.ReferenceTracker.READ]: { supported: '12.12.0' } },
     StatWatcher: { [ASTUtils.ReferenceTracker.READ]: { supported: '14.3.0', backported: ['12.20.0'] } },
   },
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   'fs/promises': { [ASTUtils.ReferenceTracker.READ]: { supported: '14.0.0' } },
   http2: { [ASTUtils.ReferenceTracker.READ]: { supported: '10.10.0', backported: ['8.13.0'], experimental: '8.4.0' } },
   inspector: { [ASTUtils.ReferenceTracker.READ]: { supported: '14.18.0', experimental: '8.0.0' } },
