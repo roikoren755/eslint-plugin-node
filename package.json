@@ -71,7 +71,7 @@
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-unicorn": "40.1.0",
     "fast-glob": "3.2.11",
-    "globals": "13.12.1",
+    "globals": "13.13.0",
     "husky": "7.0.4",
     "ignore": "5.2.0",
     "is-core-module": "2.8.1",
