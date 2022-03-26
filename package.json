@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@typescript-eslint/utils": "^5.0.0",
-    "eslint-plugin-es-roikoren": "2.0.0",
+    "eslint-plugin-es-roikoren": "2.0.4",
     "ignore": "^5.2.0",
     "is-core-module": "^2.8.0",
     "minimatch": "3.0.4",
