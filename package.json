@@ -47,7 +47,7 @@
     "semver": "7.3.5"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "0.4.3",
+    "@changesets/changelog-github": "0.4.4",
     "@changesets/cli": "2.22.0",
     "@commitlint/cli": "16.2.3",
     "@commitlint/config-conventional": "16.2.1",
