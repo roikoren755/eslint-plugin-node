@@ -66,5 +66,5 @@ process.exit(0)
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.0/src/rules/prefer-global/process.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.0/tests/src/rules/prefer-global/process.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.1/src/rules/prefer-global/process.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.1/tests/src/rules/prefer-global/process.ts)
