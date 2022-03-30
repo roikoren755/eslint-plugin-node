@@ -4,6 +4,7 @@ import { AST_NODE_TYPES } from '@typescript-eslint/types';
 import { TSESLint } from '@typescript-eslint/utils';
 
 import rule from '../../../src/rules/no-restricted-require';
+import type { RestrictionDefinition } from '../../../src/util/check-restricted';
 
 const error = (name: string, replace?: string): TSESLint.TestCaseError<'restricted'> => ({
   messageId: 'restricted',
@@ -62,18 +63,22 @@ new TSESLint.RuleTester({ globals: { require: 'readonly' } } as unknown as TSESL
       },
       { code: 'require("@foo/bar");', options: [[{ name: '@foo/*' }]], errors: [error('@foo/bar')] },
       { code: 'require("./foo/bar");', options: [[{ name: './foo/*' }]], errors: [error('./foo/bar')] },
-      {
-        filename: path.resolve(__dirname, 'lib/test.js'),
-        code: 'require("../foo");',
-        options: [[{ name: path.resolve(__dirname, 'foo') }]],
-        errors: [error('../foo')],
-      },
-      {
-        filename: path.resolve(__dirname, 'lib/sub/test.js'),
-        code: 'require("../../foo");',
-        options: [[{ name: path.resolve(__dirname, 'foo') }]],
-        errors: [error('../../foo')],
-      },
+      ...(process.platform.includes('win')
+        ? []
+        : [
+            {
+              filename: path.resolve(__dirname, 'lib/test.js'),
+              code: 'require("../foo");',
+              options: [[{ name: path.resolve(__dirname, 'foo') }]] as readonly [restrictions: RestrictionDefinition[]],
+              errors: [error('../foo')],
+            },
+            {
+              filename: path.resolve(__dirname, 'lib/sub/test.js'),
+              code: 'require("../../foo");',
+              options: [[{ name: path.resolve(__dirname, 'foo') }]] as readonly [restrictions: RestrictionDefinition[]],
+              errors: [error('../../foo')],
+            },
+          ]),
     ],
   },
 );
