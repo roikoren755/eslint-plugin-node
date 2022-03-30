@@ -86,5 +86,5 @@ For Example:
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.1/src/rules/no-unpublished-bin.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.1/tests/src/rules/no-unpublished-bin.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.0/src/rules/no-unpublished-bin.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.0/tests/src/rules/no-unpublished-bin.ts)
