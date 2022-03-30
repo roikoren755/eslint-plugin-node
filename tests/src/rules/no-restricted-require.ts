@@ -64,7 +64,8 @@ new TSESLint.RuleTester({ globals: { require: 'readonly' } } as unknown as TSESL
       { code: 'require("@foo/bar");', options: [[{ name: '@foo/*' }]], errors: [error('@foo/bar')] },
       { code: 'require("./foo/bar");', options: [[{ name: './foo/*' }]], errors: [error('./foo/bar')] },
       ...(process.platform.includes('win')
-        ? [
+        ? []
+        : [
             {
               filename: path.resolve(__dirname, 'lib/test.js'),
               code: 'require("../foo");',
@@ -77,8 +78,7 @@ new TSESLint.RuleTester({ globals: { require: 'readonly' } } as unknown as TSESL
               options: [[{ name: path.resolve(__dirname, 'foo') }]] as readonly [restrictions: RestrictionDefinition[]],
               errors: [error('../../foo')],
             },
-          ]
-        : []),
+          ]),
       {
         filename: path.resolve(__dirname, 'lib/test.js'),
         code: 'require("../foo");',

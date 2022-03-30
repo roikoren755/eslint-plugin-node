@@ -75,7 +75,8 @@ new TSESLint.RuleTester({
     { code: 'import "@foo/bar";', options: [[{ name: '@foo/*' }]], errors: [error('@foo/bar')] },
     { code: 'import "./foo/bar";', options: [[{ name: './foo/*' }]], errors: [error('./foo/bar')] },
     ...(process.platform.includes('win')
-      ? [
+      ? []
+      : [
           {
             filename: path.resolve(__dirname, 'lib/test.js'),
             code: 'import "../foo";',
@@ -88,8 +89,7 @@ new TSESLint.RuleTester({
             options: [[{ name: path.resolve(__dirname, 'foo') }]] as readonly [restrictions: RestrictionDefinition[]],
             errors: [error('../../foo')],
           },
-        ]
-      : []),
+        ]),
 
     // import()
     ...(DynamicImportSupported
