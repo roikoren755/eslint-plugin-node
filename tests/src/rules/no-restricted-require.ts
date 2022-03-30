@@ -79,18 +79,6 @@ new TSESLint.RuleTester({ globals: { require: 'readonly' } } as unknown as TSESL
               errors: [error('../../foo')],
             },
           ]),
-      {
-        filename: path.resolve(__dirname, 'lib/test.js'),
-        code: 'require("../foo");',
-        options: [[{ name: path.resolve(__dirname, 'foo') }]],
-        errors: [error('../foo')],
-      },
-      {
-        filename: path.resolve(__dirname, 'lib/sub/test.js'),
-        code: 'require("../../foo");',
-        options: [[{ name: path.resolve(__dirname, 'foo') }]],
-        errors: [error('../../foo')],
-      },
     ],
   },
 );
