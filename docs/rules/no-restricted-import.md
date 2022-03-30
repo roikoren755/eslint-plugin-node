@@ -35,7 +35,7 @@ You may also specify a custom message for each module you want to restrict as fo
 }
 ```
 
-And you can use glob patterns in the `name` property.
+And you can use glob patterns in the `name` property, so long as they use `/` as a separator. These names are passed to `minimatch`, which no longer supports using `\` as a separator.
 
 ```json
 {
@@ -52,7 +52,7 @@ And you can use glob patterns in the `name` property.
 }
 ```
 
-And you can use absolute paths in the `name` property.
+And you can use absolute paths in the `name` property, so long as they use `/` as a separator. These names are passed to `minimatch`, which no longer supports using `\` as a separator.
 
 ```js
 module.exports = {

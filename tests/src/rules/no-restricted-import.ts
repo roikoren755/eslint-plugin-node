@@ -4,6 +4,7 @@ import { AST_NODE_TYPES } from '@typescript-eslint/types';
 import { TSESLint } from '@typescript-eslint/utils';
 
 import rule from '../../../src/rules/no-restricted-import';
+import type { RestrictionDefinition } from '../../../src/util/check-restricted';
 import { DynamicImportSupported } from '../dynamic-import';
 
 if (!DynamicImportSupported) {
@@ -73,18 +74,22 @@ new TSESLint.RuleTester({
     },
     { code: 'import "@foo/bar";', options: [[{ name: '@foo/*' }]], errors: [error('@foo/bar')] },
     { code: 'import "./foo/bar";', options: [[{ name: './foo/*' }]], errors: [error('./foo/bar')] },
-    {
-      filename: path.resolve(__dirname, 'lib/test.js'),
-      code: 'import "../foo";',
-      options: [[{ name: path.resolve(__dirname, 'foo') }]],
-      errors: [error('../foo')],
-    },
-    {
-      filename: path.resolve(__dirname, 'lib/sub/test.js'),
-      code: 'import "../../foo";',
-      options: [[{ name: path.resolve(__dirname, 'foo') }]],
-      errors: [error('../../foo')],
-    },
+    ...(process.platform.includes('win')
+      ? [
+          {
+            filename: path.resolve(__dirname, 'lib/test.js'),
+            code: 'import "../foo";',
+            options: [[{ name: path.resolve(__dirname, 'foo') }]] as readonly [restrictions: RestrictionDefinition[]],
+            errors: [error('../foo')],
+          },
+          {
+            filename: path.resolve(__dirname, 'lib/sub/test.js'),
+            code: 'import "../../foo";',
+            options: [[{ name: path.resolve(__dirname, 'foo') }]] as readonly [restrictions: RestrictionDefinition[]],
+            errors: [error('../../foo')],
+          },
+        ]
+      : []),
 
     // import()
     ...(DynamicImportSupported
