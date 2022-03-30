@@ -378,5 +378,5 @@ new Buffer(); /*ERROR: 'buffer.Buffer' constructor was deprecated.*/
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.0/src/rules/no-deprecated-api.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.0/tests/src/rules/no-deprecated-api.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.1/src/rules/no-deprecated-api.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.1/tests/src/rules/no-deprecated-api.ts)

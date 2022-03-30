@@ -66,5 +66,5 @@ const u = new TextDecoder(s)
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.0/src/rules/prefer-global/text-decoder.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.0/tests/src/rules/prefer-global/text-decoder.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.1/src/rules/prefer-global/text-decoder.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.1/tests/src/rules/prefer-global/text-decoder.ts)
