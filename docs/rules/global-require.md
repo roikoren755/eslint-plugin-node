@@ -86,5 +86,5 @@ var x = require("x"),
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.1/src/rules/global-require.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v2.0.1/tests/src/rules/global-require.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.0/src/rules/global-require.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.0/tests/src/rules/global-require.ts)

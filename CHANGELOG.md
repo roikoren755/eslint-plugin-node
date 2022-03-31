@@ -1,5 +1,16 @@
 # eslint-plugin-node-roikoren
 
+## 3.0.0
+
+### Major Changes
+
+- [#81](https://github.com/roikoren755/eslint-plugin-node/pull/81) [`b2d1150`](https://github.com/roikoren755/eslint-plugin-node/commit/b2d1150fa40fb5a1a843ec9755a9599acdc35142) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency minimatch to v5
+  - Using `\` as a path separator in `node-roikoren/no-restricted-{import,require}` is no longer supported, as the `minimatch` package we're using no longer supports it. If you are running on a Windows machine and are passing paths to these rules in the options, please make sure to use `/` or some other character as a path separator.
+
+### Patch Changes
+
+- [#91](https://github.com/roikoren755/eslint-plugin-node/pull/91) [`6e0affc`](https://github.com/roikoren755/eslint-plugin-node/commit/6e0affcd9d5a0ee26cf60675e43287bae953eb94) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-plugin-es-roikoren to v2.0.5
+
 ## 2.0.1
 
 ### Patch Changes
