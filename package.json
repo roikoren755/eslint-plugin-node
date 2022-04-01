@@ -19,6 +19,7 @@
   "scripts": {
     "build": "tsc --project tsconfig.prod.json",
     "clean": "tsc --build --clean && rimraf .nyc_output coverage",
+    "codechecks": "codechecks",
     "coverage": "nyc report -r lcov",
     "lint": "eslint . --cache",
     "new": "ts-node scripts/new-rule",
@@ -49,6 +50,7 @@
   "devDependencies": {
     "@changesets/changelog-github": "0.4.4",
     "@changesets/cli": "2.22.0",
+    "@codechecks/client": "0.1.12",
     "@commitlint/cli": "16.2.3",
     "@commitlint/config-conventional": "16.2.1",
     "@types/is-core-module": "2.2.0",
@@ -83,7 +85,9 @@
     "prettier": "2.6.1",
     "resolve": "1.22.0",
     "type-fest": "2.12.1",
-    "typescript": "4.6.3"
+    "typecov": "0.2.3",
+    "typescript": "4.6.3",
+    "type-coverage": "2.21.1"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
