@@ -68,7 +68,7 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-import-resolver-typescript": "2.7.1",
     "eslint-plugin-eslint-plugin": "4.1.0",
-    "eslint-plugin-es-roikoren": "2.0.7",
+    "eslint-plugin-es-roikoren": "2.0.8",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-node-roikoren": "file:.",
     "eslint-plugin-prettier": "4.0.0",
