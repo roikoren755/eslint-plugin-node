@@ -1,5 +1,33 @@
 # eslint-plugin-node-roikoren
 
+## 3.0.1
+
+### Patch Changes
+
+- [#99](https://github.com/roikoren755/eslint-plugin-node/pull/99) [`16c79ff`](https://github.com/roikoren755/eslint-plugin-node/commit/16c79ffaae49e5975d20dfa986b678a4c9943ec7) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency prettier to v2.6.2
+
+* [#101](https://github.com/roikoren755/eslint-plugin-node/pull/101) [`f20db2e`](https://github.com/roikoren755/eslint-plugin-node/commit/f20db2e62800f3f28a9af45d5f0c1672e87319b4) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update typescript-eslint monorepo to v5.18.0
+
+- [#105](https://github.com/roikoren755/eslint-plugin-node/pull/105) [`bda2d28`](https://github.com/roikoren755/eslint-plugin-node/commit/bda2d286afa545444576bb6813a4fb922fb3e04e) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency semver to v7.3.6
+
+* [#94](https://github.com/roikoren755/eslint-plugin-node/pull/94) [`e7327b7`](https://github.com/roikoren755/eslint-plugin-node/commit/e7327b784cd411a3a0ca53877f92e1a6740b57ac) Thanks [@roikoren755](https://github.com/roikoren755)! - ci: add type coverage
+
+- [#92](https://github.com/roikoren755/eslint-plugin-node/pull/92) [`25ef435`](https://github.com/roikoren755/eslint-plugin-node/commit/25ef435c1e9d64385d6e61ffcb0030ab672ffa31) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-plugin-es-roikoren to v2.0.6
+
+* [#102](https://github.com/roikoren755/eslint-plugin-node/pull/102) [`13c86c1`](https://github.com/roikoren755/eslint-plugin-node/commit/13c86c17531dbeb19e1df865d79b0abdd9313b7b) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update codecov/codecov-action action to v3
+
+- [#98](https://github.com/roikoren755/eslint-plugin-node/pull/98) [`d60c2c2`](https://github.com/roikoren755/eslint-plugin-node/commit/d60c2c20a72bf187e238e82f695514ac9729637c) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-plugin-es-roikoren to v2.0.7
+
+* [#104](https://github.com/roikoren755/eslint-plugin-node/pull/104) [`0aff9c0`](https://github.com/roikoren755/eslint-plugin-node/commit/0aff9c08c93abc47898a7c73e161912c30ca66d1) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-plugin-import to v2.26.0
+
+- [#100](https://github.com/roikoren755/eslint-plugin-node/pull/100) [`83081d5`](https://github.com/roikoren755/eslint-plugin-node/commit/83081d54e57c2b92462d3f356ea7b6da0e2fd78b) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-import-resolver-typescript to v2.7.1
+
+* [#93](https://github.com/roikoren755/eslint-plugin-node/pull/93) [`15064b0`](https://github.com/roikoren755/eslint-plugin-node/commit/15064b0d503345dd7a608c84a7733cd90f48f045) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency type-fest to v2.12.2
+
+- [#96](https://github.com/roikoren755/eslint-plugin-node/pull/96) [`084b027`](https://github.com/roikoren755/eslint-plugin-node/commit/084b0272315823285f3761b18c487d7dc4892d4b) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update actions/setup-node action to v3.1.0
+
+* [#103](https://github.com/roikoren755/eslint-plugin-node/pull/103) [`8a19f33`](https://github.com/roikoren755/eslint-plugin-node/commit/8a19f330585f14c9486fd343e8aec83519c6c88b) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-plugin-es-roikoren to v2.0.8
+
 ## 3.0.0
 
 ### Major Changes
