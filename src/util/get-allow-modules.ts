@@ -14,7 +14,7 @@ const DEFAULT_VALUE = Object.freeze<string>([]);
  */
 const get = (option?: IAllowModules): string[] | null => {
   if (option?.allowModules && Array.isArray(option.allowModules)) {
-    return option.allowModules.map((module) => String(module));
+    return option.allowModules.map(String);
   }
 
   return null;

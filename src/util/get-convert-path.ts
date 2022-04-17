@@ -23,7 +23,7 @@ const identity = <T>(x: T): T => x;
  */
 const toStringArray = (x?: unknown[]): string[] => {
   if (Array.isArray(x)) {
-    return x.map((value) => String(value));
+    return x.map(String);
   }
 
   return [];
