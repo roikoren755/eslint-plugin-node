@@ -72,7 +72,7 @@
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-node-roikoren": "file:.",
     "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-unicorn": "41.0.1",
+    "eslint-plugin-unicorn": "42.0.0",
     "fast-glob": "3.2.11",
     "globals": "13.13.0",
     "husky": "7.0.4",

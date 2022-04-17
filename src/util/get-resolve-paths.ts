@@ -14,7 +14,7 @@ const DEFAULT_VALUE = Object.freeze([]);
  */
 const get = (option?: IResolvePaths): string[] | null => {
   if (option?.resolvePaths && Array.isArray(option.resolvePaths)) {
-    return option.resolvePaths.map((path) => String(path));
+    return option.resolvePaths.map(String);
   }
 
   return null;

@@ -14,7 +14,7 @@ const DEFAULT_VALUE = Object.freeze(['.js', '.json', '.node']);
  */
 const get = (option?: ITryExtensions): string[] | null => {
   if (option?.tryExtensions && Array.isArray(option.tryExtensions)) {
-    return option.tryExtensions.map((extension) => String(extension));
+    return option.tryExtensions.map(String);
   }
 
   return null;
