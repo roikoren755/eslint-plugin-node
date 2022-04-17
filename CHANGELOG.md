@@ -1,5 +1,25 @@
 # eslint-plugin-node-roikoren
 
+## 3.0.2
+
+### Patch Changes
+
+- [#106](https://github.com/roikoren755/eslint-plugin-node/pull/106) [`5ae61cc`](https://github.com/roikoren755/eslint-plugin-node/commit/5ae61cc996d1e78ad16f01ef5c2b8ad1708b625c) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint to v8.13.0
+
+* [#111](https://github.com/roikoren755/eslint-plugin-node/pull/111) [`51755fd`](https://github.com/roikoren755/eslint-plugin-node/commit/51755fdadc6672d02c681f3c3f1b8ac51287c40f) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update actions/checkout action to v3.0.1
+
+- [#109](https://github.com/roikoren755/eslint-plugin-node/pull/109) [`d6ca781`](https://github.com/roikoren755/eslint-plugin-node/commit/d6ca78131781f669bd5e4d42b090ac72162892c3) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update typescript-eslint monorepo to v5.19.0
+
+* [#110](https://github.com/roikoren755/eslint-plugin-node/pull/110) [`738f278`](https://github.com/roikoren755/eslint-plugin-node/commit/738f278f07687ecc228b824d0d84d03420888b22) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency semver to v7.3.7
+
+- [#108](https://github.com/roikoren755/eslint-plugin-node/pull/108) [`1c26872`](https://github.com/roikoren755/eslint-plugin-node/commit/1c268721bcf77b48152d31e82c21aefa17707fc3) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update actions/setup-node action to v3.1.1
+
+* [#97](https://github.com/roikoren755/eslint-plugin-node/pull/97) [`bd48f58`](https://github.com/roikoren755/eslint-plugin-node/commit/bd48f5847c08ae869693934230d489ea229a8112) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-plugin-unicorn to v42
+
+- [#112](https://github.com/roikoren755/eslint-plugin-node/pull/112) [`5865921`](https://github.com/roikoren755/eslint-plugin-node/commit/58659216e0c5bc23902bc318187d0a80f21022dd) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency lint-staged to v12.3.8
+
+* [#113](https://github.com/roikoren755/eslint-plugin-node/pull/113) [`1c56169`](https://github.com/roikoren755/eslint-plugin-node/commit/1c56169464679414d9c2aceaadf289dff5682063) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-plugin-es-roikoren to v2.0.9
+
 ## 3.0.1
 
 ### Patch Changes

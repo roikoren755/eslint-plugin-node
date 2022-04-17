@@ -117,5 +117,5 @@ For Example:
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.1/src/rules/shebang.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.1/tests/src/rules/shebang.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.2/src/rules/shebang.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.2/tests/src/rules/shebang.ts)
