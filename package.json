@@ -64,7 +64,7 @@
     "@typescript-eslint/typescript-estree": "5.20.0",
     "@typescript-eslint/utils": "5.20.0",
     "camelcase": "6.3.0",
-    "eslint": "8.13.0",
+    "eslint": "8.14.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-import-resolver-typescript": "2.7.1",
     "eslint-plugin-eslint-plugin": "4.1.0",
