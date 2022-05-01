@@ -73,5 +73,5 @@ If the configured name of the error variable begins with a `^` it is considered 
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.2/src/rules/handle-callback-err.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.2/tests/src/rules/handle-callback-err.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.3/src/rules/handle-callback-err.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.3/tests/src/rules/handle-callback-err.ts)

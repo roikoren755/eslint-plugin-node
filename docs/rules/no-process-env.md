@@ -31,5 +31,5 @@ if (config.env === "development") {
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.2/src/rules/no-process-env.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.2/tests/src/rules/no-process-env.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.3/src/rules/no-process-env.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.3/tests/src/rules/no-process-env.ts)
