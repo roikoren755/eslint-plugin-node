@@ -130,5 +130,5 @@ The `"ignores"` option accepts an array of the following strings.
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.2/src/rules/no-unsupported-features/es-syntax.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.2/tests/src/rules/no-unsupported-features/es-syntax.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.3/src/rules/no-unsupported-features/es-syntax.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.3/tests/src/rules/no-unsupported-features/es-syntax.ts)

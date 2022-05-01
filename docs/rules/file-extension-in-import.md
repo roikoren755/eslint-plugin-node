@@ -113,5 +113,5 @@ module.exports = {
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.2/src/rules/file-extension-in-import.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.2/tests/src/rules/file-extension-in-import.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.3/src/rules/file-extension-in-import.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.3/tests/src/rules/file-extension-in-import.ts)
