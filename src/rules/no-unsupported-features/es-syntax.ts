@@ -20,7 +20,7 @@ interface ICase {
   supported?: Range | string;
   messageId: string;
   isStrict?: boolean;
-  test?(aCase: INode): boolean;
+  test?: (aCase: INode) => boolean;
 }
 
 const getOrSet = /^[gs]et$/u;
@@ -209,7 +209,7 @@ const keywords = Object.keys(features);
 const normalizeScope = (initialScope: TSESLint.Scope.Scope, node: TSESTree.Node): TSESLint.Scope.Scope => {
   let scope = ASTUtils.getInnermostScope(initialScope, node);
 
-  while (scope?.block === node && scope.upper) {
+  while (scope.block === node && scope.upper) {
     scope = scope.upper;
   }
 

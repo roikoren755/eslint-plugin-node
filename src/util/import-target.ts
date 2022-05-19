@@ -37,7 +37,7 @@ const getFilePath = (isModule: boolean, id: string, options: Options): string | 
 const getModuleName = (nameOrPath: string): string => {
   let end = nameOrPath.indexOf('/');
 
-  if (end !== -1 && nameOrPath[0] === '@') {
+  if (end !== -1 && nameOrPath.startsWith('@')) {
     end = nameOrPath.indexOf('/', 1 + end);
   }
 

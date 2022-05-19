@@ -89,13 +89,13 @@ export default createRule<Options, 'deprecated'>({
           version: { type: 'string' },
           ignoreModuleItems: {
             type: 'array',
-            items: { enum: Array.from(enumeratePropertyNames(modules)) },
+            items: { enum: [...enumeratePropertyNames(modules)] },
             additionalItems: false,
             uniqueItems: true,
           },
           ignoreGlobalItems: {
             type: 'array',
-            items: { enum: Array.from(enumeratePropertyNames(globals)) },
+            items: { enum: [...enumeratePropertyNames(globals)] },
             additionalItems: false,
             uniqueItems: true,
           },

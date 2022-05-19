@@ -39,7 +39,7 @@ class Restriction {
     const names = Array.isArray(name) ? name : [name];
 
     this.#matchers = names.map((raw) => {
-      const negate = raw[0] === '!' && raw[1] !== '(';
+      const negate = raw.startsWith('!') && raw[1] !== '(';
       const pattern = negate ? raw.slice(1) : raw;
       const absolute = path.isAbsolute(pattern);
       const matcher = new Minimatch(pattern, { dot: true });

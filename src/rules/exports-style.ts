@@ -105,13 +105,13 @@ const createAssignmentList = (nodes: TSESTree.Node[]): TSESTree.Node[] =>
 const getModuleExportsNodes = (scope: TSESLint.Scope.Scope): TSESTree.MemberExpression[] => {
   const variable = scope.set.get('module');
 
-  return (
-    (variable?.references
-      .map((reference) => reference.identifier.parent)
-      .filter(
-        (node) => node?.type === 'MemberExpression' && getStaticPropertyName(node) === 'exports',
-      ) as TSESTree.MemberExpression[]) ?? []
-  );
+  return variable
+    ? (variable.references
+        .map((reference) => reference.identifier.parent)
+        .filter(
+          (node) => node?.type === 'MemberExpression' && getStaticPropertyName(node) === 'exports',
+        ) as TSESTree.MemberExpression[])
+    : [];
 };
 
 /**
@@ -325,7 +325,7 @@ export default createRule<
 
     return {
       'Program:exit'() {
-        switch (mode ?? 'module.exports') {
+        switch (mode) {
           case 'module.exports':
             enforceModuleExports();
             break;

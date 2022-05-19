@@ -3,6 +3,25 @@ import type { TSESLint } from '@typescript-eslint/utils';
 
 import { createRule } from '../util/create-rule';
 
+/**
+ * Checks if the given argument should be interpreted as a regexp pattern.
+ * @param {string} stringToCheck The string which should be checked.
+ * @returns {boolean} Whether or not the string should be interpreted as a pattern.
+ */
+const isPattern = (stringToCheck: string): boolean => {
+  const [firstChar] = stringToCheck;
+
+  return firstChar === '^';
+};
+
+/**
+ * Get the parameters of a given function scope.
+ * @param {TSESLint.Scope.Scope} scope The function scope.
+ * @returns {TSESLint.Scope.Variable[]} All parameters of the given scope.
+ */
+const getParameters = (scope: TSESLint.Scope.Scope): TSESLint.Scope.Variable[] =>
+  scope.variables.filter((variable) => variable.defs[0] && variable.defs[0].type === 'Parameter');
+
 export const category = 'Possible Errors';
 export default createRule<[errorArgument: string], 'expected'>({
   name: 'handle-callback-err',
@@ -15,17 +34,6 @@ export default createRule<[errorArgument: string], 'expected'>({
   defaultOptions: ['err'],
   create(context, options) {
     const [errorArgument] = options;
-
-    /**
-     * Checks if the given argument should be interpreted as a regexp pattern.
-     * @param {string} stringToCheck The string which should be checked.
-     * @returns {boolean} Whether or not the string should be interpreted as a pattern.
-     */
-    const isPattern = (stringToCheck: string): boolean => {
-      const [firstChar] = stringToCheck;
-
-      return firstChar === '^';
-    };
 
     /**
      * Checks if the given name matches the configured error argument.
@@ -43,14 +51,6 @@ export default createRule<[errorArgument: string], 'expected'>({
     };
 
     /**
-     * Get the parameters of a given function scope.
-     * @param {TSESLint.Scope.Scope} scope The function scope.
-     * @returns {TSESLint.Scope.Variable[]} All parameters of the given scope.
-     */
-    const getParameters = (scope: TSESLint.Scope.Scope): TSESLint.Scope.Variable[] =>
-      scope.variables.filter((variable) => variable.defs[0] && variable.defs[0].type === 'Parameter');
-
-    /**
      * Check to see if we're handling the error object properly.
      * @param {TSESTree.ArrowFunctionExpression | TSESTree.FunctionDeclaration | TSESTree.FunctionExpression} node The AST node to check.
      * @returns {void}
@@ -62,7 +62,11 @@ export default createRule<[errorArgument: string], 'expected'>({
       const parameters = getParameters(scope);
       const [firstParameter] = parameters;
 
-      if (firstParameter && matchesConfiguredErrorName(firstParameter.name) && firstParameter.references.length === 0) {
+      if (
+        parameters.length > 0 &&
+        matchesConfiguredErrorName(firstParameter.name) &&
+        firstParameter.references.length === 0
+      ) {
         context.report({ node, messageId: 'expected' });
       }
     };

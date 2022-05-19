@@ -37,6 +37,6 @@ export const getOnlyRelativePath = (
   options: readonly unknown[],
   optionIndex = 0,
 ): boolean =>
-  get(options[optionIndex] as IOnlyRelativePath) ?? get(context.settings?.node as IOnlyRelativePath) ?? DEFAULT_VALUE;
+  get(options[optionIndex] as IOnlyRelativePath) ?? get(context.settings.node as IOnlyRelativePath) ?? DEFAULT_VALUE;
 
 export const schema: JSONSchema.JSONSchema4 = { type: 'boolean' };

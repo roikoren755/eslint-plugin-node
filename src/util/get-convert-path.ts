@@ -121,7 +121,7 @@ export const getConvertPath = (
   context: TSESLint.RuleContext<string, readonly unknown[]>,
   options: readonly unknown[],
   optionIndex = 0,
-): Convert => parse(options[optionIndex] as IConvertPath) ?? parse(context.settings?.node as IConvertPath) ?? identity;
+): Convert => parse(options[optionIndex] as IConvertPath) ?? parse(context.settings.node as IConvertPath) ?? identity;
 
 /**
  * JSON Schema for `convertPath` option.

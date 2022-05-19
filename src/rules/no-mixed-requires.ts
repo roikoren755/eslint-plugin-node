@@ -152,7 +152,7 @@ const inferModuleType = (initExpression: TSESTree.CallExpression | TSESTree.Memb
  * @returns {boolean} True if the declarations are mixed, false if not.
  */
 const isMixed = (allowCall: boolean, declarations: TSESTree.VariableDeclarator[]): boolean => {
-  const contains: Record<string, true> = {};
+  const contains: Record<string, boolean> = {};
 
   for (const declaration of declarations) {
     const type = getDeclarationType(allowCall, declaration.init);

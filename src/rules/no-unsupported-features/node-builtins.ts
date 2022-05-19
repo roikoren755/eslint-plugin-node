@@ -251,10 +251,7 @@ export default createRule<[options: IRawOptions], 'unsupported'>({
   name: 'no-unsupported-features/node-builtins',
   meta: {
     type: 'problem',
-    docs: {
-      description: 'disallow unsupported Node.js built-in APIs on the specified version',
-      recommended: 'error',
-    },
+    docs: { description: 'disallow unsupported Node.js built-in APIs on the specified version', recommended: 'error' },
     schema: [
       {
         type: 'object',
@@ -262,9 +259,7 @@ export default createRule<[options: IRawOptions], 'unsupported'>({
           version: { type: 'string' },
           ignores: {
             type: 'array',
-            items: {
-              enum: Array.from(new Set([...enumeratePropertyNames(globals), ...enumeratePropertyNames(modules)])),
-            },
+            items: { enum: [...new Set([...enumeratePropertyNames(globals), ...enumeratePropertyNames(modules)])] },
             uniqueItems: true,
           },
         },
