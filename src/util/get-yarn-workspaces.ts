@@ -37,6 +37,6 @@ export const getYarnWorkspaces = (
   options: readonly unknown[],
   optionIndex = 0,
 ): boolean =>
-  get(options[optionIndex] as IYarnWorkspaces) ?? get(context.settings?.node as IYarnWorkspaces) ?? DEFAULT_VALUE;
+  get(options[optionIndex] as IYarnWorkspaces) ?? get(context.settings.node as IYarnWorkspaces) ?? DEFAULT_VALUE;
 
 export const schema: JSONSchema.JSONSchema4 = { type: 'boolean' };

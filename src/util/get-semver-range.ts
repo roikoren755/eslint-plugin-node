@@ -15,7 +15,7 @@ interface IGetSemverRange {
  */
 export const getSemverRange: IGetSemverRange = (x) => {
   const s = String(x);
-  let ret = (cache.get(s) ?? null) as Range;
+  let ret = cache.get(s) ?? null;
 
   if (!ret) {
     try {
@@ -27,5 +27,5 @@ export const getSemverRange: IGetSemverRange = (x) => {
     cache.set(s, ret);
   }
 
-  return ret;
+  return ret as Range;
 };

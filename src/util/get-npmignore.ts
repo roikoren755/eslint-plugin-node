@@ -16,7 +16,6 @@ interface ITester {
 
 const cache = new Cache<string, ITester>();
 const SLASH_AT_BEGIN_AND_END = /^!?\/+|^!|\/+$/gu;
-const PARENT_RELATIVE_PATH = /^\.\./u;
 const NEVER_IGNORED = /^(?:readme\.[^.]*|(?:licen[cs]e|changes|changelog|history)(?:\.[^.]*)?)$/iu;
 
 /**
@@ -27,7 +26,7 @@ const NEVER_IGNORED = /^(?:readme\.[^.]*|(?:licen[cs]e|changes|changelog|history
  * @returns {boolean} `true` if the file name is a relative path to a ancestor
  *      directory.
  */
-const isAncestorFiles = (filePath: string): boolean => PARENT_RELATIVE_PATH.test(filePath);
+const isAncestorFiles = (filePath: string): boolean => filePath.startsWith('..');
 
 /**
  * @param {function} f - A function.

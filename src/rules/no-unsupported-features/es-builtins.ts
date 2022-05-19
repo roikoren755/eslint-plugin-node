@@ -102,7 +102,7 @@ export default createRule<[options: IRawOptions], 'unsupported'>({
           version: { type: 'string' },
           ignores: {
             type: 'array',
-            items: { enum: Array.from(enumeratePropertyNames(trackMap.globals)) },
+            items: { enum: [...enumeratePropertyNames(trackMap.globals)] },
             uniqueItems: true,
           },
         },

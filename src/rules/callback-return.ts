@@ -2,6 +2,30 @@ import type { TSESTree } from '@typescript-eslint/typescript-estree';
 
 import { createRule } from '../util/create-rule';
 
+/**
+ * Determines whether the callback is part of a callback expression.
+ * @param {TSESTree.CallExpression} node The callback node
+ * @param {TSESTree.Statement} parentNode The expression node
+ * @returns {boolean} Whether or not this is part of a callback expression
+ */
+const isCallbackExpression = (node: TSESTree.CallExpression, parentNode?: TSESTree.Statement): boolean => {
+  // ensure the parent node exists and is an expression
+  if (!parentNode || parentNode.type !== 'ExpressionStatement') {
+    return false;
+  }
+
+  // cb()
+  if (parentNode.expression === node) {
+    return true;
+  }
+
+  // special case for cb && cb() and similar
+  return (
+    (parentNode.expression.type === 'BinaryExpression' || parentNode.expression.type === 'LogicalExpression') &&
+    parentNode.expression.right === node
+  );
+};
+
 export const category = 'Stylistic Issues';
 export default createRule<[callbacks: string[]], 'missingReturn'>({
   name: 'callback-return',
@@ -64,30 +88,6 @@ export default createRule<[callbacks: string[]], 'missingReturn'>({
      */
     const isCallback = (node: TSESTree.CallExpression): boolean =>
       containsOnlyIdentifiers(node.callee) && callbacks.includes(sourceCode.getText(node.callee));
-
-    /**
-     * Determines whether or not the callback is part of a callback expression.
-     * @param {TSESTree.CallExpression} node The callback node
-     * @param {TSESTree.Statement} parentNode The expression node
-     * @returns {boolean} Whether or not this is part of a callback expression
-     */
-    const isCallbackExpression = (node: TSESTree.CallExpression, parentNode: TSESTree.Statement): boolean => {
-      // ensure the parent node exists and is an expression
-      if (!parentNode || parentNode.type !== 'ExpressionStatement') {
-        return false;
-      }
-
-      // cb()
-      if (parentNode.expression === node) {
-        return true;
-      }
-
-      // special case for cb && cb() and similar
-      return (
-        (parentNode.expression.type === 'BinaryExpression' || parentNode.expression.type === 'LogicalExpression') &&
-        parentNode.expression.right === node
-      );
-    };
 
     return {
       CallExpression(node) {

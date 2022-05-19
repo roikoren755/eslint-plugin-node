@@ -37,6 +37,6 @@ export const getResolvePaths = (
   options: readonly unknown[],
   optionIndex = 0,
 ): readonly string[] =>
-  get(options[optionIndex] as IResolvePaths) ?? get(context.settings?.node as IResolvePaths) ?? DEFAULT_VALUE;
+  get(options[optionIndex] as IResolvePaths) ?? get(context.settings.node as IResolvePaths) ?? DEFAULT_VALUE;
 
 export const schema: JSONSchema.JSONSchema4 = { type: 'array', items: { type: 'string' }, uniqueItems: true };

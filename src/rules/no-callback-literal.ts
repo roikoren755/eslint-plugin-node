@@ -55,7 +55,7 @@ export default createRule<[], 'unexpected'>({
         const [errorArg] = node.arguments;
         const calleeName = 'name' in node.callee ? node.callee.name : '';
 
-        if (errorArg && !couldBeError(errorArg) && callbackNames.has(calleeName)) {
+        if (node.arguments.length > 0 && !couldBeError(errorArg) && callbackNames.has(calleeName)) {
           context.report({ node, messageId: 'unexpected' });
         }
       },

@@ -17,7 +17,6 @@ const error = (ext: string, notForbid?: boolean): TSESLint.TestCaseError<`${'for
 });
 
 if (!DynamicImportSupported) {
-  // eslint-disable-next-line no-console
   console.warn("[%s] Skip tests for 'import()'", path.basename(__filename, '.js'));
 }
 
@@ -202,7 +201,7 @@ new TSESLint.RuleTester({
 // -----------------------------------------------------------------------------
 // TypeScript
 // -----------------------------------------------------------------------------
-if (gte(TSESLint.ESLint.version ?? TSESLint.Linter.version ?? TSESLint.CLIEngine?.version ?? '0.0.0', '7.28.0')) {
+if (gte((TSESLint.ESLint.version || TSESLint.Linter.version || TSESLint.CLIEngine?.version) ?? '0.0.0', '7.28.0')) {
   new TSESLint.RuleTester({
     parser: require.resolve('@typescript-eslint/parser'),
     parserOptions: { ecmaVersion: 2015, sourceType: 'module' },

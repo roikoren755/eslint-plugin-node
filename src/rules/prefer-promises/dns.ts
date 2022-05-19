@@ -48,7 +48,7 @@ export default createRule<[], `preferPromises${'' | 'New'}`>({
           ...tracker.iterateEsmReferences(trackMap),
         ]) {
           const name = path[path.length - 1];
-          const isClass = name[0] === name[0].toUpperCase();
+          const isClass = name.startsWith(name[0].toUpperCase());
 
           context.report({ node, messageId: isClass ? 'preferPromisesNew' : 'preferPromises', data: { name } });
         }

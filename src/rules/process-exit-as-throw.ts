@@ -24,11 +24,11 @@ const safeRequire = <T>(...moduleNames: string[]): T | null => {
 };
 
 interface ICodePathAnalyzer {
-  prototype: { leaveNode(node: TSESTree.Node): void };
+  prototype: { leaveNode: (node: TSESTree.Node) => void };
   codePath: unknown;
   currentNode: TSESTree.Node | null;
   emitter: EventEmitter;
-  original: { leaveNode(node: TSESTree.Node): void };
+  original: { leaveNode: (node: TSESTree.Node) => void };
 }
 
 interface ISegment {
@@ -36,14 +36,14 @@ interface ISegment {
 }
 
 interface ICodePathSegment {
-  markUsed(segment: ISegment): void;
+  markUsed: (segment: ISegment) => void;
 }
 
 interface ICodePath {
-  getState(codePath: unknown): {
+  getState: (codePath: unknown) => {
     currentSegments: (ISegment | null)[];
     headSegments: (ISegment | null)[];
-    makeThrow(): void;
+    makeThrow: () => void;
   };
 }
 
@@ -63,7 +63,6 @@ const CodePath = safeRequire<ICodePath>(
   'eslint/lib/code-path-analysis/code-path',
 );
 
-// eslint-disable-next-line @typescript-eslint/unbound-method
 const originalLeaveNode = CodePathAnalyzer?.prototype.leaveNode as ICodePathAnalyzer['prototype']['leaveNode'];
 
 /**
@@ -142,7 +141,7 @@ function overrideLeaveNode(this: ICodePathAnalyzer, node: TSESTree.Node): void {
     this.original.leaveNode(node);
     this.currentNode = null;
   } else {
-    originalLeaveNode?.call(this, node);
+    originalLeaveNode.call(this, node);
   }
 }
 

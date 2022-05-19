@@ -19,7 +19,7 @@ const ignores =
     const options = original.options?.slice() ?? [];
 
     options[0] = Object.assign({}, pattern.options?.[0]);
-    options[0].ignores = options[0].ignores ? options[0].ignores.concat([keyword]) : [keyword];
+    options[0].ignores = options[0].ignores ? [...options[0].ignores, keyword] : [keyword];
 
     return Object.assign({}, original, { options });
   };

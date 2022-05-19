@@ -8,7 +8,6 @@ import rule from '../../../src/rules/no-extraneous-import';
 import { DynamicImportSupported } from '../dynamic-import';
 
 if (!DynamicImportSupported) {
-  // eslint-disable-next-line no-console
   console.warn("[%s] Skip tests for 'import()'", path.basename(__filename, '.js'));
 }
 
