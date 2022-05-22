@@ -1,5 +1,37 @@
 # eslint-plugin-node-roikoren
 
+## 3.0.4
+
+### Patch Changes
+
+- [#131](https://github.com/roikoren755/eslint-plugin-node/pull/131) [`de3cf96`](https://github.com/roikoren755/eslint-plugin-node/commit/de3cf96a5c788938f26521e18ac84bfe23323e65) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update typescript-eslint monorepo to v5.25.0
+
+* [#135](https://github.com/roikoren755/eslint-plugin-node/pull/135) [`487d01a`](https://github.com/roikoren755/eslint-plugin-node/commit/487d01a3f2b8daaa087d173ce322aa93cc1d86d8) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency husky to v8
+
+- [#138](https://github.com/roikoren755/eslint-plugin-node/pull/138) [`bf1f850`](https://github.com/roikoren755/eslint-plugin-node/commit/bf1f8502a2433d798802f6316d38154c05d28409) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency globals to v13.15.0
+
+* [#143](https://github.com/roikoren755/eslint-plugin-node/pull/143) [`ed8b080`](https://github.com/roikoren755/eslint-plugin-node/commit/ed8b080f3bd729fda4a51d118ede213762c8155c) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency minimatch to v5.1.0
+
+- [#141](https://github.com/roikoren755/eslint-plugin-node/pull/141) [`784a82e`](https://github.com/roikoren755/eslint-plugin-node/commit/784a82eff087c1aeb8e7617f7ca233195a8263d9) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update actions/setup-node action to v3.2.0
+
+* [#142](https://github.com/roikoren755/eslint-plugin-node/pull/142) [`8da412f`](https://github.com/roikoren755/eslint-plugin-node/commit/8da412f4eb3919e6b88d895939c28f3f0099b520) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update commitlint monorepo to v17 (major)
+
+- [#136](https://github.com/roikoren755/eslint-plugin-node/pull/136) [`b0e14f6`](https://github.com/roikoren755/eslint-plugin-node/commit/b0e14f628ef518d0b40a8b0579c89fe7c80dca46) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update changesets/action action to v1.3.0
+
+* [#146](https://github.com/roikoren755/eslint-plugin-node/pull/146) [`92a9bc4`](https://github.com/roikoren755/eslint-plugin-node/commit/92a9bc4d32556ef5b3c54b93a1893931ab31ea9b) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-plugin-es-roikoren to v2.0.11
+
+- [#134](https://github.com/roikoren755/eslint-plugin-node/pull/134) [`83d67da`](https://github.com/roikoren755/eslint-plugin-node/commit/83d67da0a7697f11c47a853641238398b1d20d17) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency globals to v13.14.0
+
+* [#132](https://github.com/roikoren755/eslint-plugin-node/pull/132) [`a96817d`](https://github.com/roikoren755/eslint-plugin-node/commit/a96817d9a490728879f46bd4b932bdaf93d8d9fa) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint to v8.15.0
+
+- [#144](https://github.com/roikoren755/eslint-plugin-node/pull/144) [`30ab4b3`](https://github.com/roikoren755/eslint-plugin-node/commit/30ab4b3d66538465c133c49c8bd05702b172d310) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update github/codeql-action action to v2.1.11
+
+* [#140](https://github.com/roikoren755/eslint-plugin-node/pull/140) [`ed7d07a`](https://github.com/roikoren755/eslint-plugin-node/commit/ed7d07a0ff842d59730f52086239664087fffb7a) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-plugin-eslint-plugin to v4.2.0
+
+- [#145](https://github.com/roikoren755/eslint-plugin-node/pull/145) [`9645052`](https://github.com/roikoren755/eslint-plugin-node/commit/9645052553ad1f5710728c08dfeb89fe4129a1e6) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint to v8.16.0
+
+* [#137](https://github.com/roikoren755/eslint-plugin-node/pull/137) [`78ef833`](https://github.com/roikoren755/eslint-plugin-node/commit/78ef833a76295c9b1f9118ad96a20ab83ef120c8) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update github/codeql-action action to v2.1.10
+
 ## 3.0.3
 
 ### Patch Changes

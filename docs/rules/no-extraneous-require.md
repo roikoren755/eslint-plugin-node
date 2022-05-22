@@ -92,5 +92,5 @@ module.exports = {
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.3/src/rules/no-extraneous-require.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.3/tests/src/rules/no-extraneous-require.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.4/src/rules/no-extraneous-require.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.4/tests/src/rules/no-extraneous-require.ts)
