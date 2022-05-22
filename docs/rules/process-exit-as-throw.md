@@ -32,5 +32,5 @@ This rule itself never warn code.
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.3/src/rules/process-exit-as-throw.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.3/tests/src/rules/process-exit-as-throw.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.4/src/rules/process-exit-as-throw.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.4/tests/src/rules/process-exit-as-throw.ts)

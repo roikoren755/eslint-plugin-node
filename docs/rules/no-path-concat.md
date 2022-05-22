@@ -53,5 +53,5 @@ const fullPath6 = `${__filename}.test.js`;
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.3/src/rules/no-path-concat.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.3/tests/src/rules/no-path-concat.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.4/src/rules/no-path-concat.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.4/tests/src/rules/no-path-concat.ts)
