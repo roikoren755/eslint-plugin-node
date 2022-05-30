@@ -5,11 +5,6 @@ import { AST_NODE_TYPES } from '@typescript-eslint/types';
 import { TSESLint } from '@typescript-eslint/utils';
 
 import rule from '../../../src/rules/no-extraneous-import';
-import { DynamicImportSupported } from '../dynamic-import';
-
-if (!DynamicImportSupported) {
-  console.warn("[%s] Skip tests for 'import()'", path.basename(__filename, '.js'));
-}
 
 const error = {
   messageId: 'extraneous' as const,
@@ -66,16 +61,11 @@ new TSESLint.RuleTester({
     { filename: fixture('optionalDependencies/a.js'), code: "import bbb from 'bbb'", errors: [error] },
 
     // import()
-    ...(DynamicImportSupported
-      ? [
-          {
-            filename: fixture('dependencies/a.js'),
-            code: "function f() { import('bbb') }",
-            parserOptions: { ecmaVersion: 2020 as const },
-            errors: [{ ...error, column: 23 }],
-          },
-        ]
-      : []),
+    {
+      filename: fixture('dependencies/a.js'),
+      code: "function f() { import('bbb') }",
+      errors: [{ ...error, column: 23 }],
+    },
   ],
 });
 

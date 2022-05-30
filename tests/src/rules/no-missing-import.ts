@@ -4,11 +4,6 @@ import { AST_NODE_TYPES } from '@typescript-eslint/types';
 import { TSESLint } from '@typescript-eslint/utils';
 
 import rule from '../../../src/rules/no-missing-import';
-import { DynamicImportSupported } from '../dynamic-import';
-
-if (!DynamicImportSupported) {
-  console.warn("[%s] Skip tests for 'import()'", path.basename(__filename, '.js'));
-}
 
 const error = (name: string): TSESLint.TestCaseError<'missing'> => ({
   messageId: 'missing',
@@ -91,15 +86,7 @@ new TSESLint.RuleTester({
     },
 
     // import()
-    ...(DynamicImportSupported
-      ? [
-          {
-            filename: fixture('test.js'),
-            code: 'function f() { import(foo) }',
-            parserOptions: { ecmaVersion: 2020 as const },
-          },
-        ]
-      : []),
+    { filename: fixture('test.js'), code: 'function f() { import(foo) }' },
 
     // onlyRelativePath option
     {
@@ -150,16 +137,11 @@ new TSESLint.RuleTester({
     { filename: fixture('test.js'), code: "import a from './A.js';", errors: [{ ...error('./A.js'), column: 15 }] },
 
     // import()
-    ...(DynamicImportSupported
-      ? [
-          {
-            filename: fixture('test.js'),
-            code: "function f() { import('no-exist-package-0') }",
-            parserOptions: { ecmaVersion: 2020 as const },
-            errors: [{ ...error('no-exist-package-0'), column: 23 }],
-          },
-        ]
-      : []),
+    {
+      filename: fixture('test.js'),
+      code: "function f() { import('no-exist-package-0') }",
+      errors: [{ ...error('no-exist-package-0'), column: 23 }],
+    },
 
     // onlyRelativePath option
     {

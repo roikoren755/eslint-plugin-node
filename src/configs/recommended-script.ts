@@ -11,7 +11,7 @@ const recommendedScript: TSESLint.Linter.Config = {
     module: 'readonly',
     require: 'readonly',
   },
-  parserOptions: { ecmaFeatures: { globalReturn: true }, ecmaVersion: 2019, sourceType: 'script' },
+  parserOptions: { ecmaFeatures: { globalReturn: true }, ecmaVersion: 2020, sourceType: 'script' },
   plugins: ['node-roikoren'],
   rules: { ...commonRules, 'node-roikoren/no-unsupported-features/es-syntax': ['error', { ignores: [] }] },
 };
