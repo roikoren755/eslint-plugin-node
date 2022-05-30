@@ -175,6 +175,7 @@ new TSESLint.RuleTester({
       filename: fixture('test.js'),
       code: "function f() { import('./a') }",
       output: "function f() { import('./a.js') }",
+      parserOptions: { ecmaVersion: 2020 },
       errors: [{ ...error('js', true), column: 23 }],
     },
     {
@@ -182,6 +183,7 @@ new TSESLint.RuleTester({
       code: "function f() { import('./a.js') }",
       output: "function f() { import('./a') }",
       options: ['never'],
+      parserOptions: { ecmaVersion: 2020 },
       errors: [{ ...error('js'), column: 23 }],
     },
   ],
@@ -349,6 +351,7 @@ if (gte((TSESLint.ESLint.version || TSESLint.Linter.version || TSESLint.CLIEngin
         filename: fixture('test.ts', true),
         code: "function f() { import('./a') }",
         output: "function f() { import('./a.js') }",
+        parserOptions: { ecmaVersion: 2020 },
         errors: [{ ...error('js', true), column: 23 }],
       },
       {
@@ -356,6 +359,7 @@ if (gte((TSESLint.ESLint.version || TSESLint.Linter.version || TSESLint.CLIEngin
         code: "function f() { import('./a.ts') }",
         output: "function f() { import('./a') }",
         options: ['never'],
+        parserOptions: { ecmaVersion: 2020 },
         errors: [{ ...error('ts'), column: 23 }],
       },
     ],

@@ -139,6 +139,7 @@ new TSESLint.RuleTester({
     {
       filename: fixture('2/test.js'),
       code: "function f() { import('./ignore1.js') }",
+      parserOptions: { ecmaVersion: 2020 },
       errors: [{ ...error('./ignore1.js'), column: 23 }],
     },
   ],

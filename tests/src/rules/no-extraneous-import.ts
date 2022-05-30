@@ -64,6 +64,7 @@ new TSESLint.RuleTester({
     {
       filename: fixture('dependencies/a.js'),
       code: "function f() { import('bbb') }",
+      parserOptions: { ecmaVersion: 2020 },
       errors: [{ ...error, column: 23 }],
     },
   ],

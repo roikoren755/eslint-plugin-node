@@ -207,19 +207,13 @@ export default createRule<[options: IOptions], 'noMixCoreModuleFileComputed' | '
   },
   defaultOptions: [{ grouping: false, allowCall: false }],
   create(context, appliedOptions) {
-    const [options] = appliedOptions;
-    let grouping = false;
-    let allowCall = false;
-
-    if (typeof options === 'object') {
-      ({ grouping, allowCall } = options as Required<IOptions>);
-    }
+    const [{ grouping, allowCall }] = appliedOptions;
 
     return {
       VariableDeclaration(node) {
-        if (isMixed(allowCall, node.declarations)) {
+        if (isMixed(allowCall ?? false, node.declarations)) {
           context.report({ node, messageId: 'noMixRequire' });
-        } else if (grouping && !isGrouped(allowCall, node.declarations)) {
+        } else if (grouping && !isGrouped(allowCall ?? false, node.declarations)) {
           context.report({ node, messageId: 'noMixCoreModuleFileComputed' });
         }
       },

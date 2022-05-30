@@ -86,7 +86,7 @@ new TSESLint.RuleTester({
     },
 
     // import()
-    { filename: fixture('test.js'), code: 'function f() { import(foo) }' },
+    { filename: fixture('test.js'), code: 'function f() { import(foo) }', parserOptions: { ecmaVersion: 2020 } },
 
     // onlyRelativePath option
     {
@@ -140,6 +140,7 @@ new TSESLint.RuleTester({
     {
       filename: fixture('test.js'),
       code: "function f() { import('no-exist-package-0') }",
+      parserOptions: { ecmaVersion: 2020 },
       errors: [{ ...error('no-exist-package-0'), column: 23 }],
     },
 

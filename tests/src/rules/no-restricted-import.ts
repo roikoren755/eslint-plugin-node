@@ -37,7 +37,7 @@ new TSESLint.RuleTester({
     },
 
     // import()
-    { code: 'import(fs)', options: [['fs']] },
+    { code: 'import(fs)', options: [['fs']], parserOptions: { ecmaVersion: 2020 } },
   ],
   invalid: [
     { code: 'import "fs"', options: [['fs']], errors: [error('fs')] },
@@ -84,6 +84,6 @@ new TSESLint.RuleTester({
         ]),
 
     // import()
-    { code: 'import("fs")', options: [['fs']], errors: [error('fs')] },
+    { code: 'import("fs")', options: [['fs']], parserOptions: { ecmaVersion: 2020 }, errors: [error('fs')] },
   ],
 });
