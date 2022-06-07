@@ -40,5 +40,5 @@ callback(someVariable);
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.4/src/rules/no-callback-literal.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.4/tests/src/rules/no-callback-literal.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.5/src/rules/no-callback-literal.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.5/tests/src/rules/no-callback-literal.ts)

@@ -56,5 +56,5 @@ async function readData(filePath) {
 
 ## 🔎 Implementation
 
-- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.4/src/rules/prefer-promises/fs.ts)
-- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.4/tests/src/rules/prefer-promises/fs.ts)
+- [Rule source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.5/src/rules/prefer-promises/fs.ts)
+- [Test source](https://github.com/roikoren755/eslint-plugin-node/blob/v3.0.5/tests/src/rules/prefer-promises/fs.ts)

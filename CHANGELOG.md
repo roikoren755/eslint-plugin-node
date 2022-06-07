@@ -1,5 +1,15 @@
 # eslint-plugin-node-roikoren
 
+## 3.0.5
+
+### Patch Changes
+
+- [#154](https://github.com/roikoren755/eslint-plugin-node/pull/154) [`9bb9410`](https://github.com/roikoren755/eslint-plugin-node/commit/9bb9410146e86f3ae6050417c4596a72f68338b5) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency lint-staged to v13
+
+* [#159](https://github.com/roikoren755/eslint-plugin-node/pull/159) [`f06554e`](https://github.com/roikoren755/eslint-plugin-node/commit/f06554e4c4b3bd2dc5af368b2d1a2546804454aa) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update actions/setup-node action to v3.3.0
+
+- [#155](https://github.com/roikoren755/eslint-plugin-node/pull/155) [`ed2ad22`](https://github.com/roikoren755/eslint-plugin-node/commit/ed2ad220acc0993a967bc9ec04d741342d9ac4bc) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update github/codeql-action action to v2.1.12
+
 ## 3.0.4
 
 ### Patch Changes
