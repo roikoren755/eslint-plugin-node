@@ -50,17 +50,14 @@ interface ICodePath {
 const CodePathAnalyzer = safeRequire<ICodePathAnalyzer>(
   path.join(require.resolve('eslint'), '..', 'linter', 'code-path-analysis', 'code-path-analyzer'),
   'eslint/lib/linter/code-path-analysis/code-path-analyzer',
-  'eslint/lib/code-path-analysis/code-path-analyzer',
 );
 const CodePathSegment = safeRequire<ICodePathSegment>(
   path.join(require.resolve('eslint'), '..', 'linter', 'code-path-analysis', 'code-path-segment'),
   'eslint/lib/linter/code-path-analysis/code-path-segment',
-  'eslint/lib/code-path-analysis/code-path-segment',
 );
 const CodePath = safeRequire<ICodePath>(
   path.join(require.resolve('eslint'), '..', 'linter', 'code-path-analysis', 'code-path'),
   'eslint/lib/linter/code-path-analysis/code-path',
-  'eslint/lib/code-path-analysis/code-path',
 );
 
 const originalLeaveNode = CodePathAnalyzer?.prototype.leaveNode as ICodePathAnalyzer['prototype']['leaveNode'];

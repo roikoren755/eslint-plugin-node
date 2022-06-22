@@ -24,10 +24,6 @@ const collectFirstCharsOfTemplateElement = (
 ): void => {
   const element = node.quasis[i].value.cooked;
 
-  if (!element && element !== '') {
-    return;
-  }
-
   if (element !== '') {
     outNextChars.push(element[0]);
 

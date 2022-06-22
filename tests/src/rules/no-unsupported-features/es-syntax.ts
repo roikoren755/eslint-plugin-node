@@ -1277,7 +1277,6 @@ new TSESLint.RuleTester({
     // ----------------------------------------------------------------------
     {
       keyword: 'bigint',
-      requiredEcmaVersion: 2020,
       valid: [
         { code: 'var n = 0n', options: [{ version: '10.4.0' }] },
         { code: 'var n = BigInt(0)', options: [{ version: '10.3.0' }] },
@@ -1310,7 +1309,6 @@ new TSESLint.RuleTester({
     },
     {
       keyword: 'dynamicImport',
-      requiredEcmaVersion: 2020,
       valid: [
         { code: 'obj.import(source)', options: [{ version: '12.0.0' }] },
         { code: 'import(source)', options: [{ version: '12.17.0' }] },
@@ -1351,7 +1349,6 @@ new TSESLint.RuleTester({
     },
     {
       keyword: 'optionalChaining',
-      requiredEcmaVersion: 2020,
       valid: [{ code: 'foo?.bar;', options: [{ version: '14.0.0' }] }],
       invalid: [
         {
@@ -1365,7 +1362,6 @@ new TSESLint.RuleTester({
     },
     {
       keyword: 'nullishCoalescingOperators',
-      requiredEcmaVersion: 2020,
       valid: [{ code: 'foo ?? bar;', options: [{ version: '14.0.0' }] }],
       invalid: [
         {

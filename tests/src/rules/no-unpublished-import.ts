@@ -4,11 +4,6 @@ import { AST_NODE_TYPES } from '@typescript-eslint/types';
 import { TSESLint } from '@typescript-eslint/utils';
 
 import rule from '../../../src/rules/no-unpublished-import';
-import { DynamicImportSupported } from '../dynamic-import';
-
-if (!DynamicImportSupported) {
-  console.warn("[%s] Skip tests for 'import()'", path.basename(__filename, '.js'));
-}
 
 const error = (name: string): TSESLint.TestCaseError<'notPublished'> => ({
   messageId: 'notPublished',
@@ -141,15 +136,11 @@ new TSESLint.RuleTester({
     },
 
     // import()
-    ...(DynamicImportSupported
-      ? [
-          {
-            filename: fixture('2/test.js'),
-            code: "function f() { import('./ignore1.js') }",
-            parserOptions: { ecmaVersion: 2020 as const },
-            errors: [{ ...error('./ignore1.js'), column: 23 }],
-          },
-        ]
-      : []),
+    {
+      filename: fixture('2/test.js'),
+      code: "function f() { import('./ignore1.js') }",
+      parserOptions: { ecmaVersion: 2020 },
+      errors: [{ ...error('./ignore1.js'), column: 23 }],
+    },
   ],
 });

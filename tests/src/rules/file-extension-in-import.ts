@@ -6,7 +6,6 @@ import { TSESLint } from '@typescript-eslint/utils';
 import { gte } from 'semver';
 
 import rule from '../../../src/rules/file-extension-in-import';
-import { DynamicImportSupported } from '../dynamic-import';
 
 const error = (ext: string, notForbid?: boolean): TSESLint.TestCaseError<`${'forbid' | 'require'}Ext`> => ({
   messageId: `${notForbid ? 'require' : 'forbid'}Ext`,
@@ -15,10 +14,6 @@ const error = (ext: string, notForbid?: boolean): TSESLint.TestCaseError<`${'for
   column: 8,
   type: AST_NODE_TYPES.Literal,
 });
-
-if (!DynamicImportSupported) {
-  console.warn("[%s] Skip tests for 'import()'", path.basename(__filename, '.js'));
-}
 
 const fixture = (filename: string, ts?: boolean): string =>
   path.resolve(__dirname, `../../fixtures/file-extension-in-import${ts ? '-ts' : ''}`, filename);
@@ -176,25 +171,21 @@ new TSESLint.RuleTester({
     },
 
     // import()
-    ...(DynamicImportSupported
-      ? [
-          {
-            filename: fixture('test.js'),
-            code: "function f() { import('./a') }",
-            output: "function f() { import('./a.js') }",
-            parserOptions: { ecmaVersion: 2020 as const },
-            errors: [{ ...error('js', true), column: 23 }],
-          },
-          {
-            filename: fixture('test.js'),
-            code: "function f() { import('./a.js') }",
-            output: "function f() { import('./a') }",
-            options: ['never'] as const,
-            parserOptions: { ecmaVersion: 2020 as const },
-            errors: [{ ...error('js'), column: 23 }],
-          },
-        ]
-      : []),
+    {
+      filename: fixture('test.js'),
+      code: "function f() { import('./a') }",
+      output: "function f() { import('./a.js') }",
+      parserOptions: { ecmaVersion: 2020 },
+      errors: [{ ...error('js', true), column: 23 }],
+    },
+    {
+      filename: fixture('test.js'),
+      code: "function f() { import('./a.js') }",
+      output: "function f() { import('./a') }",
+      options: ['never'],
+      parserOptions: { ecmaVersion: 2020 },
+      errors: [{ ...error('js'), column: 23 }],
+    },
   ],
 });
 
@@ -356,25 +347,21 @@ if (gte((TSESLint.ESLint.version || TSESLint.Linter.version || TSESLint.CLIEngin
       },
 
       // import()
-      ...(DynamicImportSupported
-        ? [
-            {
-              filename: fixture('test.ts', true),
-              code: "function f() { import('./a') }",
-              output: "function f() { import('./a.js') }",
-              parserOptions: { ecmaVersion: 2020 as const },
-              errors: [{ ...error('js', true), column: 23 }],
-            },
-            {
-              filename: fixture('test.ts', true),
-              code: "function f() { import('./a.ts') }",
-              output: "function f() { import('./a') }",
-              options: ['never'] as const,
-              parserOptions: { ecmaVersion: 2020 as const },
-              errors: [{ ...error('ts'), column: 23 }],
-            },
-          ]
-        : []),
+      {
+        filename: fixture('test.ts', true),
+        code: "function f() { import('./a') }",
+        output: "function f() { import('./a.js') }",
+        parserOptions: { ecmaVersion: 2020 },
+        errors: [{ ...error('js', true), column: 23 }],
+      },
+      {
+        filename: fixture('test.ts', true),
+        code: "function f() { import('./a.ts') }",
+        output: "function f() { import('./a') }",
+        options: ['never'],
+        parserOptions: { ecmaVersion: 2020 },
+        errors: [{ ...error('ts'), column: 23 }],
+      },
     ],
   });
 }

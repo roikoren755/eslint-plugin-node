@@ -5,11 +5,6 @@ import { TSESLint } from '@typescript-eslint/utils';
 
 import rule from '../../../src/rules/no-restricted-import';
 import type { RestrictionDefinition } from '../../../src/util/check-restricted';
-import { DynamicImportSupported } from '../dynamic-import';
-
-if (!DynamicImportSupported) {
-  console.warn("[%s] Skip tests for 'import()'", path.basename(__filename, '.js'));
-}
 
 const error = (name: string, replace?: string): TSESLint.TestCaseError<'restricted'> => ({
   messageId: 'restricted',
@@ -42,9 +37,7 @@ new TSESLint.RuleTester({
     },
 
     // import()
-    ...(DynamicImportSupported
-      ? [{ code: 'import(fs)', options: [['fs']] as readonly [['fs']], parserOptions: { ecmaVersion: 2020 as const } }]
-      : []),
+    { code: 'import(fs)', options: [['fs']], parserOptions: { ecmaVersion: 2020 } },
   ],
   invalid: [
     { code: 'import "fs"', options: [['fs']], errors: [error('fs')] },
@@ -91,15 +84,6 @@ new TSESLint.RuleTester({
         ]),
 
     // import()
-    ...(DynamicImportSupported
-      ? [
-          {
-            code: 'import("fs")',
-            options: [['fs']] as readonly [['fs']],
-            parserOptions: { ecmaVersion: 2020 as const },
-            errors: [error('fs')],
-          },
-        ]
-      : []),
+    { code: 'import("fs")', options: [['fs']], parserOptions: { ecmaVersion: 2020 }, errors: [error('fs')] },
   ],
 });
