@@ -39,7 +39,7 @@
     "prettier": "2.6.2"
   },
   "dependencies": {
-    "@typescript-eslint/utils": "^5.0.0",
+    "@typescript-eslint/utils": "^8.3.0",
     "eslint-plugin-es-roikoren": "^2.0.4",
     "ignore": "^5.2.0",
     "is-core-module": "^2.8.0",
@@ -62,9 +62,9 @@
     "@typescript-eslint/parser": "5.25.0",
     "@typescript-eslint/types": "5.25.0",
     "@typescript-eslint/typescript-estree": "5.25.0",
-    "@typescript-eslint/utils": "5.25.0",
+    "@typescript-eslint/utils": "8.3.0",
     "camelcase": "6.3.0",
-    "eslint": "8.16.0",
+    "eslint": "8.44.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-import-resolver-typescript": "2.7.1",
     "eslint-plugin-es-roikoren": "2.0.11",
